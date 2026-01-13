@@ -1,0 +1,22 @@
+{
+  "name": "enkr-website",
+  "version": "1.0.0",
+  "description": "ENKR - Agencija za digitalne usluge",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "server": "node server.js"
+  },
+  "dependencies": {
+    "resend": "^3.2.0",
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}
+
