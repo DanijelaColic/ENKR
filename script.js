@@ -72,8 +72,10 @@ contactForm.addEventListener('submit', async (e) => {
   }
 
   try {
+    console.log('📤 Sending contact form data...');
+    
     // Send data to backend
-    const response = await fetch('http://localhost:3001/api/contact', {
+    const response = await fetch('http://localhost:5000/api/contact', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -81,17 +83,38 @@ contactForm.addEventListener('submit', async (e) => {
       body: JSON.stringify({ name, email, message }),
     });
 
+    console.log('📥 Response status:', response.status);
+    console.log('📥 Response headers:', Object.fromEntries(response.headers.entries()));
+
     // Check if response has content
     const contentType = response.headers.get('content-type');
-    if (!contentType || !contentType.includes('application/json')) {
-      throw new Error('Server nije vratio validan odgovor. Provjerite da li backend server radi.');
+    
+    // Try to parse response as JSON, but handle non-JSON responses gracefully
+    let data;
+    try {
+      const text = await response.text();
+      console.log('📥 Response text:', text);
+      
+      if (!text) {
+        throw new Error('Server nije vratio odgovor. Provjerite da li backend server radi na http://localhost:5000');
+      }
+      
+      if (contentType && contentType.includes('application/json')) {
+        data = JSON.parse(text);
+      } else {
+        throw new Error(`Server nije vratio JSON odgovor. Status: ${response.status}. Odgovor: ${text.substring(0, 100)}`);
+      }
+    } catch (parseError) {
+      console.error('❌ Error parsing response:', parseError);
+      throw new Error('Server nije vratio validan JSON odgovor. Provjerite da li backend server radi na http://localhost:5000');
     }
-
-    const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.error || 'Greška pri slanju poruke');
+      console.error('❌ Server returned error:', data);
+      throw new Error(data.error || `Greška pri slanju poruke (Status: ${response.status})`);
     }
+
+    console.log('✅ Success:', data);
 
     // Show success message
     const successMessage = document.createElement('div');
@@ -106,7 +129,10 @@ contactForm.addEventListener('submit', async (e) => {
     // Scroll to message
     successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   } catch (error) {
-    console.error('Error:', error);
+    console.error('❌ Error details:', error);
+    console.error('Error name:', error.name);
+    console.error('Error message:', error.message);
+    console.error('Error stack:', error.stack);
 
     // Show error message
     const errorMessage = document.createElement('div');
@@ -114,8 +140,11 @@ contactForm.addEventListener('submit', async (e) => {
     
     // More specific error messages
     let errorText = 'Greška pri slanju poruke. Molimo pokušajte ponovno.';
-    if (error.message.includes('fetch')) {
-      errorText = 'Nije moguće povezati se sa serverom. Provjerite da li je backend server pokrenut na portu 3001.';
+    
+    if (error.name === 'TypeError' && error.message.includes('fetch')) {
+      errorText = 'Nije moguće povezati se sa serverom. Provjerite da li je backend server pokrenut. Pokrenite ga sa: npm run server';
+    } else if (error.message.includes('localhost:5000')) {
+      errorText = 'Backend server nije dostupan. Provjerite da li je server pokrenut na http://localhost:5000. Pokrenite ga sa: npm run server';
     } else if (error.message) {
       errorText = error.message;
     }

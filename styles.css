@@ -1043,6 +1043,16 @@ button[type="submit"]:disabled {
   font-size: 0.9rem;
 }
 
+.footer-bottom a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: underline;
+  transition: var(--transition);
+}
+
+.footer-bottom a:hover {
+  color: white;
+}
+
 /* Responsive Design */
 @media (max-width: 968px) {
   .hero-wrapper {

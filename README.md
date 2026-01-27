@@ -31,8 +31,8 @@ npm run dev
 npm run server
 ```
 
-Stranica će biti dostupna na `http://localhost:3000`
-Backend API će biti dostupan na `http://localhost:3001`
+Stranica će biti dostupna na `http://localhost:3000` (ili drugi slobodan port ako je 3000 zauzet)
+Backend API će biti dostupan na `http://localhost:5000`
 
 ## Production
 
