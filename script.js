@@ -520,3 +520,153 @@ modalContent.addEventListener('click', (e) => {
   }
 });
 
+// Cookie Consent Management
+const COOKIE_CONSENT_KEY = 'enkr_cookie_consent';
+const COOKIE_CONSENT_EXPIRY_DAYS = 365; // Cookie consent traje 1 godinu
+
+// Check if user has already given consent (any type)
+function hasCookieConsent() {
+  const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
+  if (!consent) return false;
+
+  try {
+    const consentData = JSON.parse(consent);
+    // If explicitly rejected, return false
+    if (consentData.accepted === false) return false;
+    
+    // Check if consent has expired (older than expiry days)
+    const expiryDate = new Date(consentData.date);
+    const now = new Date();
+    const daysDiff = (now - expiryDate) / (1000 * 60 * 60 * 24);
+    
+    return daysDiff < COOKIE_CONSENT_EXPIRY_DAYS;
+  } catch (e) {
+    return false;
+  }
+}
+
+// Check if user has accepted all cookies (not just essential)
+function hasAcceptedAllCookies() {
+  const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
+  if (!consent) return false;
+
+  try {
+    const consentData = JSON.parse(consent);
+    return consentData.accepted === true;
+  } catch (e) {
+    return false;
+  }
+}
+
+// Save cookie consent
+function saveCookieConsent(accepted) {
+  const consentData = {
+    accepted: accepted,
+    date: new Date().toISOString(),
+  };
+  localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(consentData));
+}
+
+// Show cookie banner if consent not given
+function showCookieBanner() {
+  const cookieBanner = document.getElementById('cookieBanner');
+  if (cookieBanner && !hasCookieConsent()) {
+    // Small delay for better UX
+    setTimeout(() => {
+      cookieBanner.classList.add('show');
+    }, 500);
+  }
+}
+
+// Hide cookie banner
+function hideCookieBanner() {
+  const cookieBanner = document.getElementById('cookieBanner');
+  if (cookieBanner) {
+    cookieBanner.classList.remove('show');
+  }
+}
+
+// Handle accept all cookies
+function handleAcceptCookies() {
+  saveCookieConsent(true);
+  hideCookieBanner();
+  
+  // Initialize analytics and other tracking scripts
+  initializeGoogleAnalytics();
+  
+  console.log('✅ All cookies accepted');
+}
+
+// Handle accept essential cookies only
+function handleAcceptEssentialCookies() {
+  saveCookieConsent('essential');
+  hideCookieBanner();
+  
+  // Don't initialize analytics - only essential cookies
+  disableGoogleAnalytics();
+  
+  console.log('✅ Only essential cookies accepted');
+}
+
+// Handle reject cookies
+function handleRejectCookies() {
+  saveCookieConsent(false);
+  hideCookieBanner();
+  
+  // Disable analytics or other tracking scripts
+  disableGoogleAnalytics();
+  
+  console.log('❌ Cookies rejected');
+}
+
+// Initialize cookie banner on page load
+document.addEventListener('DOMContentLoaded', () => {
+  const acceptBtn = document.getElementById('acceptCookies');
+  const acceptEssentialBtn = document.getElementById('acceptEssentialCookies');
+  const rejectBtn = document.getElementById('rejectCookies');
+
+  if (acceptBtn) {
+    acceptBtn.addEventListener('click', handleAcceptCookies);
+  }
+
+  if (acceptEssentialBtn) {
+    acceptEssentialBtn.addEventListener('click', handleAcceptEssentialCookies);
+  }
+
+  if (rejectBtn) {
+    rejectBtn.addEventListener('click', handleRejectCookies);
+  }
+
+  // Show banner if consent not given
+  showCookieBanner();
+});
+
+// Function to initialize Google Analytics (only if all cookies accepted)
+function initializeGoogleAnalytics() {
+  // Only initialize if user accepted ALL cookies (not just essential)
+  if (hasAcceptedAllCookies()) {
+    // Add your Google Analytics code here
+    // Example:
+    // window.dataLayer = window.dataLayer || [];
+    // function gtag(){dataLayer.push(arguments);}
+    // gtag('js', new Date());
+    // gtag('config', 'GA_MEASUREMENT_ID');
+    
+    console.log('📊 Analytics initialized (all cookies accepted)');
+  } else {
+    console.log('📊 Analytics not initialized (only essential cookies or rejected)');
+  }
+}
+
+// Function to disable Google Analytics
+function disableGoogleAnalytics() {
+  // Disable tracking scripts if user rejected cookies or only accepted essential
+  // Implementation depends on your analytics setup
+  
+  // Example: Remove analytics cookies
+  // document.cookie.split(";").forEach(function(c) { 
+  //   document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+  // });
+  
+  console.log('📊 Analytics disabled');
+}
