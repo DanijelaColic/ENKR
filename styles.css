@@ -149,11 +149,11 @@ body {
 /* Hero Section */
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 80px 0;
+  padding: 60px 0;
   overflow: hidden;
   background: linear-gradient(135deg, #f0f4ff 0%, #faf5ff 50%, #f0f9ff 100%);
 }
@@ -245,7 +245,7 @@ body {
 .hero-subtitle {
   font-size: clamp(0.9375rem, 1.8vw, 1.125rem);
   color: var(--text-light);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   line-height: 1.7;
   text-align: left;
 }
@@ -399,9 +399,9 @@ body {
 .free-callout {
   background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
   border-left: 4px solid var(--primary-color);
-  padding: 1rem 1.5rem;
+  padding: 0.875rem 1.25rem;
   border-radius: 8px;
-  margin: 1.5rem 0;
+  margin: 1.25rem 0;
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -410,7 +410,8 @@ body {
 .free-callout-text {
   color: var(--text-dark);
   font-weight: 500;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
 
 .free-callout-icon {
@@ -532,10 +533,10 @@ body {
 /* Free Draft Section */
 .free-draft-section {
   background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #7c3aed 100%);
-  padding: 0;
+  padding: 60px 0;
   position: relative;
   overflow: hidden;
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -678,7 +679,7 @@ body {
 }
 
 .free-draft-title {
-  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
   font-weight: 800;
   color: white;
   margin-bottom: 0.5rem;
@@ -706,7 +707,7 @@ body {
 }
 
 .free-draft-description {
-  font-size: 1rem;
+  font-size: 0.9375rem;
   color: rgba(255, 255, 255, 0.95);
   line-height: 1.6;
   margin-bottom: 0.75rem;
@@ -790,7 +791,7 @@ body {
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  padding: 1rem;
+  padding: 0.875rem;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border-radius: 12px;
@@ -1591,7 +1592,7 @@ body {
 
 /* Technologies Banner Section */
 .technologies-banner-section {
-  padding: 3rem 0;
+  padding: 2rem 0;
   background: var(--bg-light);
   overflow: hidden;
   position: relative;
@@ -1784,12 +1785,12 @@ body {
 
 /* Section Styles */
 section {
-  padding: 80px 0;
+  padding: 50px 0;
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
 }
 
 .pricing-section .section-header {
@@ -1797,14 +1798,14 @@ section {
 }
 
 .section-title {
-  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   color: var(--text-dark);
 }
 
 .section-subtitle {
-  font-size: 1.125rem;
+  font-size: 1rem;
   color: var(--text-light);
   max-width: 600px;
   margin: 0 auto;
@@ -1818,7 +1819,7 @@ section {
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .service-card {
@@ -1901,17 +1902,18 @@ section {
 }
 
 .service-title {
-  font-size: 1.5rem;
+  font-size: 1.375rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   color: var(--text-dark);
 }
 
 .service-description {
   color: var(--text-light);
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
   flex-grow: 1;
+  font-size: 0.9375rem;
 }
 
 .service-features {
@@ -1945,10 +1947,10 @@ section {
 }
 
 .about-description {
-  font-size: 1.125rem;
+  font-size: 1rem;
   color: var(--text-light);
-  margin-bottom: 1.5rem;
-  line-height: 1.8;
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
 }
 
 /* Projects Section */
@@ -2057,24 +2059,25 @@ section {
 }
 
 .project-title {
-  font-size: 1.5rem;
+  font-size: 1.375rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   color: var(--text-dark);
 }
 
 .project-description {
   color: var(--text-light);
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
   flex-grow: 1;
+  font-size: 0.9375rem;
 }
 
 .project-tags {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .project-tag {
@@ -2206,7 +2209,7 @@ section {
 .contact-wrapper {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
-  gap: 4rem;
+  gap: 2.5rem;
   max-width: 1000px;
   margin: 0 auto;
 }
@@ -2269,7 +2272,7 @@ section {
 }
 
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .form-group label {
@@ -2347,14 +2350,14 @@ button[type="submit"]:disabled {
 .footer {
   background-color: var(--text-dark);
   color: white;
-  padding: 3rem 0 1.5rem;
+  padding: 2.5rem 0 1.25rem;
 }
 
 .footer-content {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .footer-brand .logo {
@@ -2403,7 +2406,7 @@ button[type="submit"]:disabled {
 
 .footer-bottom {
   text-align: center;
-  padding-top: 2rem;
+  padding-top: 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.9rem;
@@ -2496,7 +2499,8 @@ button[type="submit"]:disabled {
   }
 
   .hero {
-    padding: 100px 0 60px;
+    padding: 80px 0 40px;
+    min-height: 80vh;
   }
 
   .hero-buttons {
@@ -2546,8 +2550,8 @@ button[type="submit"]:disabled {
   }
 
   .hero {
-    padding: 60px 0;
-    min-height: 100vh;
+    padding: 50px 0;
+    min-height: 70vh;
   }
 
   .hero-wrapper {
@@ -2574,7 +2578,11 @@ button[type="submit"]:disabled {
   }
 
   .section-title {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+  }
+  
+  .section-header {
+    margin-bottom: 2rem;
   }
 
   .stats-grid {
