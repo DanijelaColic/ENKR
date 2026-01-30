@@ -133,8 +133,11 @@ Zahtjev poslan s web stranice ENKR
     `;
 
     // Send email using Resend
+    // Using verified domain enkr.hr
+    const fromEmail = process.env.RESEND_FROM_EMAIL || 'ENKR Web <noreply@enkr.hr>';
+    
     const { data, error } = await resend.emails.send({
-      from: 'ENKR Web <onboarding@resend.dev>',
+      from: fromEmail,
       to: 'info@enkr.hr',
       replyTo: email,
       subject: `Novi zahtjev za besplatni nacrt - ${companyName}`,
