@@ -79,9 +79,18 @@ if (contactForm) {
     console.log('📤 Sending contact form data...');
     
     // Send data to backend
-    // Using environment variable or fallback to localhost for development
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-    const response = await fetch(`${API_URL}/api/contact`, {
+    // For Vercel: use relative path /api/contact
+    // For local development: use environment variable or localhost
+    const hostname = window.location.hostname;
+    const isProduction = hostname !== 'localhost' && hostname !== '127.0.0.1';
+    const API_URL = isProduction ? '' : (import.meta.env.VITE_API_URL || 'http://localhost:5000');
+    const endpoint = `${API_URL}/api/contact`;
+    
+    console.log('🌐 Environment:', isProduction ? 'Production' : 'Development');
+    console.log('🔗 API URL:', endpoint);
+    console.log('📝 Form data:', { name, email, message: message.substring(0, 50) + '...' });
+    
+    const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -102,17 +111,26 @@ if (contactForm) {
       console.log('📥 Response text:', text);
       
       if (!text) {
-        throw new Error('Server nije vratio odgovor. Provjerite da li backend server radi na http://localhost:5000');
+        const errorMsg = isProduction 
+          ? 'Server nije vratio odgovor. Molimo kontaktirajte nas direktno na email: info@enkr.hr ili telefon: +385 92 451 3373'
+          : 'Server nije vratio odgovor. Provjerite da li backend server radi na http://localhost:5000';
+        throw new Error(errorMsg);
       }
       
       if (contentType && contentType.includes('application/json')) {
         data = JSON.parse(text);
       } else {
-        throw new Error(`Server nije vratio JSON odgovor. Status: ${response.status}. Odgovor: ${text.substring(0, 100)}`);
+        const errorMsg = isProduction
+          ? `Server nije vratio JSON odgovor. Status: ${response.status}. Molimo kontaktirajte nas direktno.`
+          : `Server nije vratio JSON odgovor. Status: ${response.status}. Odgovor: ${text.substring(0, 100)}`;
+        throw new Error(errorMsg);
       }
     } catch (parseError) {
       console.error('❌ Error parsing response:', parseError);
-      throw new Error('Server nije vratio validan JSON odgovor. Provjerite da li backend server radi na http://localhost:5000');
+      const errorMsg = isProduction
+        ? 'Server nije vratio validan odgovor. Molimo kontaktirajte nas direktno na email: info@enkr.hr ili telefon: +385 92 451 3373'
+        : 'Server nije vratio validan JSON odgovor. Provjerite da li backend server radi na http://localhost:5000';
+      throw new Error(errorMsg);
     }
 
     if (!response.ok) {
@@ -148,14 +166,14 @@ if (contactForm) {
     let errorText = 'Greška pri slanju poruke. Molimo pokušajte ponovno.';
     
     if (error.name === 'TypeError' && error.message.includes('fetch')) {
-      errorText = 'Nije moguće povezati se sa serverom. Provjerite da li je backend server pokrenut. Pokrenite ga sa: npm run server';
-    } else if (error.message.includes('localhost:5000')) {
-      errorText = 'Backend server nije dostupan. Provjerite da li je server pokrenut na http://localhost:5000. Pokrenite ga sa: npm run server';
+      errorText = 'Nije moguće povezati se sa serverom. Molimo kontaktirajte nas direktno na email: info@enkr.hr ili telefon: +385 92 451 3373';
+    } else if (error.message.includes('localhost:5000') || error.message.includes('server')) {
+      errorText = 'Backend server trenutno nije dostupan. Molimo kontaktirajte nas direktno na email: info@enkr.hr ili telefon: +385 92 451 3373';
     } else if (error.message) {
       errorText = error.message;
     }
     
-    errorMessage.textContent = errorText;
+    errorMessage.innerHTML = errorText + '<br><br><strong>Alternativno:</strong> Pošaljite email na <a href="mailto:info@enkr.hr" style="color: inherit; text-decoration: underline;">info@enkr.hr</a> ili nazovite <a href="tel:+385924513373" style="color: inherit; text-decoration: underline;">+385 92 451 3373</a>';
     contactForm.appendChild(errorMessage);
 
     // Scroll to message

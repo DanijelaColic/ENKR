@@ -2,6 +2,9 @@
   "functions": {
     "api/draft.js": {
       "maxDuration": 10
+    },
+    "api/contact.js": {
+      "maxDuration": 10
     }
   }
 }

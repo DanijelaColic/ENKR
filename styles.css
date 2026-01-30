@@ -1792,6 +1792,10 @@ section {
   margin-bottom: 4rem;
 }
 
+.pricing-section .section-header {
+  margin-bottom: 2rem;
+}
+
 .section-title {
   font-size: clamp(2rem, 4vw, 2.5rem);
   font-weight: 700;
@@ -2244,6 +2248,17 @@ section {
 
 .contact-item p {
   color: var(--text-light);
+}
+
+.contact-item a {
+  color: var(--text-light);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.contact-item a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
 }
 
 .contact-form {
@@ -3251,7 +3266,7 @@ button[type="submit"]:disabled {
 /* Pricing Page Styles */
 .pricing-hero {
   background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #7c3aed 100%);
-  padding: 120px 0 80px;
+  padding: 100px 0 50px;
   margin-top: 70px;
   text-align: center;
   color: white;
@@ -3276,7 +3291,7 @@ button[type="submit"]:disabled {
 }
 
 .pricing-section {
-  padding: 80px 0;
+  padding: 50px 0;
   background-color: var(--bg-light);
 }
 
@@ -3366,7 +3381,7 @@ button[type="submit"]:disabled {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  margin-top: 3rem;
+  margin-top: 1.5rem;
 }
 
 .pricing-card {
@@ -3518,7 +3533,7 @@ button[type="submit"]:disabled {
 
 .pricing-single-card {
   max-width: 600px;
-  margin: 3rem auto 0;
+  margin: 1.5rem auto 0;
 }
 
 .pricing-card-setup {
@@ -3527,7 +3542,7 @@ button[type="submit"]:disabled {
 }
 
 .pricing-note {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   padding: 1.5rem;
   background: rgba(99, 102, 241, 0.05);
   border-left: 4px solid var(--primary-color);
