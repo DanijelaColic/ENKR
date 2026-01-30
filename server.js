@@ -37,7 +37,8 @@ app.get('/', (req, res) => {
     message: 'ENKR Backend API is running',
     endpoints: {
       health: '/api/health',
-      contact: '/api/contact (POST)'
+      contact: '/api/contact (POST)',
+      draft: '/api/draft (POST)'
     }
   });
 });
@@ -164,9 +165,174 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
+// Draft form endpoint - GET handler (info)
+app.get('/api/draft', (req, res) => {
+  res.json({
+    message: 'Draft form endpoint',
+    method: 'POST',
+    requiredFields: ['package', 'visualStyle', 'colorHex', 'companyName', 'businessType', 'email', 'goal'],
+    example: {
+      package: 'standard',
+      visualStyle: 'modern',
+      colorHex: '#6366f1',
+      companyName: 'Moja Firma d.o.o.',
+      businessType: 'OPG',
+      email: 'info@mojafirma.hr',
+      goal: 'Želim privući nove klijente'
+    }
+  });
+});
+
+// Draft form endpoint - POST handler
+app.post('/api/draft', async (req, res) => {
+  try {
+    console.log('📋 Draft form submission received');
+    const { package, visualStyle, colorHex, companyName, businessType, email, goal } = req.body;
+
+    // Validation
+    if (!companyName || !businessType || !email || !goal) {
+      console.log('❌ Validation failed: Missing required fields');
+      return res.status(400).json({
+        success: false,
+        error: 'Sva obavezna polja moraju biti popunjena',
+      });
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      console.log('❌ Validation failed: Invalid email format');
+      return res.status(400).json({
+        success: false,
+        error: 'Nevažeća email adresa',
+      });
+    }
+
+    // Check if Resend is configured
+    if (!resend || !RESEND_API_KEY) {
+      console.error('❌ Resend API key not configured');
+      return res.status(500).json({
+        success: false,
+        error: 'Email servis nije konfiguriran. Molimo kontaktirajte administratora.',
+      });
+    }
+
+    console.log(`📤 Attempting to send draft form email to info@enkr.hr (replyTo: ${email})`);
+
+    // Sanitize inputs to prevent XSS attacks
+    const sanitizeInput = (input) => {
+      if (!input) return '';
+      return String(input)
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#x27;')
+        .replace(/\//g, '&#x2F;');
+    };
+
+    // Map package values to readable names
+    const packageNames = {
+      'one-page': 'One Page / Landing Page',
+      'standard': 'Standard Paket',
+      'premium': 'Premium Paket',
+    };
+
+    // Map visual style values to readable names
+    const styleNames = {
+      'futuristic': 'Futuristički',
+      'elegant': 'Elegantan i nježan',
+      'modern': 'Moderan minimalistički',
+      'classic': 'Klasičan',
+      'playful': 'Razigran i kreativan',
+      'natural': 'Prirodan i organski',
+    };
+
+    const sanitizedCompanyName = sanitizeInput(companyName);
+    const sanitizedBusinessType = sanitizeInput(businessType);
+    const sanitizedEmail = sanitizeInput(email);
+    const sanitizedGoal = sanitizeInput(goal);
+    const sanitizedPackage = sanitizeInput(packageNames[package] || package || 'Nije odabran');
+    const sanitizedVisualStyle = sanitizeInput(styleNames[visualStyle] || visualStyle || 'Nije odabran');
+    const sanitizedColorHex = sanitizeInput(colorHex || '#000000');
+
+    // Email content
+    const emailHtml = `
+      <h2>Novi zahtjev za besplatni nacrt web stranice</h2>
+      <h3>Informacije o firmi</h3>
+      <p><strong>Ime firme:</strong> ${sanitizedCompanyName}</p>
+      <p><strong>Djelatnost:</strong> ${sanitizedBusinessType}</p>
+      <p><strong>Email:</strong> ${sanitizedEmail}</p>
+      <p><strong>Što žele postići webom:</strong></p>
+      <p>${sanitizedGoal.replace(/\n/g, '<br>')}</p>
+      
+      <h3>Odabrani paket i stil</h3>
+      <p><strong>Paket:</strong> ${sanitizedPackage}</p>
+      <p><strong>Vizualni identitet:</strong> ${sanitizedVisualStyle}</p>
+      <p><strong>Primarna boja:</strong> <span style="display: inline-block; width: 20px; height: 20px; background-color: ${sanitizedColorHex}; border: 1px solid #ccc; vertical-align: middle; margin-right: 5px;"></span> ${sanitizedColorHex}</p>
+      
+      <hr>
+      <p><em>Zahtjev poslan s web stranice ENKR</em></p>
+    `;
+
+    const emailText = `
+Novi zahtjev za besplatni nacrt web stranice
+
+Informacije o firmi:
+Ime firme: ${companyName}
+Djelatnost: ${businessType}
+Email: ${email}
+
+Što žele postići webom:
+${goal}
+
+Odabrani paket i stil:
+Paket: ${packageNames[package] || package || 'Nije odabran'}
+Vizualni identitet: ${styleNames[visualStyle] || visualStyle || 'Nije odabran'}
+Primarna boja: ${colorHex || '#000000'}
+
+---
+Zahtjev poslan s web stranice ENKR
+    `;
+
+    // Send email using Resend
+    const { data, error } = await resend.emails.send({
+      from: 'ENKR Web <onboarding@resend.dev>',
+      to: 'info@enkr.hr',
+      replyTo: email,
+      subject: `Novi zahtjev za besplatni nacrt - ${companyName}`,
+      html: emailHtml,
+      text: emailText,
+    });
+
+    if (error) {
+      console.error('❌ Resend error:', error);
+      return res.status(500).json({
+        success: false,
+        error: 'Greška pri slanju emaila. Molimo pokušajte ponovno.',
+      });
+    }
+
+    console.log('✅ Draft form email sent successfully:', data?.id || 'unknown');
+    res.json({
+      success: true,
+      message: 'Zahtjev je uspješno poslan! Kontaktirat ćemo vas u roku od 48h.',
+      data,
+    });
+  } catch (error) {
+    console.error('❌ Server error:', error);
+    console.error('Error stack:', error.stack);
+    res.status(500).json({
+      success: false,
+      error: 'Greška na serveru. Molimo pokušajte ponovno.',
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined,
+    });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
   console.log(`📧 Contact endpoint: http://localhost:${PORT}/api/contact`);
+  console.log(`📋 Draft endpoint: http://localhost:${PORT}/api/draft`);
   console.log(`❤️  Health check: http://localhost:${PORT}/api/health`);
   if (!RESEND_API_KEY) {
     console.warn('⚠️  WARNING: RESEND_API_KEY nije postavljen!');
