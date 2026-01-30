@@ -2,6 +2,13 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// Log for debugging (remove in production)
+if (!process.env.RESEND_API_KEY) {
+  console.error('⚠️ RESEND_API_KEY is not set!');
+} else {
+  console.log('✅ RESEND_API_KEY is set (length:', process.env.RESEND_API_KEY.length, ')');
+}
+
 export default async function handler(req, res) {
   // Handle CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -18,6 +25,8 @@ export default async function handler(req, res) {
   }
 
   try {
+    console.log('📥 Draft form request received');
+    console.log('📥 Request body:', JSON.stringify(req.body, null, 2));
     const { package: packageValue, visualStyle, colorHex, companyName, businessType, email, goal } = req.body;
 
     // Validation
@@ -40,11 +49,14 @@ export default async function handler(req, res) {
     // Check if Resend is configured
     if (!process.env.RESEND_API_KEY) {
       console.error('❌ Resend API key not configured');
+      console.error('❌ Available env vars:', Object.keys(process.env).filter(k => k.includes('RESEND')));
       return res.status(500).json({
         success: false,
         error: 'Email servis nije konfiguriran. Molimo kontaktirajte administratora.',
       });
     }
+
+    console.log('✅ Resend API key found, attempting to send email...');
 
     // Sanitize inputs
     const sanitizeInput = (input) => {
@@ -132,9 +144,10 @@ Zahtjev poslan s web stranice ENKR
 
     if (error) {
       console.error('❌ Resend error:', error);
+      console.error('❌ Resend error details:', JSON.stringify(error, null, 2));
       return res.status(500).json({
         success: false,
-        error: 'Greška pri slanju emaila. Molimo pokušajte ponovno.',
+        error: `Greška pri slanju emaila: ${error.message || JSON.stringify(error)}. Molimo pokušajte ponovno.`,
       });
     }
 
