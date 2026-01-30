@@ -456,9 +456,13 @@ function initSurveyFormHandlers() {
     try {
       console.log('📤 Sending draft form data...');
 
-      // Send data to backend
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-      const response = await fetch(`${API_URL}/api/draft`, {
+      // Send data to backend - use relative path for production, fallback to localhost for dev
+      const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5000' : '');
+      const endpoint = API_URL ? `${API_URL}/api/draft` : '/api/draft';
+      
+      console.log('📤 Sending to:', endpoint);
+      
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -475,6 +479,7 @@ function initSurveyFormHandlers() {
       });
 
       console.log('📥 Response status:', response.status);
+      console.log('📥 Response headers:', Object.fromEntries(response.headers.entries()));
 
       // Try to parse response as JSON
       let data;
@@ -486,10 +491,26 @@ function initSurveyFormHandlers() {
           throw new Error('Prazan odgovor od servera');
         }
 
+        // Check if response is HTML (likely an error page)
+        if (text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html')) {
+          throw new Error(`Server je vratio HTML umjesto JSON. Status: ${response.status}. Provjerite da li je backend server pokrenut i dostupan.`);
+        }
+
         data = JSON.parse(text);
       } catch (parseError) {
         console.error('❌ Error parsing response:', parseError);
-        throw new Error('Neočekivani odgovor od servera');
+        console.error('❌ Parse error details:', parseError.message);
+        
+        // Better error message
+        if (parseError.message.includes('HTML')) {
+          throw new Error(parseError.message);
+        } else if (response.status === 404) {
+          throw new Error('Backend endpoint nije pronađen. Provjerite da li je backend server pokrenut i dostupan.');
+        } else if (response.status === 0 || !response.ok) {
+          throw new Error(`Ne mogu se povezati sa serverom. Status: ${response.status}. Provjerite da li je backend server pokrenut.`);
+        } else {
+          throw new Error(`Neočekivani odgovor od servera: ${parseError.message}`);
+        }
       }
 
       if (!response.ok) {

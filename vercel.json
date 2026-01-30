@@ -1,8 +1,7 @@
 {
-  "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "https://your-backend-url.com/api/:path*"
+  "functions": {
+    "api/draft.js": {
+      "maxDuration": 10
     }
-  ]
+  }
 }
