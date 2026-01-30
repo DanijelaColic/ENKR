@@ -17,6 +17,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         privacy: resolve(__dirname, 'privacy-policy.html'),
         terms: resolve(__dirname, 'terms-of-service.html'),
+        'besplatna-verzija': resolve(__dirname, 'besplatna-verzija.html'),
       },
     },
   },
