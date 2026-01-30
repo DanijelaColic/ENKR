@@ -18,6 +18,7 @@ export default defineConfig({
         privacy: resolve(__dirname, 'privacy-policy.html'),
         terms: resolve(__dirname, 'terms-of-service.html'),
         'besplatna-verzija': resolve(__dirname, 'besplatna-verzija.html'),
+        cjenik: resolve(__dirname, 'cjenik.html'),
       },
     },
   },

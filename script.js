@@ -1114,3 +1114,52 @@ function disableGoogleAnalytics() {
   
   console.log('📊 Analytics disabled');
 }
+
+// Pricing Toggle (Monthly/Yearly)
+const pricingToggle = document.getElementById('pricingToggle');
+if (pricingToggle) {
+  // Initialize labels on page load
+  const labels = document.querySelectorAll('.pricing-toggle-label');
+  labels.forEach(label => {
+    if (label.dataset.period === 'monthly') {
+      label.classList.add('active');
+    }
+  });
+
+  pricingToggle.addEventListener('change', function() {
+    const isYearly = this.checked;
+    const priceRowsMonthly = document.querySelectorAll('.price-row-monthly');
+    const priceRowsYearly = document.querySelectorAll('.price-row-yearly');
+    
+    // Toggle visibility - show only one type at a time
+    priceRowsMonthly.forEach(row => {
+      if (isYearly) {
+        row.style.setProperty('display', 'none', 'important');
+      } else {
+        row.style.setProperty('display', 'flex', 'important');
+      }
+    });
+    
+    priceRowsYearly.forEach(row => {
+      if (isYearly) {
+        row.style.setProperty('display', 'flex', 'important');
+      } else {
+        row.style.setProperty('display', 'none', 'important');
+      }
+    });
+    
+    // Update labels
+    labels.forEach(label => {
+      label.classList.remove('active');
+      if (isYearly) {
+        if (label.dataset.period === 'yearly') {
+          label.classList.add('active');
+        }
+      } else {
+        if (label.dataset.period === 'monthly') {
+          label.classList.add('active');
+        }
+      }
+    });
+  });
+}
