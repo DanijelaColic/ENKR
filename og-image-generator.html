@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENKR OG Image Generator</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      width: 1200px;
+      height: 630px;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+    
+    .anchor-icon {
+      font-size: 120px;
+      color: white;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    
+    .brand-name {
+      font-size: 120px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: 8px;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+    
+    /* Decorative elements */
+    .bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      pointer-events: none;
+    }
+    
+    .bg-circle-1 {
+      width: 400px;
+      height: 400px;
+      top: -100px;
+      right: -100px;
+    }
+    
+    .bg-circle-2 {
+      width: 300px;
+      height: 300px;
+      bottom: -50px;
+      left: -50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-circle bg-circle-1"></div>
+  <div class="bg-circle bg-circle-2"></div>
+  
+  <div class="logo-container">
+    <div class="anchor-icon">⚓</div>
+    <div class="brand-name">ENKR</div>
+  </div>
+  
+  <script>
+    // Instructions for converting to image:
+    // 1. Open this file in a browser
+    // 2. Use browser DevTools (F12) -> More tools -> Rendering -> Emulate CSS media type: print
+    // 3. Or use online tool like htmlcsstoimage.com
+    // 4. Or use screenshot tool with exact dimensions (1200x630px)
+    // 5. Save as og-image.jpg in public folder
+  </script>
+</body>
+</html>
