@@ -1077,6 +1077,11 @@ function initializeApp() {
 
   // Show banner if consent not given
   showCookieBanner();
+  
+  // Initialize Google Analytics if user already accepted cookies
+  if (hasAcceptedAllCookies()) {
+    initializeGoogleAnalytics();
+  }
 
   // Get draft form element
   draftForm = document.getElementById('draftForm');
@@ -1107,14 +1112,14 @@ if (document.readyState === 'loading') {
 function initializeGoogleAnalytics() {
   // Only initialize if user accepted ALL cookies (not just essential)
   if (hasAcceptedAllCookies()) {
-    // Add your Google Analytics code here
-    // Example:
-    // window.dataLayer = window.dataLayer || [];
-    // function gtag(){dataLayer.push(arguments);}
-    // gtag('js', new Date());
-    // gtag('config', 'GA_MEASUREMENT_ID');
-    
-    console.log('📊 Analytics initialized (all cookies accepted)');
+    // Google Analytics 4 is already loaded in <head>, enable it via consent mode
+    if (typeof gtag !== 'undefined') {
+      gtag('consent', 'update', {
+        'analytics_storage': 'granted',
+        'ad_storage': 'granted'
+      });
+      console.log('📊 Analytics initialized (all cookies accepted)');
+    }
   } else {
     console.log('📊 Analytics not initialized (only essential cookies or rejected)');
   }
@@ -1122,15 +1127,22 @@ function initializeGoogleAnalytics() {
 
 // Function to disable Google Analytics
 function disableGoogleAnalytics() {
-  // Disable tracking scripts if user rejected cookies or only accepted essential
-  // Implementation depends on your analytics setup
-  
-  // Example: Remove analytics cookies
-  // document.cookie.split(";").forEach(function(c) { 
-  //   document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
-  // });
-  
-  console.log('📊 Analytics disabled');
+  // Disable tracking by setting consent mode to denied
+  if (typeof gtag !== 'undefined') {
+    gtag('consent', 'update', {
+      'analytics_storage': 'denied'
+    });
+    
+    // Remove analytics cookies
+    document.cookie.split(";").forEach(function(c) { 
+      const cookieName = c.split("=")[0].trim();
+      if (cookieName.startsWith('_ga') || cookieName.startsWith('_gid')) {
+        document.cookie = cookieName + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
+      }
+    });
+    
+    console.log('📊 Analytics disabled');
+  }
 }
 
 // Pricing Toggle (Monthly/Yearly)

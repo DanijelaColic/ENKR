@@ -42,6 +42,24 @@
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
     
+    <!-- Google Analytics (gtag.js) - Loaded conditionally based on cookie consent -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Y5DGMX35"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      // GA4 will be initialized only if user accepts all cookies (see script.js)
+      // Initially set consent to denied, will be updated when user accepts
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied'
+      });
+      gtag('config', 'G-P1Y5DGMX35', {
+        'anonymize_ip': true,
+        'cookie_flags': 'SameSite=None;Secure'
+      });
+    </script>
+    
     <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css" />
     
@@ -159,11 +177,11 @@
         <div class="hero-wrapper">
           <div class="hero-content">
             <h1 class="hero-title">
-              Gradimo digitalne projekte
+              ENKR - Gradimo digitalne projekte
               <span class="hero-title-accent">koji podižu poslovanje na višu razinu.</span>
             </h1>
             <p class="hero-subtitle">
-              Kreiramo moderne web stranice, e-commerce web shopove, booking sustave i digitalna rješenja koja unapređuju poslovanje i donose mjerljive rezultate.
+              ENKR je agencija za digitalne usluge. Kreiramo moderne web stranice, e-commerce web shopove, booking sustave i digitalna rješenja koja unapređuju poslovanje i donose mjerljive rezultate.
             </p>
             <div class="hero-buttons">
               <a href="#free-draft" class="btn btn-hero-cta">
