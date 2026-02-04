@@ -329,10 +329,129 @@ Zahtjev poslan s web stranice ENKR
   }
 });
 
+// Newsletter endpoint - GET handler (info)
+app.get('/api/newsletter', (req, res) => {
+  res.json({
+    message: 'Newsletter signup endpoint',
+    method: 'POST',
+    requiredFields: ['name', 'email'],
+    example: {
+      name: 'Ime Prezime',
+      email: 'user@example.com'
+    }
+  });
+});
+
+// Newsletter endpoint - POST handler
+app.post('/api/newsletter', async (req, res) => {
+  try {
+    console.log('📧 Newsletter signup received');
+    const { name, email } = req.body;
+
+    // Validation
+    if (!email) {
+      console.log('❌ Validation failed: Missing email');
+      return res.status(400).json({
+        success: false,
+        error: 'Email adresa je obavezna',
+      });
+    }
+
+    if (!name || !name.trim()) {
+      console.log('❌ Validation failed: Missing name');
+      return res.status(400).json({
+        success: false,
+        error: 'Ime i prezime su obavezni',
+      });
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      console.log('❌ Validation failed: Invalid email format');
+      return res.status(400).json({
+        success: false,
+        error: 'Nevažeća email adresa',
+      });
+    }
+
+    // Check if Resend is configured
+    if (!resend || !RESEND_API_KEY) {
+      console.error('❌ Resend API key not configured');
+      return res.status(500).json({
+        success: false,
+        error: 'Email servis nije konfiguriran. Molimo kontaktirajte administratora.',
+      });
+    }
+
+    console.log(`📤 Attempting to send newsletter signup notification for ${email}`);
+
+    // Sanitize email to prevent XSS attacks
+    const sanitizeHtml = (str) => {
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    };
+
+    const sanitizedName = sanitizeHtml(name);
+    const sanitizedEmail = sanitizeHtml(email);
+
+    // Send notification email to ENKR
+    const { data, error } = await resend.emails.send({
+      from: 'ENKR Newsletter <onboarding@resend.dev>',
+      to: 'info@enkr.hr',
+      replyTo: email,
+      subject: `Nova prijava na newsletter - ${sanitizedName}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #6366f1;">Nova prijava na newsletter</h2>
+          <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <p><strong>Ime i prezime:</strong> ${sanitizedName}</p>
+            <p><strong>Email:</strong> <a href="mailto:${sanitizedEmail}">${sanitizedEmail}</a></p>
+            <p><strong>Datum:</strong> ${new Date().toLocaleString('hr-HR')}</p>
+          </div>
+          <p style="color: #6b7280; font-size: 12px; margin-top: 20px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+            Ova prijava je poslana sa newsletter forme na ENKR web stranici.<br>
+            <strong>Kliknite "Reply" da odgovorite na ${sanitizedEmail}</strong>
+          </p>
+        </div>
+      `,
+      text: `Nova prijava na newsletter\n\nIme i prezime: ${sanitizedName}\nEmail: ${sanitizedEmail}\nDatum: ${new Date().toLocaleString('hr-HR')}\n\nOva prijava je poslana sa newsletter forme na ENKR web stranici.`,
+    });
+
+    if (error) {
+      console.error('❌ Resend error:', error);
+      return res.status(500).json({
+        success: false,
+        error: 'Greška pri prijavi. Molimo pokušajte ponovno.',
+      });
+    }
+
+    console.log('✅ Newsletter signup email sent successfully:', data?.id || 'unknown');
+    res.json({
+      success: true,
+      message: 'Uspješno ste se prijavili na newsletter!',
+      data,
+    });
+  } catch (error) {
+    console.error('❌ Server error:', error);
+    console.error('Error stack:', error.stack);
+    res.status(500).json({
+      success: false,
+      error: 'Greška na serveru. Molimo pokušajte ponovno.',
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined,
+    });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
   console.log(`📧 Contact endpoint: http://localhost:${PORT}/api/contact`);
   console.log(`📋 Draft endpoint: http://localhost:${PORT}/api/draft`);
+  console.log(`📧 Newsletter endpoint: http://localhost:${PORT}/api/newsletter`);
   console.log(`❤️  Health check: http://localhost:${PORT}/api/health`);
   if (!RESEND_API_KEY) {
     console.warn('⚠️  WARNING: RESEND_API_KEY nije postavljen!');

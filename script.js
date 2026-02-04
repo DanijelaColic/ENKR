@@ -51,6 +51,124 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
+// Newsletter inline form handling
+const newsletterFormInline = document.getElementById('newsletterFormInline');
+if (newsletterFormInline) {
+  const submitButton = newsletterFormInline.querySelector('button[type="submit"]');
+  const originalButtonText = submitButton ? submitButton.textContent : 'PRIJAVA';
+
+  newsletterFormInline.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('newsletter-name').value.trim();
+    const email = document.getElementById('newsletter-email-inline').value.trim();
+
+    // Disable submit button and show loading state
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Slanje...';
+    }
+
+    // Remove previous error/success messages
+    const existingMessage = newsletterFormInline.querySelector('.form-message');
+    if (existingMessage) {
+      existingMessage.remove();
+    }
+
+    try {
+      console.log('📧 Sending newsletter signup...');
+
+      // Send data to backend
+      const hostname = window.location.hostname;
+      const isProduction = hostname !== 'localhost' && hostname !== '127.0.0.1';
+      const API_URL = isProduction ? '' : (import.meta.env.VITE_API_URL || 'http://localhost:5000');
+      const endpoint = `${API_URL}/api/newsletter`;
+
+      console.log('🌐 Newsletter API URL:', endpoint);
+
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email }),
+      });
+
+      console.log('📥 Newsletter response status:', response.status);
+
+      // Try to parse response as JSON
+      let data;
+      try {
+        const text = await response.text();
+        console.log('📥 Newsletter response text:', text);
+
+        if (!text) {
+          throw new Error('Prazan odgovor od servera');
+        }
+
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          data = JSON.parse(text);
+        } else {
+          throw new Error(`Server nije vratio JSON odgovor. Status: ${response.status}`);
+        }
+      } catch (parseError) {
+        console.error('❌ Error parsing newsletter response:', parseError);
+        throw new Error(
+          isProduction
+            ? 'Server nije vratio validan odgovor. Molimo pokušajte ponovno.'
+            : 'Server nije vratio validan JSON odgovor. Provjerite da li backend server radi.'
+        );
+      }
+
+      if (!response.ok) {
+        console.error('❌ Newsletter server error:', data);
+        throw new Error(data.error || `Greška pri prijavi (Status: ${response.status})`);
+      }
+
+      console.log('✅ Newsletter signup success:', data);
+
+      // Show success message
+      const successMessage = document.createElement('div');
+      successMessage.className = 'form-message form-message-success';
+      successMessage.textContent =
+        data.message || 'Hvala vam! Uspješno ste se prijavili na newsletter.';
+      newsletterFormInline.appendChild(successMessage);
+
+      // Reset form
+      newsletterFormInline.reset();
+
+      // Scroll to message
+      successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } catch (error) {
+      console.error('❌ Newsletter signup error:', error);
+
+      // Show error message
+      const errorMessage = document.createElement('div');
+      errorMessage.className = 'form-message form-message-error';
+
+      let errorText = 'Greška pri prijavi. Molimo pokušajte ponovno.';
+      if (error.name === 'TypeError' && error.message.includes('fetch')) {
+        errorText = 'Nije moguće povezati se sa serverom. Molimo pokušajte ponovno.';
+      } else if (error.message) {
+        errorText = error.message;
+      }
+
+      errorMessage.textContent = errorText;
+      newsletterFormInline.appendChild(errorMessage);
+
+      // Scroll to message
+      errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } finally {
+      // Re-enable submit button
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+      }
+    }
+  });
+}
+
 // Contact form handling
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {

@@ -92,7 +92,10 @@
 ## 🚀 Sljedeći Koraci
 
 1. ✅ Kreirati OG image - **ZAVRŠENO**
-2. Prijaviti stranicu na Google Search Console
-3. Submitati sitemap
-4. Implementirati Google Analytics
-5. Početi s content marketingom
+2. ✅ Implementirati Google Analytics - **ZAVRŠENO**
+3. ✅ Optimizirati OG sliku (171KB) - **ZAVRŠENO**
+4. ✅ Dodati performance optimizacije - **ZAVRŠENO**
+5. ✅ Brand SEO optimizacija - **ZAVRŠENO**
+6. ⏳ Prijaviti stranicu na Google Search Console (ručno)
+7. ⏳ Submitati sitemap (ručno)
+8. ⏳ Početi s content marketingom
