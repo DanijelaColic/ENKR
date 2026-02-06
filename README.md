@@ -151,7 +151,7 @@ Za više problema i rješenja, pogledaj **[DEPLOYMENT.md](./DEPLOYMENT.md)**.
 
 Za pitanja ili pomoć:
 - 📧 Email: info@enkr.hr
-- 📱 Telefon: +385 92 451 3373
+- 📱 Telefon: +385 91 927 9931
 
 ---
 

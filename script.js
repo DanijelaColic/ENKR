@@ -230,7 +230,7 @@ if (contactForm) {
       
       if (!text) {
         const errorMsg = isProduction 
-          ? 'Server nije vratio odgovor. Molimo kontaktirajte nas direktno na email: info@enkr.hr ili telefon: +385 92 451 3373'
+          ? 'Server nije vratio odgovor. Molimo kontaktirajte nas direktno na email: info@enkr.hr ili telefon: +385 91 927 9931'
           : 'Server nije vratio odgovor. Provjerite da li backend server radi na http://localhost:5000';
         throw new Error(errorMsg);
       }
@@ -246,7 +246,7 @@ if (contactForm) {
     } catch (parseError) {
       console.error('❌ Error parsing response:', parseError);
       const errorMsg = isProduction
-        ? 'Server nije vratio validan odgovor. Molimo kontaktirajte nas direktno na email: info@enkr.hr ili telefon: +385 92 451 3373'
+        ? 'Server nije vratio validan odgovor. Molimo kontaktirajte nas direktno na email: info@enkr.hr ili telefon: +385 91 927 9931'
         : 'Server nije vratio validan JSON odgovor. Provjerite da li backend server radi na http://localhost:5000';
       throw new Error(errorMsg);
     }
@@ -284,14 +284,14 @@ if (contactForm) {
     let errorText = 'Greška pri slanju poruke. Molimo pokušajte ponovno.';
     
     if (error.name === 'TypeError' && error.message.includes('fetch')) {
-      errorText = 'Nije moguće povezati se sa serverom. Molimo kontaktirajte nas direktno na email: info@enkr.hr ili telefon: +385 92 451 3373';
+      errorText = 'Nije moguće povezati se sa serverom. Molimo kontaktirajte nas direktno na email: info@enkr.hr ili telefon: +385 91 927 9931';
     } else if (error.message.includes('localhost:5000') || error.message.includes('server')) {
-      errorText = 'Backend server trenutno nije dostupan. Molimo kontaktirajte nas direktno na email: info@enkr.hr ili telefon: +385 92 451 3373';
+      errorText = 'Backend server trenutno nije dostupan. Molimo kontaktirajte nas direktno na email: info@enkr.hr ili telefon: +385 91 927 9931';
     } else if (error.message) {
       errorText = error.message;
     }
     
-    errorMessage.innerHTML = errorText + '<br><br><strong>Alternativno:</strong> Pošaljite email na <a href="mailto:info@enkr.hr" style="color: inherit; text-decoration: underline;">info@enkr.hr</a> ili nazovite <a href="tel:+385924513373" style="color: inherit; text-decoration: underline;">+385 92 451 3373</a>';
+    errorMessage.innerHTML = errorText + '<br><br><strong>Alternativno:</strong> Pošaljite email na <a href="mailto:info@enkr.hr" style="color: inherit; text-decoration: underline;">info@enkr.hr</a> ili nazovite <a href="tel:+385919279931" style="color: inherit; text-decoration: underline;">+385 91 927 9931</a>';
     contactForm.appendChild(errorMessage);
 
     // Scroll to message

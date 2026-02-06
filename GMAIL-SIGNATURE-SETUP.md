@@ -20,7 +20,7 @@ Gmail ima specifičan način rada s HTML potpisima. Evo nekoliko metoda koje sig
 [Tvoja Pozicija]
 
 📧 info@enkr.hr
-📱 +385 92 451 3373
+📱 +385 91 927 9931
 🌐 enkr.hr
 
 ─────────────────────
@@ -35,7 +35,7 @@ Digitalne usluge koje rastu s vama
    - **Font size** - povećaj za logo i ime
 9. **Dodaj linkove**:
    - Selektiraj "info@enkr.hr" → klikni na link ikonu → unesi `mailto:info@enkr.hr`
-   - Selektiraj "+385 92 451 3373" → klikni na link ikonu → unesi `tel:+385924513373`
+   - Selektiraj "+385 91 927 9931" → klikni na link ikonu → unesi `tel:+385919279931`
    - Selektiraj "enkr.hr" → klikni na link ikonu → unesi `https://enkr.hr`
 10. **Klikni "Save Changes"** (Spremi promjene) na dnu stranice
 
@@ -93,7 +93,7 @@ if (editor) {
       </div>
       <div style="margin-bottom: 8px;">
         <span style="color: #6366f1;">📱</span> 
-        <a href="tel:+385924513373" style="color: #6366f1; text-decoration: none;">+385 92 451 3373</a>
+        <a href="tel:+385919279931" style="color: #6366f1; text-decoration: none;">+385 91 927 9931</a>
       </div>
       <div style="margin-bottom: 16px;">
         <span style="color: #6366f1;">🌐</span> 
@@ -158,7 +158,7 @@ Gmail signature editor ima toolbar s ovim opcijama:
 **Rješenje:** 
 - Provjeri da si dodao linkove kroz Gmail toolbar (link ikona)
 - Format linka za email: `mailto:info@enkr.hr`
-- Format linka za telefon: `tel:+385924513373`
+- Format linka za telefon: `tel:+385919279931`
 - Format linka za web: `https://enkr.hr`
 
 ### Problem: Emoji ikone se ne prikazuju

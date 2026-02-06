@@ -27,7 +27,7 @@ Kopiraj ovaj tekst:
 [Tvoja Pozicija]
 
 📧 info@enkr.hr
-📱 +385 92 451 3373
+📱 +385 91 927 9931
 🌐 enkr.hr
 
 ─────────────────────
@@ -60,7 +60,7 @@ Digitalne usluge koje rastu s vama
 
 4. **Email/Telefon/Web linkovi**
    - Selektiraj "info@enkr.hr" → klikni link ikonu → unesi `mailto:info@enkr.hr`
-   - Selektiraj "+385 92 451 3373" → klikni link ikonu → unesi `tel:+385924513373`
+   - Selektiraj "+385 91 927 9931" → klikni link ikonu → unesi `tel:+385919279931`
    - Selektiraj "enkr.hr" → klikni link ikonu → unesi `https://enkr.hr`
    - Promijeni boju linkova na #6366f1 (plava)
 
@@ -86,7 +86,7 @@ Dobit ćeš lijepo formatiran potpis koji će se automatski dodavati u nove emai
 
 **Linkovi ne rade?**
 - Provjeri da si dodao linkove kroz Gmail toolbar (link ikona)
-- Format: `mailto:info@enkr.hr`, `tel:+385924513373`, `https://enkr.hr`
+- Format: `mailto:info@enkr.hr`, `tel:+385919279931`, `https://enkr.hr`
 
 **Emoji se ne prikazuju?**
 - Neki email klijenti ne podržavaju emoji

@@ -304,5 +304,5 @@ Dodajte između naslova i opisa:
 
 Ako imate pitanja o prilagodbi templatea ili trebate dodatnu pomoć, kontaktirajte:
 - **Email:** info@enkr.hr
-- **Telefon:** +385 92 451 3373
+- **Telefon:** +385 91 927 9931
 - **Web:** https://www.enkr.hr
