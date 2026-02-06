@@ -36,8 +36,8 @@
     <meta property="twitter:image" content="https://enkr.hr/og-image.png" />
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <link rel="apple-touch-icon" href="favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
+    <link rel="apple-touch-icon" href="/favicon.svg?v=3" />
     
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
@@ -719,44 +719,27 @@
       <div class="container">
         <div class="newsletter-wrapper">
           <div class="newsletter-content">
-            <h2 class="newsletter-title">Newsletter</h2>
-            <p class="newsletter-description">
-              približit će te odgovoru na pitanje <strong>"što znaju i rade drugačije oni koji postižu više?"</strong>
-            </p>
+            <div class="newsletter-icon">📧</div>
+            <div class="newsletter-text">
+              <h2 class="newsletter-title">Newsletter</h2>
+              <p class="newsletter-description">
+                približit će te odgovoru na pitanje <strong>"što znaju i rade drugačije oni koji postižu više?"</strong>
+              </p>
+            </div>
           </div>
-          <div class="newsletter-form-wrapper">
-            <form class="newsletter-form-inline" id="newsletterFormInline">
-              <div class="form-group">
-                <label for="newsletter-name">Ime i prezime*</label>
-                <input
-                  type="text"
-                  id="newsletter-name"
-                  name="name"
-                  required
-                  placeholder="Ime Prezime"
-                />
-              </div>
-              <div class="form-group">
-                <label for="newsletter-email-inline">E-pošta*</label>
-                <input
-                  type="email"
-                  id="newsletter-email-inline"
-                  name="email"
-                  required
-                  placeholder="ivana@email.hr"
-                />
-              </div>
-              <div class="newsletter-privacy-inline">
-                <small>
-                  Pretplatu možete otkazati u bilo kojem trenutku. Za više detalja posjetite stranicu 
-                  <a href="privacy-policy.html">Politika privatnosti</a>.
-                </small>
-              </div>
-              <button type="submit" class="btn-newsletter-submit">
-                PRIJAVA
-              </button>
-            </form>
-          </div>
+          <form class="newsletter-form-inline" id="newsletterFormInline">
+            <input
+              type="email"
+              id="newsletter-email-inline"
+              name="email"
+              required
+              placeholder="Your E-mail Address"
+              class="newsletter-email-input"
+            />
+            <button type="submit" class="btn-newsletter-submit">
+              SUBSCRIBE NOW!
+            </button>
+          </form>
         </div>
       </div>
     </section>

@@ -334,9 +334,8 @@ app.get('/api/newsletter', (req, res) => {
   res.json({
     message: 'Newsletter signup endpoint',
     method: 'POST',
-    requiredFields: ['name', 'email'],
+    requiredFields: ['email'],
     example: {
-      name: 'Ime Prezime',
       email: 'user@example.com'
     }
   });
@@ -346,7 +345,7 @@ app.get('/api/newsletter', (req, res) => {
 app.post('/api/newsletter', async (req, res) => {
   try {
     console.log('📧 Newsletter signup received');
-    const { name, email } = req.body;
+    const { email } = req.body;
 
     // Validation
     if (!email) {
@@ -354,14 +353,6 @@ app.post('/api/newsletter', async (req, res) => {
       return res.status(400).json({
         success: false,
         error: 'Email adresa je obavezna',
-      });
-    }
-
-    if (!name || !name.trim()) {
-      console.log('❌ Validation failed: Missing name');
-      return res.status(400).json({
-        success: false,
-        error: 'Ime i prezime su obavezni',
       });
     }
 

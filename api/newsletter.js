@@ -47,7 +47,7 @@ export default async function handler(req, res) {
     }
 
     console.log('📧 Parsed request body:', JSON.stringify(body, null, 2));
-    const { name, email } = body;
+    const { email } = body;
 
     // Validation
     if (!email) {
@@ -55,14 +55,6 @@ export default async function handler(req, res) {
       return res.status(400).json({
         success: false,
         error: 'Email adresa je obavezna',
-      });
-    }
-
-    if (!name || !name.trim()) {
-      console.log('❌ Validation failed: Missing name');
-      return res.status(400).json({
-        success: false,
-        error: 'Ime i prezime su obavezni',
       });
     }
 
@@ -106,7 +98,6 @@ export default async function handler(req, res) {
         .replace(/'/g, '&#039;');
     };
 
-    const sanitizedName = sanitizeHtml(name);
     const sanitizedEmail = sanitizeHtml(email);
 
     // Send notification email to ENKR
@@ -114,12 +105,11 @@ export default async function handler(req, res) {
       from: 'ENKR Newsletter <info@enkr.hr>',
       to: ['info@enkr.hr'],
       replyTo: email,
-      subject: `Nova prijava na newsletter - ${sanitizedName}`,
+      subject: `Nova prijava na newsletter - ${sanitizedEmail}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #6366f1;">Nova prijava na newsletter</h2>
           <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <p><strong>Ime i prezime:</strong> ${sanitizedName}</p>
             <p><strong>Email:</strong> <a href="mailto:${sanitizedEmail}">${sanitizedEmail}</a></p>
             <p><strong>Datum:</strong> ${new Date().toLocaleString('hr-HR')}</p>
           </div>

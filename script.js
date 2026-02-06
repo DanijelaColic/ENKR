@@ -91,7 +91,7 @@ if (newsletterFormInline) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, email }),
+        body: JSON.stringify({ email }),
       });
 
       console.log('📥 Newsletter response status:', response.status);
