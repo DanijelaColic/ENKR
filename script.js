@@ -60,19 +60,39 @@ if (newsletterFormInline) {
   newsletterFormInline.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const name = document.getElementById('newsletter-name').value.trim();
     const email = document.getElementById('newsletter-email-inline').value.trim();
-
-    // Disable submit button and show loading state
-    if (submitButton) {
-      submitButton.disabled = true;
-      submitButton.textContent = 'Slanje...';
-    }
 
     // Remove previous error/success messages
     const existingMessage = newsletterFormInline.querySelector('.form-message');
     if (existingMessage) {
       existingMessage.remove();
+    }
+
+    // Validate email
+    if (!email) {
+      const errorMessage = document.createElement('div');
+      errorMessage.className = 'form-message form-message-error';
+      errorMessage.textContent = 'Molimo unesite email adresu.';
+      newsletterFormInline.appendChild(errorMessage);
+      errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      return;
+    }
+
+    // Email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      const errorMessage = document.createElement('div');
+      errorMessage.className = 'form-message form-message-error';
+      errorMessage.textContent = 'Molimo unesite važeću email adresu.';
+      newsletterFormInline.appendChild(errorMessage);
+      errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      return;
+    }
+
+    // Disable submit button and show loading state
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Slanje...';
     }
 
     try {

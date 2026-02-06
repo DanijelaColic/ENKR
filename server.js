@@ -387,7 +387,6 @@ app.post('/api/newsletter', async (req, res) => {
         .replace(/'/g, '&#039;');
     };
 
-    const sanitizedName = sanitizeHtml(name);
     const sanitizedEmail = sanitizeHtml(email);
 
     // Send notification email to ENKR
@@ -395,12 +394,11 @@ app.post('/api/newsletter', async (req, res) => {
       from: 'ENKR Newsletter <onboarding@resend.dev>',
       to: 'info@enkr.hr',
       replyTo: email,
-      subject: `Nova prijava na newsletter - ${sanitizedName}`,
+      subject: `Nova prijava na newsletter - ${sanitizedEmail}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #6366f1;">Nova prijava na newsletter</h2>
           <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <p><strong>Ime i prezime:</strong> ${sanitizedName}</p>
             <p><strong>Email:</strong> <a href="mailto:${sanitizedEmail}">${sanitizedEmail}</a></p>
             <p><strong>Datum:</strong> ${new Date().toLocaleString('hr-HR')}</p>
           </div>
@@ -410,7 +408,7 @@ app.post('/api/newsletter', async (req, res) => {
           </p>
         </div>
       `,
-      text: `Nova prijava na newsletter\n\nIme i prezime: ${sanitizedName}\nEmail: ${sanitizedEmail}\nDatum: ${new Date().toLocaleString('hr-HR')}\n\nOva prijava je poslana sa newsletter forme na ENKR web stranici.`,
+      text: `Nova prijava na newsletter\n\nEmail: ${sanitizedEmail}\nDatum: ${new Date().toLocaleString('hr-HR')}\n\nOva prijava je poslana sa newsletter forme na ENKR web stranici.`,
     });
 
     if (error) {

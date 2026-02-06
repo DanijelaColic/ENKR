@@ -2487,6 +2487,13 @@ button[type="submit"]:disabled {
   transform: none;
 }
 
+/* Newsletter form messages */
+.newsletter-form-inline .form-message {
+  width: 100%;
+  margin-top: 0.75rem;
+  grid-column: 1 / -1;
+}
+
 /* Footer */
 .footer {
   background-color: var(--text-dark);
