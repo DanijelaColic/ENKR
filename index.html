@@ -179,17 +179,35 @@
       </div>
     </nav>
 
-    <!-- Hero Section – minimalistična, smirena -->
+    <!-- Hero Section – nautical minimalism, anchor theme -->
     <section id="home" class="hero">
+      <div class="hero-bg-elements" aria-hidden="true">
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+        <div class="hero-glow hero-glow-3"></div>
+      </div>
+      <div class="hero-anchor-watermark" aria-hidden="true">
+        <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="12" r="9" stroke="currentColor" stroke-width="3"/>
+          <line x1="50" y1="21" x2="50" y2="108" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          <line x1="15" y1="46" x2="85" y2="46" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          <path d="M50 108 C22 108 6 88 14 66" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M50 108 C78 108 94 88 86 66" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
       <div class="container">
         <div class="hero-wrapper">
           <div class="hero-content">
+            <div class="hero-badge">
+              <span class="hero-badge-anchor">⚓</span>
+              <span>Vaše digitalno sidro</span>
+            </div>
             <h1 class="hero-title">
-              ENKR - Gradimo digitalne projekte
+              Gradimo digitalne projekte
               <span class="hero-title-accent">koji podižu poslovanje na višu razinu.</span>
             </h1>
             <p class="hero-subtitle">
-              ENKR je agencija za digitalne usluge. Kreiramo moderne web stranice, e-commerce web shopove, booking sustave i digitalna rješenja koja unapređuju poslovanje i donose mjerljive rezultate.
+              Kreiramo moderne web stranice, web shopove, booking sustave i poslovne aplikacije. Od 200€. Besplatni nacrt u roku od 24 sata.
             </p>
             <div class="hero-buttons">
               <a href="#free-draft" class="btn btn-hero-cta">
@@ -199,6 +217,11 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="hero-wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,50 C360,80 720,20 1080,50 C1260,65 1380,55 1440,40 L1440,80 L0,80 Z" fill="currentColor"/>
+        </svg>
       </div>
     </section>
 
@@ -312,84 +335,174 @@
       </div>
     </section>
 
+    <!-- Services Stats Bar -->
+    <section class="services-stats">
+      <div class="container">
+        <div class="services-stats-grid">
+          <div class="services-stat-item">
+            <span class="services-stat-number">200€</span>
+            <span class="services-stat-label">Početna cijena</span>
+          </div>
+          <div class="services-stat-item">
+            <span class="services-stat-number">24h</span>
+            <span class="services-stat-label">Besplatni nacrt</span>
+          </div>
+          <div class="services-stat-item">
+            <span class="services-stat-number">9+</span>
+            <span class="services-stat-label">Tehnologija u stacku</span>
+          </div>
+          <div class="services-stat-item">
+            <span class="services-stat-number">0%</span>
+            <span class="services-stat-label">Skrivenih troškova</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Services Section -->
     <section id="services" class="services">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">Naše usluge</h2>
+          <h2 class="section-title">Što gradimo</h2>
           <p class="section-subtitle">
-            Sveobuhvatne digitalne rješenja za vaše poslovanje
+            Četiri vrste projekata za različite potrebe. Svi s istim ciljem — pomoći vašem poslovanju da raste.
           </p>
-          <div class="free-callout">
-            <span class="free-callout-icon">✨</span>
-            <span class="free-callout-text">Svaki projekt počinje besplatnim primjerom weba - kontaktirajte nas i vidite što možemo napraviti za vas!</span>
-          </div>
         </div>
-        <div class="services-grid">
-          <div class="service-card" data-service="web-apps">
-            <div class="service-image service-image-web-apps"></div>
-            <h3 class="service-title">Custom Web Stranice</h3>
+        <div class="services-grid services-grid-4">
+          <a href="usluge/web-stranice.html" class="service-card-compact">
+            <h3 class="service-title">Web Stranice</h3>
             <p class="service-description">
-              Razvijamo prilagođene web stranice koje odgovaraju vašim
-              specifičnim potrebama i zahtjevima poslovanja.
+              Moderna, brza i SEO-optimizirana web stranica koja pretvara posjetitelje u klijente. Idealno za obrte, ordinacije, agencije i freelancere.
             </p>
-            <div class="service-features">
-              <span class="feature-tag">Prilagođeno</span>
-              <span class="feature-tag">Skalabilno</span>
-            </div>
-          </div>
+            <div class="service-price">od 200€</div>
+            <span class="service-cta-inline">
+              Saznajte više
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </a>
 
-          <div class="service-card" data-service="ecommerce">
-            <div class="service-image service-image-ecommerce"></div>
-            <h3 class="service-title">Web Shopovi (E-commerce)</h3>
+          <a href="usluge/webshop.html" class="service-card-compact">
+            <h3 class="service-title">Web Shop</h3>
             <p class="service-description">
-              Kompletna e-commerce rješenja za online prodaju s modernim
-              funkcionalnostima i jednostavnim upravljanjem.
+              Online trgovina bez transakcijskih provizija platforme. Brz checkout, upravljanje proizvodima i plaćanja karticama.
             </p>
-            <div class="service-features">
-              <span class="feature-tag">Online prodaja</span>
-              <span class="feature-tag">Platni sustavi</span>
-            </div>
-          </div>
+            <div class="service-price">od 600€</div>
+            <span class="service-cta-inline">
+              Saznajte više
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </a>
 
-          <div class="service-card" data-service="booking">
-            <div class="service-image service-image-booking"></div>
+          <a href="usluge/booking.html" class="service-card-compact">
             <h3 class="service-title">Booking Sustavi</h3>
             <p class="service-description">
-              Sustavi koji pomažu u organizaciji i radu svim zanimanjima koja troše puno vremena na javljanje na telefon i odgovaranje na poruke. Idealno za frizerske salone, stomatologe, fitnes centre i druge uslužne djelatnosti.
+              Sustav za online rezervacije — za salone, ordinacije, apartmane. Klijenti rezerviraju sami, vi upravljate kalendarom.
             </p>
-            <div class="service-features">
-              <span class="feature-tag">Online rezervacije</span>
-              <span class="feature-tag">Automatske notifikacije</span>
-              <span class="feature-tag">24/7 dostupnost</span>
-            </div>
-          </div>
+            <div class="service-price">od 400€</div>
+            <span class="service-cta-inline">
+              Saznajte više
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </a>
 
-          <div class="service-card" data-service="blog">
-            <div class="service-image service-image-blog"></div>
-            <h3 class="service-title">Blog & Content Web Stranice</h3>
+          <a href="usluge/aplikacije.html" class="service-card-compact">
+            <h3 class="service-title">Web Aplikacije</h3>
             <p class="service-description">
-              Stranice optimizirane za sadržaj i blogove s fokusom na SEO i
-              korisničko iskustvo.
+              Jednostavne poslovne aplikacije — CRM, dashboard, interni alati ili MVP. Automatizirajte procese i uštedite vrijeme.
             </p>
-            <div class="service-features">
-              <span class="feature-tag">SEO optimizirano</span>
-              <span class="feature-tag">CMS</span>
-            </div>
-          </div>
+            <div class="service-price">od 700€</div>
+            <span class="service-cta-inline">
+              Saznajte više
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
 
-          <div class="service-card" data-service="business">
-            <div class="service-image service-image-business"></div>
-            <h3 class="service-title">Rješenja za Poslovanje</h3>
-            <p class="service-description">
-              Digitalna rješenja koja optimiziraju vaše poslovne procese i
-              povećavaju produktivnost.
+    <!-- Why ENKR Section -->
+    <section class="why-enkr">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Zašto ENKR</h2>
+          <p class="section-subtitle">
+            Fokusirani smo na male i srednje poduzetnike kojima trebaju rezultati, ne korporacijska rješenja.
+          </p>
+        </div>
+        <div class="why-enkr-grid">
+          <div class="why-enkr-card">
+            <div class="why-enkr-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="32" height="32"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h3 class="why-enkr-title">Besplatni nacrt u 24h</h3>
+            <p class="why-enkr-text">
+              Svaki projekt počinje besplatnom izradom prvog nacrta. Vidite rezultat prije nego se obavežete — bez rizika i bez obaveza.
             </p>
-            <div class="service-features">
-              <span class="feature-tag">Automatizacija</span>
-              <span class="feature-tag">Analitika</span>
+          </div>
+          <div class="why-enkr-card">
+            <div class="why-enkr-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="32" height="32"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h3 class="why-enkr-title">Fiksne cijene, bez iznenađenja</h3>
+            <p class="why-enkr-text">
+              Cijena je dogovorena unaprijed. Nema skrivenih troškova, nadoplata ili neugodnih iznenađenja. Znate točno što plaćate.
+            </p>
+          </div>
+          <div class="why-enkr-card">
+            <div class="why-enkr-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="32" height="32"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <h3 class="why-enkr-title">Moderan tech stack</h3>
+            <p class="why-enkr-text">
+              Koristimo Astro, Next.js, React, Tailwind i Supabase — stranice se učitavaju munjevito, rankiraju bolje i jednostavno se održavaju.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Kako funkcionira</h2>
+          <p class="section-subtitle">
+            Od ideje do gotovog projekta u tri jednostavna koraka.
+          </p>
+        </div>
+        <div class="how-it-works-grid">
+          <div class="how-step">
+            <div class="how-step-number">1</div>
+            <div class="how-step-content">
+              <h3 class="how-step-title">Ispunite kratak upitnik</h3>
+              <p class="how-step-text">
+                Opišite što vam treba — stil, sadržaj, reference. Mi pripremamo besplatni nacrt u roku od 24 sata.
+              </p>
             </div>
           </div>
+          <div class="how-step-connector"></div>
+          <div class="how-step">
+            <div class="how-step-number">2</div>
+            <div class="how-step-content">
+              <h3 class="how-step-title">Pregled i dogovor</h3>
+              <p class="how-step-text">
+                Pregledajte nacrt, dajte feedback. Dogovaramo opseg, cijenu i rokove — bez obaveza.
+              </p>
+            </div>
+          </div>
+          <div class="how-step-connector"></div>
+          <div class="how-step">
+            <div class="how-step-number">3</div>
+            <div class="how-step-content">
+              <h3 class="how-step-title">Razvoj i objava</h3>
+              <p class="how-step-text">
+                Gradimo, testiramo i objavljujemo. Vi dobivate gotov projekt s kompletnom podrškom za održavanje.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="how-it-works-cta">
+          <a href="#free-draft" class="btn btn-primary">Započnite besplatno</a>
         </div>
       </div>
     </section>
@@ -509,7 +622,7 @@
             <span class="title-highlight">Besplatna</span> izrada prvog nacrta vaše web stranice
           </h2>
           <p class="free-draft-description">
-            Nema potrebe za kupnjom na slijepo. Nakon ispunjavanja kratkog upitnika i odabira željenog stila, prvi nacrt weba stiže na vaš email u roku od <span class="highlight-time">48 sati</span>. Bez obaveza.
+            Nema potrebe za kupnjom na slijepo. Nakon ispunjavanja kratkog upitnika i odabira željenog stila, prvi nacrt weba stiže na vaš email u roku od <span class="highlight-time">24 sata</span>. Bez obaveza.
           </p>
           <a href="besplatna-verzija.html" class="btn-free-draft-cta">
             <span class="cta-icon">⚡</span>
@@ -530,7 +643,7 @@
             <div class="benefit-icon">⚡</div>
             <div class="benefit-text">
               <strong>Brza isporuka</strong>
-              <span>Prvi nacrt u roku od 48 sati</span>
+              <span>Prvi nacrt u roku od 24 sata</span>
             </div>
           </div>
           <div class="benefit-item">
@@ -773,10 +886,10 @@
           <div class="footer-links">
             <h4>Usluge</h4>
             <ul>
-              <li><a href="#services">Web Aplikacije</a></li>
-              <li><a href="#services">E-commerce</a></li>
-              <li><a href="#services">Blog Stranice</a></li>
-              <li><a href="#services">Booking Sustavi</a></li>
+              <li><a href="usluge/web-stranice.html">Web Stranice</a></li>
+              <li><a href="usluge/webshop.html">Web Shop</a></li>
+              <li><a href="usluge/booking.html">Booking Sustavi</a></li>
+              <li><a href="usluge/aplikacije.html">Web Aplikacije</a></li>
             </ul>
           </div>
           <div class="footer-links footer-contact">

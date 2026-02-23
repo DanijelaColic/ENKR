@@ -1057,15 +1057,7 @@ function closeServiceModal() {
   document.body.style.overflow = ''; // Restore scrolling
 }
 
-// Event listeners
-document.querySelectorAll('.service-card').forEach(card => {
-  card.addEventListener('click', (e) => {
-    const serviceId = card.getAttribute('data-service');
-    if (serviceId) {
-      openServiceModal(serviceId);
-    }
-  });
-});
+// Service cards — compact cards are already <a> tags, no extra handler needed
 
 // Close modal events (only if modal elements exist)
 if (modalClose) {
