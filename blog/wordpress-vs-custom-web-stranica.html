@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WordPress vs. Custom Web Stranica — Što je Bolje? — ENKR Blog</title>
+    <meta name="description" content="Detaljna usporedba WordPressa i custom web stranica (Astro/Next.js). Brzina, sigurnost, cijena, SEO, održavanje — sve prednosti i nedostaci na jednom mjestu." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://enkr.hr/blog/wordpress-vs-custom-web-stranica.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://enkr.hr/blog/wordpress-vs-custom-web-stranica.html" />
+    <meta property="og:title" content="WordPress vs. Custom Web Stranica — Što je Bolje?" />
+    <meta property="og:description" content="Detaljna usporedba WordPressa i custom web stranica. Brzina, sigurnost, cijena, SEO i održavanje." />
+    <meta property="og:image" content="https://enkr.hr/og-image.png" />
+    <meta property="og:locale" content="hr_HR" />
+    <meta property="og:site_name" content="ENKR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="WordPress vs. Custom Web Stranica — Što je Bolje?" />
+    <meta name="twitter:description" content="Detaljna usporedba WordPressa i custom web stranica. Brzina, sigurnost, cijena, SEO i održavanje." />
+    <meta name="twitter:image" content="https://enkr.hr/og-image.png" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "WordPress vs. Custom Web Stranica — Što je Bolje?",
+      "description": "Detaljna usporedba WordPressa i custom web stranica (Astro/Next.js). Brzina, sigurnost, cijena, SEO, održavanje.",
+      "url": "https://enkr.hr/blog/wordpress-vs-custom-web-stranica.html",
+      "datePublished": "2025-02-24",
+      "dateModified": "2025-02-24",
+      "author": { "@type": "Organization", "name": "ENKR", "url": "https://enkr.hr" },
+      "publisher": { "@type": "Organization", "name": "ENKR", "logo": { "@type": "ImageObject", "url": "https://enkr.hr/favicon.svg" } },
+      "image": "https://enkr.hr/og-image.png",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://enkr.hr/blog/wordpress-vs-custom-web-stranica.html" },
+      "inLanguage": "hr"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Početna", "item": "https://enkr.hr/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://enkr.hr/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "WordPress vs. Custom Web Stranica — Što je Bolje?", "item": "https://enkr.hr/blog/wordpress-vs-custom-web-stranica.html" }
+      ]
+    }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Y5DGMX35"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied' });
+      gtag('config', 'G-P1Y5DGMX35', { 'anonymize_ip': true, 'cookie_flags': 'SameSite=None;Secure' });
+    </script>
+    <style>
+      .article-hero { padding: 140px 0 40px; background: linear-gradient(135deg, #f8f7ff 0%, #eef2ff 100%); }
+      .article-back { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary-color); text-decoration: none; font-weight: 500; margin-bottom: 1.5rem; }
+      .article-back:hover { gap: 0.75rem; }
+      .article-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--primary-color); margin-bottom: 1rem; }
+      .article-title { font-size: 2.5rem; font-weight: 800; color: var(--text-dark); margin-bottom: 1rem; line-height: 1.2; max-width: 700px; }
+      .article-meta { font-size: 0.9rem; color: var(--text-light); }
+      .article-body { padding: 3rem 0 4rem; }
+      .article-content { max-width: 720px; margin: 0 auto; }
+      .article-content h2 { font-size: 1.6rem; font-weight: 700; color: var(--text-dark); margin: 2.5rem 0 1rem; }
+      .article-content h3 { font-size: 1.25rem; font-weight: 600; margin: 2rem 0 0.75rem; }
+      .article-content p { font-size: 1.05rem; line-height: 1.8; color: #374151; margin-bottom: 1.25rem; }
+      .article-content ul, .article-content ol { margin: 1rem 0 1.5rem 1.5rem; }
+      .article-content li { font-size: 1.05rem; line-height: 1.8; color: #374151; margin-bottom: 0.5rem; }
+      .article-content strong { color: var(--text-dark); }
+      .price-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2rem; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); }
+      .price-table th { background: #f3f4f6; padding: 0.85rem 1rem; text-align: left; font-weight: 600; font-size: 0.9rem; }
+      .price-table td { padding: 0.85rem 1rem; border-top: 1px solid var(--border-color); font-size: 0.95rem; }
+      .article-cta { background: linear-gradient(135deg, #f8f7ff 0%, #eef2ff 100%); border-radius: 16px; padding: 2.5rem; text-align: center; margin: 3rem 0; }
+      .article-cta h3 { margin-bottom: 0.75rem; }
+      .article-cta p { color: var(--text-light); margin-bottom: 1.5rem; }
+      .article-cta a { display: inline-flex; padding: 0.85rem 2rem; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; border-radius: 12px; font-weight: 600; text-decoration: none; }
+      @media (max-width: 768px) { .article-title { font-size: 1.75rem; } }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="../index.html" class="logo logo-link"><span class="logo-anchor">⚓</span> ENKR</a>
+          <ul class="nav-menu">
+            <li><a href="../index.html#home" class="nav-link">Početna</a></li>
+            <li><a href="../index.html#services" class="nav-link">Usluge</a></li>
+            <li><a href="../index.html#about" class="nav-link">O nama</a></li>
+            <li><a href="index.html" class="nav-link active">Blog</a></li>
+            <li><a href="../index.html#contact" class="nav-link">Kontakt</a></li>
+          </ul>
+          <button class="mobile-menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </nav>
+
+    <section class="article-hero">
+      <div class="container">
+        <a href="index.html" class="article-back">← Blog</a>
+        <span class="article-tag">Tehnologija</span>
+        <h1 class="article-title">WordPress vs. Custom Web Stranica — Što je Bolje?</h1>
+        <p class="article-meta">ENKR tim · 24. veljače 2025. · 6 min čitanja</p>
+      </div>
+    </section>
+
+    <section class="article-body">
+      <div class="container">
+        <div class="article-content">
+          <p>Kada poduzetnik u Hrvatskoj odluči napraviti web stranicu, jedno od prvih pitanja koje si postavi je: <strong>"Trebam li WordPress ili nešto custom?"</strong> WordPress pokreće oko 43% svih web stranica na internetu, što ga čini daleko najpopularnijim CMS-om. No popularnost ne znači uvijek da je to najbolji izbor za vaš posao.</p>
+
+          <p>U ovom članku detaljno uspoređujemo WordPress s custom web stranicama izrađenim pomoću modernih tehnologija poput <strong>Astro</strong> i <strong>Next.js</strong> — frameworka koje koristimo u ENKR-u. Cilj je pomoći vam donijeti informiranu odluku.</p>
+
+          <h2>Usporedba na prvi pogled</h2>
+
+          <table class="price-table">
+            <thead>
+              <tr><th>Kriterij</th><th>WordPress</th><th>Custom (Astro/Next.js)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Brzina učitavanja</td><td>2–5 sekundi</td><td>Pod 1 sekundu</td></tr>
+              <tr><td>Sigurnost</td><td>Česte ranjivosti (pluginovi)</td><td>Minimalna napadna površina</td></tr>
+              <tr><td>Mjesečni hosting</td><td>15–50€</td><td>0€ (Vercel/Netlify)</td></tr>
+              <tr><td>SEO performanse</td><td>Dobre (uz pluginove)</td><td>Izvrsne (native)</td></tr>
+              <tr><td>Održavanje</td><td>Redovito (ažuriranja, backup)</td><td>Minimalno</td></tr>
+              <tr><td>Prilagodljivost dizajna</td><td>Ograničena temom</td><td>Potpuna sloboda</td></tr>
+              <tr><td>Inicijalna cijena</td><td>200–500€</td><td>200–900€</td></tr>
+              <tr><td>Godišnji ukupni trošak</td><td>300–800€</td><td>10–15€ (samo domena)</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Brzina — Zašto je važna?</h2>
+
+          <p>Google je još 2021. uveo Core Web Vitals kao faktor rangiranja. Stranica koja se učitava duže od 3 sekunde gubi <strong>53% mobilnih posjetitelja</strong>. WordPress stranice, posebno one s mnogo pluginova i velikom temom, rijetko postižu Lighthouse score iznad 70.</p>
+
+          <p>Custom stranice izrađene u Astro-u generiraju statički HTML s minimalnim JavaScriptom. Rezultat? Lighthouse score redovito iznad <strong>95/100</strong>, učitavanje ispod jedne sekunde i značajno bolje pozicije na Googleu.</p>
+
+          <h2>Sigurnost — Skriveni rizik WordPressa</h2>
+
+          <p>WordPress je najčešće hakirana platforma na svijetu. Razlog je jednostavan: tisućama pluginova upravlja zajednica volontera, a mnogi se ne ažuriraju redovito. Prema izvještaju Sucuri-ja, <strong>96.2% svih zaraženih CMS stranica bile su WordPress stranice</strong>.</p>
+
+          <p>Custom stranica nema bazu podataka, nema admin panel, nema pluginove — nema što hakirati. Statički HTML serviran preko CDN-a praktički je neprobojan.</p>
+
+          <h2>Troškovi — Cijela slika</h2>
+
+          <p>Mnogi poduzetnici gledaju samo inicijalnu cijenu, ali pravi trošak web stranice vidljiv je tek kroz godinu ili dvije:</p>
+
+          <ul>
+            <li><strong>WordPress:</strong> hosting (15–50€/mj), premium tema (50–100€/god), premium pluginovi (50–200€/god), SSL certifikat, sigurnosni backup servis, redovito održavanje</li>
+            <li><strong>Custom stranica:</strong> domena (10–15€/god), hosting na Vercelu ili Netlifyu (0€ za male stranice), bez licence za teme ili pluginove</li>
+          </ul>
+
+          <p>Nakon 2 godine, WordPress vas može koštati <strong>600–1.600€</strong> samo za hosting i licence, dok custom stranica ostaje na <strong>20–30€</strong> (cijena domene).</p>
+
+          <h2>SEO — Tko pobjeđuje na Googleu?</h2>
+
+          <p>WordPress ima Yoast SEO i slične pluginove koji pomažu s osnovnim SEO postavkama. Međutim, ti pluginovi ne mogu kompenzirati spore stranice i loše Core Web Vitals rezultate.</p>
+
+          <p>Custom stranice nude SEO prednosti iz temelja: semantički HTML, optimizirane slike, strukturirani podaci (schema.org), brzo učitavanje i čiste URL strukture — sve bez potrebe za dodatnim pluginovima. Google algoritam jasno favorizira brže i tehnički čišće stranice.</p>
+
+          <h2>Održavanje — Koliko vremena trošite?</h2>
+
+          <p>WordPress zahtijeva redovito ažuriranje jezgre, teme i svakog pojedinog plugina. Jedan nekompatibilni update može srušiti cijelu stranicu. Prema istraživanju WP Engine-a, <strong>73% WordPress stranica ima barem jedan zastarjeli plugin</strong> s poznatim sigurnosnim propustima.</p>
+
+          <p>Custom stranica ne zahtijeva ažuriranja. Sadržaj se može mijenjati kroz jednostavan Git commit ili headless CMS, bez rizika od rušenja stranice.</p>
+
+          <h2>Pluginovi — Blagoslov ili prokletstvo?</h2>
+
+          <p>WordPress ekosustav nudi preko 60.000 pluginova, što zvuči impresivno. U praksi, svaki plugin dodaje JavaScript, CSS i bazu upita koji usporavaju stranicu. Prosječna WordPress stranica koristi <strong>20–30 pluginova</strong>, od kojih mnogi imaju preklapajuće funkcionalnosti.</p>
+
+          <p>S custom pristupom, svaka funkcionalnost se implementira ciljano — bez viška koda, bez konflikata između pluginova i bez mjesečnih pretplata za premium verzije.</p>
+
+          <h2>Kada je WordPress ipak bolji izbor?</h2>
+
+          <p>WordPress ima svoje mjesto, i bilo bi nepošteno to ne priznati. Ako trebate:</p>
+
+          <ul>
+            <li><strong>Velik blog s više autora</strong> — WordPress admin sučelje je intuitivno za timove koji svakodnevno objavljuju sadržaj</li>
+            <li><strong>Složen e-commerce</strong> — WooCommerce nudi tisuće integracija za velike web trgovine</li>
+            <li><strong>Česte samostalne izmjene sadržaja</strong> — ako nemate developera i želite sami uređivati stranicu svaki dan</li>
+          </ul>
+
+          <p>Za veće content-heavy stranice s desecima novih objava tjedno, WordPress je i dalje solidan izbor — pod uvjetom da investirate u kvalitetan hosting i redovito održavanje.</p>
+
+          <h2>Zašto ENKR koristi Astro i Next.js?</h2>
+
+          <p>Za male poduzetnike, obrtnike, salone i lokalne firme, custom stranica je jednostavno bolji omjer cijene i kvalitete. Naši klijenti dobivaju:</p>
+
+          <ul>
+            <li>Stranicu koja se učitava ispod 1 sekunde</li>
+            <li>Lighthouse score iznad 95</li>
+            <li>Nula mjesečnih troškova za hosting</li>
+            <li>Stranicu koja ne zahtijeva ažuriranja ni održavanje</li>
+            <li>Potpuno prilagođen dizajn koji odražava njihov brend</li>
+          </ul>
+
+          <p>Pogledajte naše <a href="../usluge/web-stranice.html">pakete za izradu web stranica</a> i uvjerite se kako moderan pristup može transformirati vašu online prisutnost.</p>
+
+          <div class="article-cta">
+            <h3>Želite custom web stranicu bez mjesečnih troškova?</h3>
+            <p>Zatražite besplatni nacrt i saznajte kako možemo pomoći vašem poslovanju.</p>
+            <a href="../besplatna-verzija.html">Zatražite besplatni nacrt</a>
+          </div>
+
+          <h2>Zaključak</h2>
+
+          <p>Za većinu malih poduzetnika u Hrvatskoj, <strong>custom web stranica je pametnije ulaganje</strong>. Brža je, sigurnija, jeftinija za održavanje i bolje rangirana na Googleu. WordPress ostaje relevantan za velike sadržajne portale i složene e-commerce projekte, ali za prezentacijske stranice, landing pageove i manje poslovne stranice — custom pristup pobjeđuje na svim frontovima.</p>
+
+          <p>Ključno je ne gledati samo inicijalnu cijenu, već ukupni trošak vlasništva kroz 2–3 godine. Kada uzmete u obzir hosting, licence, održavanje i izgubljene posjetitelje zbog spore stranice — <a href="../besplatna-verzija.html">custom rješenje</a> se isplati od prvog dana.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-final-cta">
+      <div class="container">
+        <h2 class="section-title">Trebate web stranicu?</h2>
+        <p class="sd-final-cta-text">Besplatni nacrt u roku od 24h — bez obveza i skrivenih troškova.</p>
+        <a href="../besplatna-verzija.html" class="sd-final-cta-btn">Zatražite besplatni nacrt</a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand"><a href="../index.html" class="logo logo-link"><span class="logo-anchor">⚓</span> ENKR</a><p>Digitalne usluge koje rastu s vama</p></div>
+          <div class="footer-links"><h4>Brzi linkovi</h4><ul><li><a href="../index.html#home">Početna</a></li><li><a href="../index.html#services">Usluge</a></li><li><a href="index.html">Blog</a></li><li><a href="../index.html#contact">Kontakt</a></li></ul></div>
+          <div class="footer-links"><h4>Usluge</h4><ul><li><a href="../usluge/web-stranice.html">Web Stranice</a></li><li><a href="../usluge/webshop.html">Web Shop</a></li><li><a href="../usluge/booking.html">Booking Sustavi</a></li><li><a href="../usluge/aplikacije.html">Web Aplikacije</a></li></ul></div>
+          <div class="footer-links footer-contact"><h4>Kontakt</h4><p>ENKR</p><p><a href="mailto:info@enkr.hr">info@enkr.hr</a></p><p><a href="tel:+385919279931">+385 91 927 9931</a></p></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2025 ENKR. Sva prava pridržana. | <a href="../privacy-policy.html">Politika privatnosti</a> | <a href="../terms-of-service.html">Uvjeti korištenja</a></p></div>
+      </div>
+    </footer>
+    <script type="module" src="../script.js" defer></script>
+  </body>
+</html>

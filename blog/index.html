@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Blog — ENKR | Savjeti za Web, E-commerce i Digitalni Marketing</title>
+    <meta
+      name="description"
+      content="Praktični savjeti o izradi web stranica, e-commerce rješenjima, booking sustavima i digitalnom marketingu. Naučite kako unaprijediti online prisutnost vašeg poslovanja."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://enkr.hr/blog/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://enkr.hr/blog/" />
+    <meta property="og:title" content="Blog — ENKR | Savjeti za Web i Digitalni Marketing" />
+    <meta property="og:description" content="Praktični savjeti o izradi web stranica, e-commerce rješenjima i digitalnom marketingu." />
+    <meta property="og:image" content="https://enkr.hr/og-image.png" />
+    <meta property="og:locale" content="hr_HR" />
+    <meta property="og:site_name" content="ENKR" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Blog — ENKR | Savjeti za Web i Digitalni Marketing" />
+    <meta name="twitter:description" content="Praktični savjeti o izradi web stranica, e-commerce rješenjima i digitalnom marketingu." />
+    <meta name="twitter:image" content="https://enkr.hr/og-image.png" />
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="apple-touch-icon" href="../favicon.svg" />
+    <link rel="stylesheet" href="../styles.css" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "ENKR Blog",
+      "description": "Savjeti o izradi web stranica, e-commerce rješenjima, booking sustavima i digitalnom marketingu",
+      "url": "https://enkr.hr/blog/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "ENKR",
+        "url": "https://enkr.hr",
+        "logo": "https://enkr.hr/favicon.svg"
+      },
+      "inLanguage": "hr",
+      "blogPost": [
+        {
+          "@type": "BlogPosting",
+          "headline": "Koliko košta izrada web stranice u 2025?",
+          "url": "https://enkr.hr/blog/koliko-kosta-izrada-web-stranice.html",
+          "datePublished": "2025-02-24"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "WordPress vs. Custom Web Stranica — Što je Bolje?",
+          "url": "https://enkr.hr/blog/wordpress-vs-custom-web-stranica.html",
+          "datePublished": "2025-02-24"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Zašto vam treba booking sustav za salon?",
+          "url": "https://enkr.hr/blog/booking-sustav-za-salon.html",
+          "datePublished": "2025-02-24"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Kako odabrati web agenciju u Hrvatskoj?",
+          "url": "https://enkr.hr/blog/kako-odabrati-web-agenciju.html",
+          "datePublished": "2025-02-24"
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Početna", "item": "https://enkr.hr/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://enkr.hr/blog/" }
+      ]
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Y5DGMX35"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied' });
+      gtag('config', 'G-P1Y5DGMX35', { 'anonymize_ip': true, 'cookie_flags': 'SameSite=None;Secure' });
+    </script>
+
+    <style>
+      .blog-hero {
+        padding: 140px 0 60px;
+        background: linear-gradient(135deg, #f8f7ff 0%, #eef2ff 100%);
+      }
+      .blog-hero-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--text-dark);
+        margin-bottom: 1rem;
+      }
+      .blog-hero-subtitle {
+        font-size: 1.15rem;
+        color: var(--text-light);
+        max-width: 600px;
+      }
+      .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 2rem;
+        padding: 4rem 0;
+      }
+      .blog-card {
+        background: white;
+        border-radius: 16px;
+        border: 1px solid var(--border-color);
+        padding: 2rem;
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.2s, box-shadow 0.2s;
+        display: flex;
+        flex-direction: column;
+      }
+      .blog-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+      }
+      .blog-card-tag {
+        display: inline-block;
+        font-size: 0.78rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--primary-color);
+        margin-bottom: 0.75rem;
+      }
+      .blog-card-title {
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 0.75rem;
+        line-height: 1.3;
+      }
+      .blog-card-excerpt {
+        font-size: 0.95rem;
+        color: var(--text-light);
+        line-height: 1.6;
+        flex: 1;
+        margin-bottom: 1.5rem;
+      }
+      .blog-card-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.85rem;
+        color: var(--text-light);
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+      }
+      .blog-card-read {
+        color: var(--primary-color);
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+      @media (max-width: 768px) {
+        .blog-hero-title { font-size: 1.8rem; }
+        .blog-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="../index.html" class="logo logo-link">
+            <span class="logo-anchor">⚓</span>
+            ENKR
+          </a>
+          <ul class="nav-menu">
+            <li><a href="../index.html#home" class="nav-link">Početna</a></li>
+            <li><a href="../index.html#services" class="nav-link">Usluge</a></li>
+            <li><a href="../index.html#about" class="nav-link">O nama</a></li>
+            <li><a href="index.html" class="nav-link active">Blog</a></li>
+            <li><a href="../index.html#contact" class="nav-link">Kontakt</a></li>
+          </ul>
+          <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <section class="blog-hero">
+      <div class="container">
+        <h1 class="blog-hero-title">Blog</h1>
+        <p class="blog-hero-subtitle">Praktični savjeti o izradi web stranica, online prodaji, booking sustavima i digitalnom marketingu za male poduzetnike.</p>
+      </div>
+    </section>
+
+    <section class="blog-listing">
+      <div class="container">
+        <div class="blog-grid">
+
+          <a href="koliko-kosta-izrada-web-stranice.html" class="blog-card">
+            <span class="blog-card-tag">Web Stranice</span>
+            <h2 class="blog-card-title">Koliko košta izrada web stranice u 2025?</h2>
+            <p class="blog-card-excerpt">Pregled cijena izrade web stranica u Hrvatskoj — od besplatnih rješenja do profesionalnih agencija. Što utječe na cijenu i kako dobiti najbolji omjer cijene i kvalitete.</p>
+            <div class="blog-card-meta">
+              <span>24. veljače 2025.</span>
+              <span class="blog-card-read">Čitaj više →</span>
+            </div>
+          </a>
+
+          <a href="wordpress-vs-custom-web-stranica.html" class="blog-card">
+            <span class="blog-card-tag">Tehnologija</span>
+            <h2 class="blog-card-title">WordPress vs. Custom Web Stranica — Što je Bolje?</h2>
+            <p class="blog-card-excerpt">Detaljnu usporedbu WordPressa i custom rješenja. Brzina, sigurnost, cijena, SEO, održavanje — sve prednosti i nedostaci na jednom mjestu.</p>
+            <div class="blog-card-meta">
+              <span>24. veljače 2025.</span>
+              <span class="blog-card-read">Čitaj više →</span>
+            </div>
+          </a>
+
+          <a href="booking-sustav-za-salon.html" class="blog-card">
+            <span class="blog-card-tag">Booking</span>
+            <h2 class="blog-card-title">Zašto vam treba booking sustav za salon?</h2>
+            <p class="blog-card-excerpt">Kako online rezervacije smanjuju nedolaske, štede vrijeme i povećavaju broj klijenata. Praktičan vodič za salone, ordinacije i uslužne djelatnosti.</p>
+            <div class="blog-card-meta">
+              <span>24. veljače 2025.</span>
+              <span class="blog-card-read">Čitaj više →</span>
+            </div>
+          </a>
+
+          <a href="kako-odabrati-web-agenciju.html" class="blog-card">
+            <span class="blog-card-tag">Savjeti</span>
+            <h2 class="blog-card-title">Kako odabrati web agenciju u Hrvatskoj?</h2>
+            <p class="blog-card-excerpt">7 ključnih pitanja koja trebate postaviti prije nego odaberete partnera za izradu web stranice. Izbjegnite najčešće greške i pronađite agenciju koja odgovara vašim potrebama.</p>
+            <div class="blog-card-meta">
+              <span>24. veljače 2025.</span>
+              <span class="blog-card-read">Čitaj više →</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="sd-final-cta">
+      <div class="container">
+        <h2 class="section-title">Trebate web stranicu?</h2>
+        <p class="sd-final-cta-text">Besplatni nacrt vaše web stranice u roku od 24h — bez obveza.</p>
+        <a href="../besplatna-verzija.html" class="sd-final-cta-btn">Zatražite besplatni nacrt</a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <a href="../index.html" class="logo logo-link">
+              <span class="logo-anchor">⚓</span>
+              ENKR
+            </a>
+            <p>Digitalne usluge koje rastu s vama</p>
+          </div>
+          <div class="footer-links">
+            <h4>Brzi linkovi</h4>
+            <ul>
+              <li><a href="../index.html#home">Početna</a></li>
+              <li><a href="../index.html#services">Usluge</a></li>
+              <li><a href="../index.html#about">O nama</a></li>
+              <li><a href="index.html">Blog</a></li>
+              <li><a href="../index.html#contact">Kontakt</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Usluge</h4>
+            <ul>
+              <li><a href="../usluge/web-stranice.html">Web Stranice</a></li>
+              <li><a href="../usluge/webshop.html">Web Shop</a></li>
+              <li><a href="../usluge/booking.html">Booking Sustavi</a></li>
+              <li><a href="../usluge/aplikacije.html">Web Aplikacije</a></li>
+            </ul>
+          </div>
+          <div class="footer-links footer-contact">
+            <h4>Kontakt</h4>
+            <p>ENKR</p>
+            <p><a href="mailto:info@enkr.hr">info@enkr.hr</a></p>
+            <p><a href="tel:+385919279931">+385 91 927 9931</a></p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 ENKR. Sva prava pridržana. | <a href="../privacy-policy.html">Politika privatnosti</a> | <a href="../terms-of-service.html">Uvjeti korištenja</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="../script.js" defer></script>
+  </body>
+</html>

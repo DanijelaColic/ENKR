@@ -12,9 +12,88 @@
     <meta property="og:title" content="Booking Sustavi — Online Rezervacije od 400€ | ENKR" />
     <meta property="og:description" content="Klijenti rezerviraju dok vi spavate. Online booking 24/7, automatski podsjetnici, bez provizija. Od 400€." />
     <meta property="og:image" content="https://enkr.hr/og-image.png" />
-    <link rel="icon" type="image/png" href="../favicon.png" />
+    <meta property="og:locale" content="hr_HR" />
+    <meta property="og:site_name" content="ENKR" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://enkr.hr/usluge/booking.html" />
+    <meta name="twitter:title" content="Booking Sustavi — Online Rezervacije od 400€ | ENKR" />
+    <meta name="twitter:description" content="Klijenti rezerviraju dok vi spavate. Online booking 24/7, automatski podsjetnici, bez provizija. Od 400€." />
+    <meta name="twitter:image" content="https://enkr.hr/og-image.png" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="apple-touch-icon" href="../favicon.svg" />
+    
     <link rel="stylesheet" href="../styles.css" />
     <link rel="stylesheet" href="../usluge.css" />
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Booking Sustavi — Online Rezervacije",
+      "description": "Web stranica s booking sustavom od 400€. Klijenti sami biraju termin, vi dobijete obavijest. Bez telefoniranja, bez provizija.",
+      "provider": {
+        "@type": "Organization",
+        "name": "ENKR",
+        "url": "https://enkr.hr"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Hrvatska"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "lowPrice": "400",
+        "highPrice": "1000",
+        "priceCurrency": "EUR"
+      },
+      "url": "https://enkr.hr/usluge/booking.html"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Početna", "item": "https://enkr.hr/" },
+        { "@type": "ListItem", "position": 2, "name": "Usluge", "item": "https://enkr.hr/#services" },
+        { "@type": "ListItem", "position": 3, "name": "Booking Sustavi", "item": "https://enkr.hr/usluge/booking.html" }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Kako to smanjuje nedolaske?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Automatski podsjetnici (email ili SMS) 24h i 1h prije termina drastično smanjuju zaboravljene termine. Opcionalno plaćanje unaprijed praktički eliminira nedolaske." }
+        },
+        {
+          "@type": "Question",
+          "name": "Mogu li klijenti otkazati ili promijeniti termin?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Da. Klijenti mogu sami promijeniti ili otkazati termin — unutar pravila koje vi definirate (npr. najkasnije 24h prije)." }
+        },
+        {
+          "@type": "Question",
+          "name": "Što ako imam više zaposlenika ili soba?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Sustav podržava više članova tima ili jedinica. Svaki ima svoj kalendar, ali klijent vidi samo slobodne termine." }
+        },
+        {
+          "@type": "Question",
+          "name": "Koliko traje izrada?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Starter Booking: 7-10 dana. Pro Booking: 2-3 tjedna. Za smještaj s PMS integracijom: 3-5 tjedana." }
+        }
+      ]
+    }
+    </script>
+    
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Y5DGMX35"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -38,7 +117,7 @@
             <li><a href="../index.html#services" class="nav-link">Usluge</a></li>
             <li><a href="../index.html#about" class="nav-link">O nama</a></li>
             <li><a href="../index.html#projects" class="nav-link">Projekti</a></li>
-            <li><a href="../cjenik.html" class="nav-link">Cjenik</a></li>
+            <li><a href="../blog/index.html" class="nav-link">Blog</a></li>
             <li><a href="../index.html#contact" class="nav-link">Kontakt</a></li>
           </ul>
           <button class="mobile-menu-toggle" aria-label="Toggle menu">
@@ -396,6 +475,32 @@
       </div>
     </section>
 
+    <!-- Related Services -->
+    <section class="sd-related">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Pogledajte i ostale usluge</h2>
+        </div>
+        <div class="services-grid services-grid-3">
+          <a href="web-stranice.html" class="service-card-compact">
+            <h3 class="service-title">Web Stranice</h3>
+            <p class="service-description">Moderna, brza i SEO-optimizirana web stranica za vaše poslovanje.</p>
+            <div class="service-price">od 200€</div>
+          </a>
+          <a href="webshop.html" class="service-card-compact">
+            <h3 class="service-title">Web Shop</h3>
+            <p class="service-description">Online trgovina bez provizija platforme. Brz checkout i upravljanje proizvodima.</p>
+            <div class="service-price">od 600€</div>
+          </a>
+          <a href="aplikacije.html" class="service-card-compact">
+            <h3 class="service-title">Web Aplikacije</h3>
+            <p class="service-description">CRM, dashboard, interni alati ili MVP. Automatizirajte procese.</p>
+            <div class="service-price">od 700€</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- Final CTA -->
     <section class="sd-final-cta">
       <div class="container">
@@ -423,7 +528,6 @@
               <li><a href="../index.html#services">Usluge</a></li>
               <li><a href="../index.html#about">O nama</a></li>
               <li><a href="../index.html#projects">Projekti</a></li>
-              <li><a href="../cjenik.html">Cjenik</a></li>
               <li><a href="../index.html#contact">Kontakt</a></li>
             </ul>
           </div>
@@ -444,7 +548,7 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2024 ENKR. Sva prava pridržana. | <a href="../privacy-policy.html">Politika privatnosti</a> | <a href="../terms-of-service.html">Uvjeti korištenja</a></p>
+          <p>&copy; 2025 ENKR. Sva prava pridržana. | <a href="../privacy-policy.html">Politika privatnosti</a> | <a href="../terms-of-service.html">Uvjeti korištenja</a></p>
         </div>
       </div>
     </footer>
