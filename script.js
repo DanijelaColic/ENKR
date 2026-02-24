@@ -423,7 +423,7 @@ function initDraftFormHandlers() {
       const successMessage = document.createElement('div');
       successMessage.className = 'form-message form-message-success';
       successMessage.textContent =
-        data.message || 'Zahtjev je uspješno poslan! Kontaktirat ćemo vas u roku od 48h.';
+        data.message || 'Zahtjev je uspješno poslan! Kontaktirat ćemo vas u roku od 24h.';
       draftForm.appendChild(successMessage);
 
       successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });

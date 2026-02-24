@@ -144,7 +144,7 @@ Zahtjev poslan s web stranice ENKR
     console.log('✅ Draft form email sent successfully:', data?.id || 'unknown');
     return res.status(200).json({
       success: true,
-      message: 'Zahtjev je uspješno poslan! Kontaktirat ćemo vas u roku od 48h.',
+      message: 'Zahtjev je uspješno poslan! Kontaktirat ćemo vas u roku od 24h.',
       data,
     });
   } catch (error) {
