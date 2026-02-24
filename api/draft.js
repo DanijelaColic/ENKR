@@ -27,17 +27,15 @@ export default async function handler(req, res) {
   try {
     console.log('📥 Draft form request received');
     console.log('📥 Request body:', JSON.stringify(req.body, null, 2));
-    const { package: packageValue, visualStyle, colorHex, companyName, businessType, email, goal } = req.body;
+    const { fullName, email, phone, service, businessType, goal, existingWebsite } = req.body;
 
-    // Validation
-    if (!companyName || !businessType || !email || !goal) {
+    if (!fullName || !email || !phone || !service || !businessType || !goal) {
       return res.status(400).json({
         success: false,
         error: 'Sva obavezna polja moraju biti popunjena',
       });
     }
 
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({
@@ -58,7 +56,6 @@ export default async function handler(req, res) {
 
     console.log('✅ Resend API key found, attempting to send email...');
 
-    // Sanitize inputs
     const sanitizeInput = (input) => {
       if (!input) return '';
       return String(input)
@@ -69,44 +66,35 @@ export default async function handler(req, res) {
         .replace(/\//g, '&#x2F;');
     };
 
-    // Map package values to readable names
-    const packageNames = {
-      'one-page': 'One Page / Landing Page',
-      'standard': 'Standard Paket',
-      'premium': 'Premium Paket',
+    const serviceNames = {
+      'web-stranica': 'Web stranica',
+      'web-shop': 'Web shop',
+      'booking-sustav': 'Booking sustav',
+      'web-aplikacija': 'Web aplikacija',
+      'nisam-siguran': 'Nisam siguran/a — trebam savjet',
     };
 
-    const styleNames = {
-      'futuristic': 'Futuristički',
-      'elegant': 'Elegantan i nježan',
-      'modern': 'Moderan minimalistički',
-      'classic': 'Klasičan',
-      'playful': 'Razigran i kreativan',
-      'natural': 'Prirodan i organski',
-    };
+    const sFullName = sanitizeInput(fullName);
+    const sEmail = sanitizeInput(email);
+    const sPhone = sanitizeInput(phone);
+    const sService = sanitizeInput(serviceNames[service] || service);
+    const sBusinessType = sanitizeInput(businessType);
+    const sGoal = sanitizeInput(goal);
+    const sExistingWebsite = sanitizeInput(existingWebsite);
 
-    const sanitizedCompanyName = sanitizeInput(companyName);
-    const sanitizedBusinessType = sanitizeInput(businessType);
-    const sanitizedEmail = sanitizeInput(email);
-    const sanitizedGoal = sanitizeInput(goal);
-    const sanitizedPackage = sanitizeInput(packageNames[packageValue] || packageValue || 'Nije odabran');
-    const sanitizedVisualStyle = sanitizeInput(styleNames[visualStyle] || visualStyle || 'Nije odabran');
-    const sanitizedColorHex = sanitizeInput(colorHex || '#6366f1');
-
-    // Email content
     const emailHtml = `
       <h2>Novi zahtjev za besplatni nacrt web stranice</h2>
-      <h3>Informacije o firmi</h3>
-      <p><strong>Ime firme:</strong> ${sanitizedCompanyName}</p>
-      <p><strong>Djelatnost:</strong> ${sanitizedBusinessType}</p>
-      <p><strong>Email:</strong> ${sanitizedEmail}</p>
+      <h3>Kontakt informacije</h3>
+      <p><strong>Ime i prezime:</strong> ${sFullName}</p>
+      <p><strong>Email:</strong> ${sEmail}</p>
+      <p><strong>Telefon:</strong> ${sPhone}</p>
+
+      <h3>Detalji projekta</h3>
+      <p><strong>Zanima me:</strong> ${sService}</p>
+      <p><strong>Djelatnost:</strong> ${sBusinessType}</p>
       <p><strong>Što žele postići webom:</strong></p>
-      <p>${sanitizedGoal.replace(/\n/g, '<br>')}</p>
-      
-      <h3>Odabrani paket i stil</h3>
-      <p><strong>Paket:</strong> ${sanitizedPackage}</p>
-      <p><strong>Vizualni identitet:</strong> ${sanitizedVisualStyle}</p>
-      <p><strong>Primarna boja:</strong> <span style="display: inline-block; width: 20px; height: 20px; background-color: ${sanitizedColorHex}; border: 1px solid #ccc; vertical-align: middle; margin-right: 5px;"></span> ${sanitizedColorHex}</p>
+      <p>${sGoal.replace(/\n/g, '<br>')}</p>
+      ${sExistingWebsite ? `<p><strong>Postojeća web stranica:</strong> <a href="${sExistingWebsite}">${sExistingWebsite}</a></p>` : ''}
       
       <hr>
       <p><em>Zahtjev poslan s web stranice ENKR</em></p>
@@ -115,18 +103,17 @@ export default async function handler(req, res) {
     const emailText = `
 Novi zahtjev za besplatni nacrt web stranice
 
-Informacije o firmi:
-Ime firme: ${companyName}
-Djelatnost: ${businessType}
+Kontakt informacije:
+Ime i prezime: ${fullName}
 Email: ${email}
+Telefon: ${phone}
 
+Detalji projekta:
+Zanima me: ${serviceNames[service] || service}
+Djelatnost: ${businessType}
 Što žele postići webom:
 ${goal}
-
-Odabrani paket i stil:
-Paket: ${packageNames[packageValue] || packageValue || 'Nije odabran'}
-Vizualni identitet: ${styleNames[visualStyle] || visualStyle || 'Nije odabran'}
-Primarna boja: ${colorHex || '#6366f1'}
+${existingWebsite ? `Postojeća web stranica: ${existingWebsite}` : ''}
 
 ---
 Zahtjev poslan s web stranice ENKR
@@ -140,7 +127,7 @@ Zahtjev poslan s web stranice ENKR
       from: fromEmail,
       to: 'info@enkr.hr',
       replyTo: email,
-      subject: `Novi zahtjev za besplatni nacrt - ${companyName}`,
+      subject: `Novi zahtjev za besplatni nacrt - ${fullName}`,
       html: emailHtml,
       text: emailText,
     });

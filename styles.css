@@ -744,6 +744,7 @@ body {
   position: relative;
   overflow: hidden;
   margin-top: 0;
+  text-decoration: none;
 }
 
 .btn-free-draft-cta::before {
@@ -1035,11 +1036,11 @@ body {
 .survey-section {
   background: var(--bg-gray);
   padding: 3rem 0;
-  min-height: 80vh;
+  min-height: auto;
 }
 
 .survey-wrapper {
-  max-width: 1000px;
+  max-width: 700px;
   margin: 0 auto;
   background: white;
   border-radius: 16px;
@@ -1063,47 +1064,19 @@ body {
 .survey-main-subtitle {
   font-size: 1.0625rem;
   color: var(--text-light);
-  margin-bottom: 1.75rem;
+  margin-bottom: 0;
   line-height: 1.6;
   padding: 0 1rem;
 }
 
-.survey-progress-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-.survey-step-indicator {
-  display: inline-block;
-  padding: 0.5625rem 1.25rem;
-  background: var(--bg-gray);
-  border-radius: 20px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text-light);
-  line-height: 1.4;
-}
-
-.survey-progress-bar {
-  width: 100%;
-  max-width: 400px;
-  height: 10px;
-  background: var(--bg-gray-light);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.survey-progress-fill {
-  height: 100%;
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  border-radius: 10px;
-  transition: width 0.3s ease;
-}
-
 .survey-content {
   margin-top: 2rem;
+}
+
+.draft-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
 }
 
 /* Survey Progress Indicator */
@@ -3902,68 +3875,8 @@ button[type="submit"]:disabled {
     padding: 0.4rem 1.25rem;
   }
 
-  /* Survey responsive styles */
-  .package-options {
+  .draft-form-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .style-options {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-  }
-
-  .style-label {
-    padding: 1rem 0.75rem;
-  }
-
-  .style-icon {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 0.75rem;
-  }
-
-  .style-label h5 {
-    font-size: 0.9375rem;
-  }
-
-  .style-label p {
-    font-size: 0.8125rem;
-  }
-
-  .color-input-group {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .color-input-group input[type='color'] {
-    width: 100%;
-    height: 60px;
-  }
-
-  .color-preset-options {
-    gap: 0.5rem;
-  }
-
-  .color-preset {
-    width: 40px;
-    height: 40px;
-  }
-
-  .survey-navigation {
-    flex-direction: column;
-  }
-
-  .btn-nav {
-    width: 100%;
-  }
-
-  .step-title {
-    font-size: 1.25rem;
-  }
-
-  .step-subtitle {
-    font-size: 0.9375rem;
   }
 }
 

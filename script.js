@@ -324,286 +324,42 @@ if (contactForm) {
   });
 }
 
-// Multi-step survey form handling
+// Draft form handling (single-step)
 let draftForm;
-let currentStep = 1;
-const totalSteps = 4;
 
-// Initialize survey steps
-function initSurvey() {
-  const steps = document.querySelectorAll('.survey-step');
-  steps.forEach((step, index) => {
-    if (index === 0) {
-      step.classList.add('active');
-    } else {
-      step.classList.remove('active');
-    }
-  });
-  updateStepIndicator();
-  updateNavigationButtons();
-}
+function initDraftFormHandlers() {
+  if (!draftForm) return;
 
-// Update step indicator and progress bar
-function updateStepIndicator() {
-  const stepIndicator = document.getElementById('stepIndicator');
-  const progressFill = document.getElementById('progressFill');
-  
-  if (stepIndicator) {
-    stepIndicator.textContent = `Korak ${currentStep} od ${totalSteps}`;
-  }
-  
-  if (progressFill) {
-    const progressPercent = (currentStep / totalSteps) * 100;
-    progressFill.style.width = `${progressPercent}%`;
-  }
-}
-
-// Update navigation buttons visibility
-function updateNavigationButtons() {
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const submitBtn = document.getElementById('submitBtn');
-
-  if (prevBtn) {
-    // Uvijek prikaži gumb "Natrag", ali ga disable-uj na prvoj stranici
-    prevBtn.style.display = 'inline-flex';
-    prevBtn.disabled = currentStep === 1;
-  }
-  if (nextBtn) {
-    nextBtn.style.display = currentStep < totalSteps ? 'inline-flex' : 'none';
-    
-    // Na koraku 1, disable-uj gumb "Dalje" dok korisnik ne odabere paket
-    if (currentStep === 1) {
-      const packageSelected = document.querySelector('input[name="package"]:checked');
-      nextBtn.disabled = !packageSelected;
-    } 
-    // Na koraku 2, disable-uj gumb "Dalje" dok korisnik ne odabere stil
-    else if (currentStep === 2) {
-      const styleSelected = document.querySelector('input[name="visualStyle"]:checked');
-      nextBtn.disabled = !styleSelected;
-    } 
-    else {
-      nextBtn.disabled = false;
-    }
-  }
-  if (submitBtn) {
-    submitBtn.style.display = currentStep === totalSteps ? 'inline-flex' : 'none';
-  }
-}
-
-// Validate current step
-function validateStep(step) {
-  const stepElement = document.querySelector(`.survey-step[data-step="${step}"]`);
-  if (!stepElement) return false;
-
-  // Step 1: Package selection
-  if (step === 1) {
-    const packageSelected = stepElement.querySelector('input[name="package"]:checked');
-    return !!packageSelected;
-  }
-
-  // Step 2: Visual style selection
-  if (step === 2) {
-    const styleSelected = stepElement.querySelector('input[name="visualStyle"]:checked');
-    return !!styleSelected;
-  }
-
-  // Step 3: Color selection (always valid, has default)
-  if (step === 3) {
-    return true;
-  }
-
-  // Step 4: Business information
-  if (step === 4) {
-    const companyName = document.getElementById('draft-company-name').value.trim();
-    const businessType = document.getElementById('draft-business-type').value.trim();
-    const email = document.getElementById('draft-email').value.trim();
-    const goal = document.getElementById('draft-goal').value.trim();
-
-    if (!companyName || !businessType || !email || !goal) {
-      return false;
-    }
-
-    // Basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  }
-
-  return false;
-}
-
-// Show step
-function showStep(step) {
-  const steps = document.querySelectorAll('.survey-step');
-  steps.forEach((s) => {
-    s.classList.remove('active');
-  });
-
-  const stepElement = document.querySelector(`.survey-step[data-step="${step}"]`);
-  if (stepElement) {
-    stepElement.classList.add('active');
-    // Scroll to top of form
-    stepElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-}
-
-// Go to next step
-function nextStep() {
-  if (validateStep(currentStep)) {
-    if (currentStep < totalSteps) {
-      currentStep++;
-      showStep(currentStep);
-      updateStepIndicator();
-      updateNavigationButtons();
-    }
-  } else {
-    // Show validation error
-    alert('Molimo popunite sva obavezna polja prije nastavka.');
-  }
-}
-
-// Go to previous step
-function prevStep() {
-  if (currentStep > 1) {
-    currentStep--;
-    showStep(currentStep);
-    updateStepIndicator();
-    updateNavigationButtons();
-  }
-}
-
-// Package option selection handler
-function initPackageSelection() {
-  const packageOptions = document.querySelectorAll('.package-option');
-  packageOptions.forEach((option) => {
-    option.addEventListener('click', (e) => {
-      const radio = option.querySelector('input[type="radio"]');
-      if (radio) {
-        radio.checked = true;
-        packageOptions.forEach((opt) => opt.classList.remove('selected'));
-        option.classList.add('selected');
-        
-        // Omogući gumb "Dalje" kada je paket odabran (samo na koraku 1)
-        if (currentStep === 1) {
-          const nextBtn = document.getElementById('nextBtn');
-          if (nextBtn) {
-            nextBtn.disabled = false;
-          }
-        }
-      }
-    });
-  });
-}
-
-// Style option selection handler
-function initStyleSelection() {
-  const styleOptions = document.querySelectorAll('.style-option');
-  styleOptions.forEach((option) => {
-    option.addEventListener('click', (e) => {
-      const radio = option.querySelector('input[type="radio"]');
-      if (radio) {
-        radio.checked = true;
-        styleOptions.forEach((opt) => opt.classList.remove('selected'));
-        option.classList.add('selected');
-        
-        // Omogući gumb "Dalje" kada je stil odabran (samo na koraku 2)
-        if (currentStep === 2) {
-          const nextBtn = document.getElementById('nextBtn');
-          if (nextBtn) {
-            nextBtn.disabled = false;
-          }
-        }
-      }
-    });
-  });
-}
-
-// Color selection handler
-function initColorSelection() {
-  const colorPicker = document.getElementById('custom-color');
-  const colorHex = document.getElementById('color-hex');
-  const colorPresets = document.querySelectorAll('.color-preset');
-
-  // Update hex input when color picker changes
-  if (colorPicker && colorHex) {
-    colorPicker.addEventListener('input', (e) => {
-      colorHex.value = e.target.value.toUpperCase();
-      colorPresets.forEach((preset) => preset.classList.remove('selected'));
-    });
-
-    // Update color picker when hex input changes
-    colorHex.addEventListener('input', (e) => {
-      const value = e.target.value;
-      if (/^#[0-9A-F]{6}$/i.test(value)) {
-        colorPicker.value = value;
-      }
-    });
-  }
-
-  // Handle preset color selection
-  colorPresets.forEach((preset) => {
-    preset.addEventListener('click', () => {
-      const color = preset.getAttribute('data-color');
-      if (colorPicker) colorPicker.value = color;
-      if (colorHex) colorHex.value = color.toUpperCase();
-      colorPresets.forEach((p) => p.classList.remove('selected'));
-      preset.classList.add('selected');
-    });
-  });
-}
-
-// Initialize survey form handlers (only once)
-let surveyFormHandlersInitialized = false;
-
-function initSurveyFormHandlers() {
-  if (!draftForm || surveyFormHandlersInitialized) return;
-  surveyFormHandlersInitialized = true;
-
-  // Navigation buttons
-  const nextBtn = document.getElementById('nextBtn');
-  const prevBtn = document.getElementById('prevBtn');
-
-  if (nextBtn) {
-    nextBtn.addEventListener('click', nextStep);
-  }
-  if (prevBtn) {
-    prevBtn.addEventListener('click', prevStep);
-  }
-
-  // Initialize selections
-  initPackageSelection();
-  initStyleSelection();
-  initColorSelection();
-
-  // Form submission
   const submitBtn = document.getElementById('submitBtn');
   const originalSubmitButtonText = submitBtn ? submitBtn.textContent : 'Pošaljite zahtjev';
 
   draftForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Validate final step
-    if (!validateStep(4)) {
+    const fullName = document.getElementById('draft-name').value.trim();
+    const email = document.getElementById('draft-email').value.trim();
+    const phone = document.getElementById('draft-phone').value.trim();
+    const service = document.getElementById('draft-service').value;
+    const businessType = document.getElementById('draft-business-type').value.trim();
+    const goal = document.getElementById('draft-goal').value.trim();
+    const existingWebsite = document.getElementById('draft-existing-website').value.trim();
+
+    if (!fullName || !email || !phone || !service || !businessType || !goal) {
       alert('Molimo popunite sva obavezna polja.');
       return;
     }
 
-    // Get all form values from all steps
-    const selectedPackage = draftForm.querySelector('input[name="package"]:checked')?.value || '';
-    const visualStyle = draftForm.querySelector('input[name="visualStyle"]:checked')?.value || '';
-    const colorHex = document.getElementById('color-hex')?.value || '#000000';
-    const companyName = document.getElementById('draft-company-name').value.trim();
-    const businessType = document.getElementById('draft-business-type').value.trim();
-    const email = document.getElementById('draft-email').value.trim();
-    const goal = document.getElementById('draft-goal').value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('Molimo unesite važeću email adresu.');
+      return;
+    }
 
-    // Disable submit button and show loading state
     if (submitBtn) {
       submitBtn.disabled = true;
       submitBtn.textContent = 'Slanje...';
     }
 
-    // Remove previous error/success messages
     const existingMessage = draftForm.querySelector('.form-message');
     if (existingMessage) {
       existingMessage.remove();
@@ -612,58 +368,43 @@ function initSurveyFormHandlers() {
     try {
       console.log('📤 Sending draft form data...');
 
-      // Send data to backend - use relative path for production, fallback to localhost for dev
       const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5000' : '');
       const endpoint = API_URL ? `${API_URL}/api/draft` : '/api/draft';
-      
-      console.log('📤 Sending to:', endpoint);
-      
+
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          package: selectedPackage,
-          visualStyle,
-          colorHex,
-          companyName,
-          businessType,
+          fullName,
           email,
+          phone,
+          service,
+          businessType,
           goal,
+          existingWebsite,
         }),
       });
 
-      console.log('📥 Response status:', response.status);
-      console.log('📥 Response headers:', Object.fromEntries(response.headers.entries()));
-
-      // Try to parse response as JSON
       let data;
       try {
         const text = await response.text();
-        console.log('📥 Response text:', text);
 
         if (!text) {
           throw new Error('Prazan odgovor od servera');
         }
 
-        // Check if response is HTML (likely an error page)
         if (text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html')) {
-          throw new Error(`Server je vratio HTML umjesto JSON. Status: ${response.status}. Provjerite da li je backend server pokrenut i dostupan.`);
+          throw new Error(`Server je vratio HTML umjesto JSON. Status: ${response.status}.`);
         }
 
         data = JSON.parse(text);
       } catch (parseError) {
-        console.error('❌ Error parsing response:', parseError);
-        console.error('❌ Parse error details:', parseError.message);
-        
-        // Better error message
         if (parseError.message.includes('HTML')) {
           throw new Error(parseError.message);
         } else if (response.status === 404) {
-          throw new Error('Backend endpoint nije pronađen. Provjerite da li je backend server pokrenut i dostupan.');
-        } else if (response.status === 0 || !response.ok) {
-          throw new Error(`Ne mogu se povezati sa serverom. Status: ${response.status}. Provjerite da li je backend server pokrenut.`);
+          throw new Error('Backend endpoint nije pronađen.');
         } else {
           throw new Error(`Neočekivani odgovor od servera: ${parseError.message}`);
         }
@@ -679,42 +420,25 @@ function initSurveyFormHandlers() {
 
       console.log('✅ Draft form submitted successfully:', data);
 
-      // Show success message
       const successMessage = document.createElement('div');
       successMessage.className = 'form-message form-message-success';
       successMessage.textContent =
         data.message || 'Zahtjev je uspješno poslan! Kontaktirat ćemo vas u roku od 48h.';
       draftForm.appendChild(successMessage);
 
-      // Scroll to message
       successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-      // Reset form
       draftForm.reset();
-      currentStep = 1;
-      initSurvey();
-
-      // Show success message - no need to close modal as it's inline
-      // Form will reset and show success message
     } catch (error) {
       console.error('❌ Error submitting draft form:', error);
 
-      // Show error message
       const errorMessage = document.createElement('div');
       errorMessage.className = 'form-message form-message-error';
-
-      let errorText = 'Greška pri slanju zahtjeva. Molimo pokušajte ponovno.';
-      if (error.message) {
-        errorText = error.message;
-      }
-
-      errorMessage.textContent = errorText;
+      errorMessage.textContent = error.message || 'Greška pri slanju zahtjeva. Molimo pokušajte ponovno.';
       draftForm.appendChild(errorMessage);
 
-      // Scroll to message
       errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     } finally {
-      // Re-enable submit button
       if (submitBtn) {
         submitBtn.disabled = false;
         submitBtn.textContent = originalSubmitButtonText;
@@ -1217,13 +941,9 @@ function initializeApp() {
   draftForm = document.getElementById('draftForm');
   console.log('📋 Draft form found:', !!draftForm);
 
-  // Initialize survey form
   if (draftForm) {
-    initSurvey();
-    initSurveyFormHandlers();
+    initDraftFormHandlers();
   }
-
-  // Survey is now inline, no modal needed
   console.log('✅ initializeApp completed');
 }
 
@@ -1236,7 +956,7 @@ if (document.readyState === 'loading') {
   initializeApp();
 }
 
-// Survey is inline, no modal initialization needed
+// Draft form is inline, no modal initialization needed
 
 // Function to initialize Google Analytics (only if all cookies accepted)
 function initializeGoogleAnalytics() {
