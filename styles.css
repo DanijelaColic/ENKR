@@ -2864,6 +2864,30 @@ button[type="submit"]:disabled {
   margin-bottom: 0;
 }
 
+.footer-social {
+  display: flex;
+  gap: 1rem;
+  margin: 0.5rem 0;
+}
+
+.footer-social a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-social a:hover {
+  color: white;
+}
+
+.footer-social a svg {
+  width: 22px;
+  height: 22px;
+}
+
 .footer-contact-divider {
   display: block;
   width: 100%;
