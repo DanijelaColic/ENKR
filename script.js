@@ -1,6 +1,10 @@
 // Debug: Script loaded
 console.log('📜 script.js loaded');
 
+import { translations } from './translations.js';
+const lang = window.location.pathname.startsWith('/en/') ? 'en' : 'hr';
+const t = translations[lang];
+
 // Mobile menu toggle
 const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
 const navMenu = document.querySelector('.nav-menu');
@@ -55,7 +59,7 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 const newsletterFormInline = document.getElementById('newsletterFormInline');
 if (newsletterFormInline) {
   const submitButton = newsletterFormInline.querySelector('button[type="submit"]');
-  const originalButtonText = submitButton ? submitButton.textContent : 'PRIJAVA';
+  const originalButtonText = submitButton ? submitButton.textContent : t.newsletterSubmit;
 
   newsletterFormInline.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -72,7 +76,7 @@ if (newsletterFormInline) {
     if (!email) {
       const errorMessage = document.createElement('div');
       errorMessage.className = 'form-message form-message-error';
-      errorMessage.textContent = 'Molimo unesite email adresu.';
+      errorMessage.textContent = t.newsletter.errorEmpty;
       newsletterFormInline.appendChild(errorMessage);
       errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       return;
@@ -83,7 +87,7 @@ if (newsletterFormInline) {
     if (!emailRegex.test(email)) {
       const errorMessage = document.createElement('div');
       errorMessage.className = 'form-message form-message-error';
-      errorMessage.textContent = 'Molimo unesite važeću email adresu.';
+      errorMessage.textContent = t.newsletter.errorInvalid;
       newsletterFormInline.appendChild(errorMessage);
       errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       return;
@@ -92,7 +96,7 @@ if (newsletterFormInline) {
     // Disable submit button and show loading state
     if (submitButton) {
       submitButton.disabled = true;
-      submitButton.textContent = 'Slanje...';
+      submitButton.textContent = t.sending;
     }
 
     try {
@@ -123,27 +127,23 @@ if (newsletterFormInline) {
         console.log('📥 Newsletter response text:', text);
 
         if (!text) {
-          throw new Error('Prazan odgovor od servera');
+          throw new Error(t.newsletter.errorEmpty || 'Empty response');
         }
 
         const contentType = response.headers.get('content-type');
         if (contentType && contentType.includes('application/json')) {
           data = JSON.parse(text);
         } else {
-          throw new Error(`Server nije vratio JSON odgovor. Status: ${response.status}`);
+          throw new Error(`Server returned non-JSON. Status: ${response.status}`);
         }
       } catch (parseError) {
         console.error('❌ Error parsing newsletter response:', parseError);
-        throw new Error(
-          isProduction
-            ? 'Server nije vratio validan odgovor. Molimo pokušajte ponovno.'
-            : 'Server nije vratio validan JSON odgovor. Provjerite da li backend server radi.'
-        );
+        throw new Error(isProduction ? t.newsletter.errorServer : t.newsletter.errorServerDev);
       }
 
       if (!response.ok) {
         console.error('❌ Newsletter server error:', data);
-        throw new Error(data.error || `Greška pri prijavi (Status: ${response.status})`);
+        throw new Error(data.error || t.newsletter.errorGeneral);
       }
 
       console.log('✅ Newsletter signup success:', data);
@@ -151,8 +151,7 @@ if (newsletterFormInline) {
       // Show success message
       const successMessage = document.createElement('div');
       successMessage.className = 'form-message form-message-success';
-      successMessage.textContent =
-        data.message || 'Hvala vam! Uspješno ste se prijavili na newsletter.';
+      successMessage.textContent = data.message || t.newsletter.success;
       newsletterFormInline.appendChild(successMessage);
 
       // Reset form
@@ -167,9 +166,9 @@ if (newsletterFormInline) {
       const errorMessage = document.createElement('div');
       errorMessage.className = 'form-message form-message-error';
 
-      let errorText = 'Greška pri prijavi. Molimo pokušajte ponovno.';
+      let errorText = t.newsletter.errorGeneral;
       if (error.name === 'TypeError' && error.message.includes('fetch')) {
-        errorText = 'Nije moguće povezati se sa serverom. Molimo pokušajte ponovno.';
+        errorText = t.newsletter.errorFetch;
       } else if (error.message) {
         errorText = error.message;
       }
@@ -205,7 +204,7 @@ if (contactForm) {
 
   // Disable submit button and show loading state
   submitButton.disabled = true;
-  submitButton.textContent = 'Slanje...';
+  submitButton.textContent = t.sending;
 
   // Remove previous error/success messages
   const existingMessage = document.querySelector('.form-message');
@@ -249,31 +248,30 @@ if (contactForm) {
       console.log('📥 Response text:', text);
       
       if (!text) {
-        const errorMsg = isProduction 
-          ? 'Server nije vratio odgovor. Molimo kontaktirajte nas direktno na email: info@enkr.hr ili telefon: +385 91 927 9931'
-          : 'Server nije vratio odgovor. Provjerite da li backend server radi na http://localhost:5000';
-        throw new Error(errorMsg);
+        throw new Error(
+          isProduction ? t.contact.errorServerEmpty : t.contact.errorServerEmptyDev
+        );
       }
       
       if (contentType && contentType.includes('application/json')) {
         data = JSON.parse(text);
       } else {
-        const errorMsg = isProduction
-          ? `Server nije vratio JSON odgovor. Status: ${response.status}. Molimo kontaktirajte nas direktno.`
-          : `Server nije vratio JSON odgovor. Status: ${response.status}. Odgovor: ${text.substring(0, 100)}`;
-        throw new Error(errorMsg);
+        throw new Error(
+          isProduction
+            ? t.contact.errorServerJson(response.status)
+            : t.contact.errorServerJsonDev(response.status, text.substring(0, 100))
+        );
       }
     } catch (parseError) {
       console.error('❌ Error parsing response:', parseError);
-      const errorMsg = isProduction
-        ? 'Server nije vratio validan odgovor. Molimo kontaktirajte nas direktno na email: info@enkr.hr ili telefon: +385 91 927 9931'
-        : 'Server nije vratio validan JSON odgovor. Provjerite da li backend server radi na http://localhost:5000';
-      throw new Error(errorMsg);
+      throw new Error(
+        isProduction ? t.contact.errorServerValid : t.contact.errorServerValidDev
+      );
     }
 
     if (!response.ok) {
       console.error('❌ Server returned error:', data);
-      throw new Error(data.error || `Greška pri slanju poruke (Status: ${response.status})`);
+      throw new Error(data.error || t.contact.errorGeneral);
     }
 
     console.log('✅ Success:', data);
@@ -281,8 +279,7 @@ if (contactForm) {
     // Show success message
     const successMessage = document.createElement('div');
     successMessage.className = 'form-message form-message-success';
-    successMessage.textContent =
-      'Hvala vam! Vaša poruka je uspješno poslana. Kontaktirat ćemo vas uskoro.';
+    successMessage.textContent = t.contact.success;
     contactForm.appendChild(successMessage);
 
     // Reset form
@@ -301,17 +298,17 @@ if (contactForm) {
     errorMessage.className = 'form-message form-message-error';
     
     // More specific error messages
-    let errorText = 'Greška pri slanju poruke. Molimo pokušajte ponovno.';
+    let errorText = t.contact.errorGeneral;
     
     if (error.name === 'TypeError' && error.message.includes('fetch')) {
-      errorText = 'Nije moguće povezati se sa serverom. Molimo kontaktirajte nas direktno na email: info@enkr.hr ili telefon: +385 91 927 9931';
+      errorText = t.contact.errorFetch;
     } else if (error.message.includes('localhost:5000') || error.message.includes('server')) {
-      errorText = 'Backend server trenutno nije dostupan. Molimo kontaktirajte nas direktno na email: info@enkr.hr ili telefon: +385 91 927 9931';
+      errorText = t.contact.errorBackend;
     } else if (error.message) {
       errorText = error.message;
     }
     
-    errorMessage.innerHTML = errorText + '<br><br><strong>Alternativno:</strong> Pošaljite email na <a href="mailto:info@enkr.hr" style="color: inherit; text-decoration: underline;">info@enkr.hr</a> ili nazovite <a href="tel:+385919279931" style="color: inherit; text-decoration: underline;">+385 91 927 9931</a>';
+    errorMessage.innerHTML = errorText + `<br><br><strong>${t.contact.errorAlt}:</strong> <a href="mailto:info@enkr.hr" style="color: inherit; text-decoration: underline;">info@enkr.hr</a> ${t.contact.errorAltOr} <a href="tel:+385919279931" style="color: inherit; text-decoration: underline;">+385 91 927 9931</a>`;
     contactForm.appendChild(errorMessage);
 
     // Scroll to message
@@ -331,7 +328,7 @@ function initDraftFormHandlers() {
   if (!draftForm) return;
 
   const submitBtn = document.getElementById('submitBtn');
-  const originalSubmitButtonText = submitBtn ? submitBtn.textContent : 'Pošaljite zahtjev';
+  const originalSubmitButtonText = submitBtn ? submitBtn.textContent : t.draftSubmit;
 
   draftForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -345,19 +342,19 @@ function initDraftFormHandlers() {
     const existingWebsite = document.getElementById('draft-existing-website').value.trim();
 
     if (!fullName || !email || !phone || !service || !businessType || !goal) {
-      alert('Molimo popunite sva obavezna polja.');
+      alert(t.draft.errorRequired);
       return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      alert('Molimo unesite važeću email adresu.');
+      alert(t.draft.errorEmail);
       return;
     }
 
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Slanje...';
+      submitBtn.textContent = t.sending;
     }
 
     const existingMessage = draftForm.querySelector('.form-message');
@@ -392,21 +389,21 @@ function initDraftFormHandlers() {
         const text = await response.text();
 
         if (!text) {
-          throw new Error('Prazan odgovor od servera');
+          throw new Error(t.draft.errorEmpty);
         }
 
         if (text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html')) {
-          throw new Error(`Server je vratio HTML umjesto JSON. Status: ${response.status}.`);
+          throw new Error(t.draft.errorHtml(response.status));
         }
 
         data = JSON.parse(text);
       } catch (parseError) {
-        if (parseError.message.includes('HTML')) {
+        if (parseError.message.includes('HTML') || parseError.message.includes('Status:')) {
           throw new Error(parseError.message);
         } else if (response.status === 404) {
-          throw new Error('Backend endpoint nije pronađen.');
+          throw new Error(t.draft.errorEndpoint);
         } else {
-          throw new Error(`Neočekivani odgovor od servera: ${parseError.message}`);
+          throw new Error(t.draft.errorParse(parseError.message));
         }
       }
 
@@ -415,15 +412,14 @@ function initDraftFormHandlers() {
       }
 
       if (!data.success) {
-        throw new Error(data.error || 'Nešto je pošlo po zlu');
+        throw new Error(data.error || t.draft.errorGeneral);
       }
 
       console.log('✅ Draft form submitted successfully:', data);
 
       const successMessage = document.createElement('div');
       successMessage.className = 'form-message form-message-success';
-      successMessage.textContent =
-        data.message || 'Zahtjev je uspješno poslan! Kontaktirat ćemo vas u roku od 24h.';
+      successMessage.textContent = data.message || t.draft.success;
       draftForm.appendChild(successMessage);
 
       successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -434,7 +430,7 @@ function initDraftFormHandlers() {
 
       const errorMessage = document.createElement('div');
       errorMessage.className = 'form-message form-message-error';
-      errorMessage.textContent = error.message || 'Greška pri slanju zahtjeva. Molimo pokušajte ponovno.';
+      errorMessage.textContent = error.message || t.draft.errorGeneral;
       draftForm.appendChild(errorMessage);
 
       errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -487,209 +483,77 @@ const modalContent = document.querySelector('.modal-content');
 const modalClose = document.querySelector('.modal-close');
 const modalOverlay = document.querySelector('.modal-overlay');
 
-// Service content data
-const serviceData = {
-  'web-apps': {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-    </svg>`,
-    title: 'Custom Web Stranice',
-    subtitle: 'Prilagođene web stranice koje rastu s vašim poslovanjem',
-    description: 'Razvijamo prilagođene web stranice koje odgovaraju vašim specifičnim potrebama i zahtjevima poslovanja. Svaka stranica je kreirana od nule, prilagođena vašim procesima i optimizirana za performanse.',
-    features: [
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`,
-        title: 'Potpuno Prilagođeno',
-        desc: 'Web stranica dizajnirana specifično za vaše poslovne procese i potrebe'
-      },
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>`,
-        title: 'Vrhunske Performanse',
-        desc: 'Optimizirane za brzinu i skalabilnost kako bi podržale rast vašeg poslovanja'
-      },
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>`,
-        title: 'Responsive Dizajn',
-        desc: 'Savršeno funkcionira na svim uređajima - desktop, tablet i mobilni'
-      },
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>`,
-        title: 'Sigurnost',
-        desc: 'Najbolje prakse sigurnosti i zaštita podataka vaših korisnika'
-      }
-    ],
-    process: [
-      { number: '1', title: 'Analiza i Planiranje', desc: 'Razgovaramo o vašim potrebama, ciljevima i zahtjevima za web stranicu' },
-      { number: '2', title: 'Dizajn i Prototip', desc: 'Kreiramo wireframe i dizajn koji odgovara vašoj viziji' },
-      { number: '3', title: 'Razvoj', desc: 'Razvijamo web stranicu koristeći najnovije tehnologije i najbolje prakse' },
-      { number: '4', title: 'Testiranje', desc: 'Temeljito testiramo svaku funkcionalnost prije lansiranja' },
-      { number: '5', title: 'Lansiranje i Podrška', desc: 'Pomažemo vam lansirati web stranicu i pružamo kontinuiranu podršku' }
-    ],
-    technologies: ['Astro', 'Next.js', 'React', 'TypeScript', 'Vercel', 'Supabase', 'Stripe', 'Resend', 'Tailwind CSS', 'Prisma']
-  },
-  'ecommerce': {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-    </svg>`,
-    title: 'Web Shopovi (E-commerce)',
-    subtitle: 'Kompletna e-commerce rješenja za online prodaju',
-    description: 'Kreiramo moderne web shopove koji pretvaraju posjetitelje u kupce. Naša e-commerce rješenja kombiniraju ljepotu dizajna s moćnim funkcionalnostima za upravljanje proizvodima, narudžbama i plaćanjima.',
-    features: [
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>`,
-        title: 'Platni Sustavi',
-        desc: 'Integracija sa svim glavnim platnim sustavima (Stripe, PayPal, banke)'
-      },
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>`,
-        title: 'Upravljanje Proizvodima',
-        desc: 'Jednostavno dodavanje, uređivanje i organiziranje proizvoda i kategorija'
-      },
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>`,
-        title: 'Upravljanje Narudžbama',
-        desc: 'Kompletan sustav za praćenje narudžbi, statusa i isporuka'
-      },
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>`,
-        title: 'Košarica i Checkout',
-        desc: 'Optimiziran proces kupnje za maksimalnu konverziju'
-      }
-    ],
-    process: [
-      { number: '1', title: 'Analiza Proizvoda', desc: 'Razgovaramo o vašim proizvodima, cijenama i strategiji prodaje' },
-      { number: '2', title: 'Dizajn Shopa', desc: 'Kreiramo atraktivan dizajn koji ističe vaše proizvode' },
-      { number: '3', title: 'Razvoj Funkcionalnosti', desc: 'Implementiramo sve potrebne funkcionalnosti za prodaju' },
-      { number: '4', title: 'Integracija Plaćanja', desc: 'Povezujemo platne sustave i testiramo transakcije' },
-      { number: '5', title: 'Lansiranje', desc: 'Pokrećemo shop i pružamo podršku za optimizaciju prodaje' }
-    ],
-    technologies: ['Astro', 'Next.js', 'Stripe', 'Supabase', 'Vercel', 'Resend', 'TypeScript', 'Tailwind CSS', 'Prisma', 'Shadcn/ui']
-  },
-  'blog': {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-    </svg>`,
-    title: 'Blog & Content Web Stranice',
-    subtitle: 'Stranice optimizirane za sadržaj i SEO',
-    description: 'Kreiramo moderne blog i content stranice koje privlače posjetitelje i pretvaraju ih u čitatelje. Naša rješenja su optimizirana za SEO, brzinu učitavanja i jednostavno upravljanje sadržajem.',
-    features: [
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>`,
-        title: 'SEO Optimizacija',
-        desc: 'Stranica optimizirana za Google i druge pretraživače za bolje rangiranje'
-      },
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>`,
-        title: 'CMS Sustav',
-        desc: 'Jednostavno upravljanje sadržajem bez poznavanja programiranja'
-      },
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>`,
-        title: 'Brza Učitavanja',
-        desc: 'Optimizirane performanse za brzo učitavanje stranica i bolje korisničko iskustvo'
-      },
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>`,
-        title: 'Društvene Mreže',
-        desc: 'Integracija sa društvenim mrežama za lakše dijeljenje sadržaja'
-      }
-    ],
-    process: [
-      { number: '1', title: 'Strukturiranje Sadržaja', desc: 'Planiranje strukture stranice i kategorija bloga' },
-      { number: '2', title: 'Dizajn i UX', desc: 'Kreiranje atraktivnog dizajna koji ističe vaš sadržaj' },
-      { number: '3', title: 'Razvoj CMS-a', desc: 'Implementacija jednostavnog sustava za upravljanje sadržajem' },
-      { number: '4', title: 'SEO Optimizacija', desc: 'Optimizacija za pretraživače i brzinu učitavanja' },
-      { number: '5', title: 'Lansiranje', desc: 'Pokretanje stranice i obuka za upravljanje sadržajem' }
-    ],
-    technologies: ['Astro', 'Next.js', 'Vercel', 'Supabase', 'Resend', 'TypeScript', 'Tailwind CSS', 'MDX', 'Content Collections']
-  },
-  'business': {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-    </svg>`,
-    title: 'Rješenja za Poslovanje',
-    subtitle: 'Digitalna rješenja koja optimiziraju vaše poslovne procese',
-    description: 'Razvijamo digitalna rješenja koja automatiziraju vaše poslovne procese, povećavaju produktivnost i donose vrijedne uvide kroz analitiku. Od CRM sustava do dashboarda za upravljanje - sve prilagođeno vašim potrebama.',
-    features: [
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>`,
-        title: 'Automatizacija Procesa',
-        desc: 'Automatizacija rutinskih zadataka i povećanje efikasnosti'
-      },
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>`,
-        title: 'Analitika i Izvještaji',
-        desc: 'Dashboardi sa real-time podacima i detaljnim izvještajima'
-      },
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>`,
-        title: 'CRM Integracije',
-        desc: 'Integracija sa postojećim sustavima i alatom za upravljanje klijentima'
-      },
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>`,
-        title: 'Sigurnost Podataka',
-        desc: 'Zaštita vaših poslovnih podataka i osiguranje compliance standarda'
-      }
-    ],
-    process: [
-      { number: '1', title: 'Analiza Procesa', desc: 'Razumijevanje vaših poslovnih procesa i identifikacija mogućnosti poboljšanja' },
-      { number: '2', title: 'Dizajn Rješenja', desc: 'Kreiranje arhitekture rješenja koje odgovara vašim potrebama' },
-      { number: '3', title: 'Razvoj', desc: 'Razvoj sustava sa fokusom na automatizaciju i analitiku' },
-      { number: '4', title: 'Integracija', desc: 'Povezivanje sa postojećim sustavima i alatom' },
-      { number: '5', title: 'Implementacija', desc: 'Uvođenje rješenja i obuka tima za korištenje' }
-    ],
-    technologies: ['Astro', 'Next.js', 'Supabase', 'Vercel', 'Resend', 'TypeScript', 'Tailwind CSS', 'Prisma', 'API Routes', 'Vercel Analytics']
-  },
-  'booking': {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-    </svg>`,
-    title: 'Booking Sustavi',
-    subtitle: 'Oslobodite se telefona i poruka - automatizirajte rezervacije',
-    description: 'Sustavi koji pomažu u organizaciji i radu svim zanimanjima koja troše puno vremena na javljanje na telefon i odgovaranje na poruke. Idealno za frizerske salone, stomatologe, fitnes centre, masazne salone, kozmetičke salone i druge uslužne djelatnosti. Vaši klijenti mogu rezervirati termine online 24/7, dok vi dobivate automatske notifikacije i imate potpunu kontrolu nad rasporedom. Više nećete propustiti pozive dok radite s klijentima, a vaši klijenti će moći rezervirati termine u bilo koje vrijeme, čak i kada ste zatvoreni.',
-    features: [
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`,
-        title: '24/7 Online Rezervacije',
-        desc: 'Vaši klijenti mogu rezervirati termine bilo kada, čak i kada ste zatvoreni. Nema više propuštenih poziva dok radite s klijentima.'
-      },
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>`,
-        title: 'Vizualni Kalendar',
-        desc: 'Jednostavno upravljanje terminima i dostupnošću kroz intuitivan kalendar. Vidite sve rezervacije na jednom mjestu.'
-      },
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>`,
-        title: 'Automatske Notifikacije',
-        desc: 'Email i SMS notifikacije za potvrdu rezervacije, podsjetnike klijentima i obavještavanje vas o novim rezervacijama.'
-      },
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>`,
-        title: 'Upravljanje Klijentima',
-        desc: 'Baza podataka svih klijenata sa poviješću rezervacija, preferencijama i kontakt informacijama. Sve na jednom mjestu.'
-      },
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`,
-        title: 'Ušteda Vremena',
-        desc: 'Više nećete trošiti sate na telefon i odgovaranje na poruke. Fokusirajte se na svoj posao dok sustav upravlja rezervacijama.'
-      },
-      {
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>`,
-        title: 'Povećana Prodaja',
-        desc: 'Omogućite klijentima da rezerviraju termine i kada ste zatvoreni. Više rezervacija znači više prihoda.'
-      }
-    ],
-    process: [
-      { number: '1', title: 'Analiza Vaše Djelatnosti', desc: 'Razgovaramo o vašim specifičnim potrebama - radno vrijeme, trajanje usluga, broj zaposlenika i posebni zahtjevi vaše djelatnosti' },
-      { number: '2', title: 'Prilagođeni Dizajn', desc: 'Kreiramo korisničko sučelje koje odgovara vašoj djelatnosti i brandu - jednostavno za klijente, moćno za vas' },
-      { number: '3', title: 'Razvoj Funkcionalnosti', desc: 'Implementiramo kalendar, online rezervacije, automatske notifikacije i sve funkcionalnosti potrebne za vašu djelatnost' },
-      { number: '4', title: 'Integracija i Testiranje', desc: 'Povezujemo sa email i SMS servisima, testiramo sve scenarije i osiguravamo da sve radi besprijekorno' },
-      { number: '5', title: 'Lansiranje i Obuka', desc: 'Pokrećemo sustav, pružamo obuku za upravljanje i kontinuiranu podršku za optimizaciju vašeg rada' }
-    ],
-    technologies: ['Astro', 'Next.js', 'Supabase', 'Vercel', 'Resend', 'Stripe', 'TypeScript', 'Tailwind CSS', 'Prisma', 'React Calendar']
-  }
+// Service content data — icons are shared, text comes from translations
+const serviceIcons = {
+  'web-apps': `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>`,
+  ecommerce: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>`,
+  blog: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" /></svg>`,
+  business: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>`,
+  booking: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>`,
 };
+
+const featureIcons = {
+  'web-apps': [
+    `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>`,
+  ],
+  ecommerce: [
+    `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>`,
+  ],
+  blog: [
+    `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>`,
+  ],
+  business: [
+    `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>`,
+  ],
+  booking: [
+    `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>`,
+  ],
+};
+
+const serviceTechnologies = {
+  'web-apps': ['Astro', 'Next.js', 'React', 'TypeScript', 'Vercel', 'Supabase', 'Stripe', 'Resend', 'Tailwind CSS', 'Prisma'],
+  ecommerce: ['Astro', 'Next.js', 'Stripe', 'Supabase', 'Vercel', 'Resend', 'TypeScript', 'Tailwind CSS', 'Prisma', 'Shadcn/ui'],
+  blog: ['Astro', 'Next.js', 'Vercel', 'Supabase', 'Resend', 'TypeScript', 'Tailwind CSS', 'MDX', 'Content Collections'],
+  business: ['Astro', 'Next.js', 'Supabase', 'Vercel', 'Resend', 'TypeScript', 'Tailwind CSS', 'Prisma', 'API Routes', 'Vercel Analytics'],
+  booking: ['Astro', 'Next.js', 'Supabase', 'Vercel', 'Resend', 'Stripe', 'TypeScript', 'Tailwind CSS', 'Prisma', 'React Calendar'],
+};
+
+// Build serviceData from translations + icons
+const serviceData = Object.fromEntries(
+  Object.keys(serviceIcons).map((id) => {
+    const txt = t.services[id];
+    const icons = featureIcons[id];
+    return [
+      id,
+      {
+        icon: serviceIcons[id],
+        title: txt.title,
+        subtitle: txt.subtitle,
+        description: txt.description,
+        features: txt.features.map((f, i) => ({ icon: icons[i] || '', title: f.title, desc: f.desc })),
+        process: txt.process.map((p, i) => ({ number: String(i + 1), title: p.title, desc: p.desc })),
+        technologies: serviceTechnologies[id],
+      },
+    ];
+  })
+);
 
 // Function to open modal with service data
 function openServiceModal(serviceId) {
@@ -716,7 +580,7 @@ function openServiceModal(serviceId) {
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          Ključne Funkcionalnosti
+          ${t.modal.featuresTitle}
         </h3>
         <div class="modal-features">
           ${service.features.map(feature => `
@@ -736,7 +600,7 @@ function openServiceModal(serviceId) {
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
           </svg>
-          Proces Rada
+          ${t.modal.processTitle}
         </h3>
         <div class="modal-process">
           ${service.process.map(step => `
@@ -765,7 +629,7 @@ function openServiceModal(serviceId) {
     </div>
 
     <div class="modal-footer">
-      <a href="#contact" class="btn btn-primary modal-cta">Započnimo Projekt</a>
+      <a href="#contact" class="btn btn-primary modal-cta">${t.modal.ctaLabel}</a>
     </div>
   `;
 
