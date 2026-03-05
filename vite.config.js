@@ -23,6 +23,8 @@ export default defineConfig({
         'usluge-webshop': resolve(__dirname, 'usluge/webshop.html'),
         'usluge-booking': resolve(__dirname, 'usluge/booking.html'),
         'usluge-aplikacije': resolve(__dirname, 'usluge/aplikacije.html'),
+        'usluge-zdravstvo': resolve(__dirname, 'usluge/zdravstvo.html'),
+        'usluge-nekretnine': resolve(__dirname, 'usluge/nekretnine.html'),
         'blog-index': resolve(__dirname, 'blog/index.html'),
         'blog-cijene': resolve(__dirname, 'blog/koliko-kosta-izrada-web-stranice.html'),
         'blog-wordpress': resolve(__dirname, 'blog/wordpress-vs-custom-web-stranica.html'),
