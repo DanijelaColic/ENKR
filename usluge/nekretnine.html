@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Stranice za Nekretnine — Agencije i Posrednici | ENKR</title>
+    <meta name="description" content="Profesionalna web stranica za agencije za nekretnine i posrednike. Prikaz oglasa s filterima, galerije, kontakt forme i lokalni SEO. Od 500€. Besplatni nacrt u 24h." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://enkr.hr/usluge/nekretnine.html" />
+    <link rel="alternate" hreflang="hr" href="https://enkr.hr/usluge/nekretnine.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://enkr.hr/usluge/nekretnine.html" />
+    <meta property="og:title" content="Web Stranice za Nekretnine — Agencije i Posrednici | ENKR" />
+    <meta property="og:description" content="Web stranica za agenciju za nekretnine. Vlastiti portal s oglasima, filterima i galerijama — bez provizije vanjskim portalima. Besplatni nacrt u 24h." />
+    <meta property="og:image" content="https://enkr.hr/og-image.png" />
+    <meta property="og:locale" content="hr_HR" />
+    <meta property="og:site_name" content="ENKR" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://enkr.hr/usluge/nekretnine.html" />
+    <meta name="twitter:title" content="Web Stranice za Nekretnine — Agencije i Posrednici | ENKR" />
+    <meta name="twitter:description" content="Web stranica za agenciju za nekretnine s vlastitim portalom oglasa. Bez provizije vanjskim platformama. Besplatni nacrt u 24h." />
+    <meta name="twitter:image" content="https://enkr.hr/og-image.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="../favicon-48.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../usluge.css" />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Web Stranice za Nekretnine",
+      "description": "Profesionalna web stranica za agencije za nekretnine i posrednike. Vlastiti portal s oglasima, filtriranjem, galerijama i kontakt formama.",
+      "provider": {
+        "@type": "Organization",
+        "name": "ENKR",
+        "url": "https://enkr.hr"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Hrvatska"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "lowPrice": "500",
+        "highPrice": "1500",
+        "priceCurrency": "EUR"
+      },
+      "url": "https://enkr.hr/usluge/nekretnine.html"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Početna", "item": "https://enkr.hr/" },
+        { "@type": "ListItem", "position": 2, "name": "Usluge", "item": "https://enkr.hr/#services" },
+        { "@type": "ListItem", "position": 3, "name": "Nekretnine", "item": "https://enkr.hr/usluge/nekretnine.html" }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Mogu li sam/a dodavati i uklanjati oglase?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Da. U Professional i Premium paketima dolazi CMS sučelje putem kojeg sami upravljate svim oglasima — dodajete fotografije, opise, cijene i statuse. Bez kontaktiranja developera." }
+        },
+        {
+          "@type": "Question",
+          "name": "Može li stranica prikazivati nekretnine s Njuškala ili oglasnika?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Možemo integrirati automatski uvoz oglasa s vanjskih portala, ali preporučamo vlastiti portal zbog SEO prednosti i neovisnosti od provizija trećih strana." }
+        },
+        {
+          "@type": "Question",
+          "name": "Podržava li stranica virtualnu šetnju ili 3D pregled?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Da. Možemo ugraditi embed za Matterport ili sličnu platformu za 3D virtualnu šetnju nekretninom — bez dodatnog razvoja, samo embed kod." }
+        },
+        {
+          "@type": "Question",
+          "name": "Koliko traje izrada?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Starter stranica: 10–14 dana. Professional portal s CMS-om: 3–4 tjedna. Premium s naprednim filterima i višejezičnošću: 4–6 tjedana." }
+        }
+      ]
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Y5DGMX35"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied' });
+      gtag('config', 'G-P1Y5DGMX35', { 'anonymize_ip': true, 'cookie_flags': 'SameSite=None;Secure' });
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="../index.html" class="logo logo-link">
+            <span class="logo-anchor">⚓</span>
+            ENKR
+          </a>
+          <ul class="nav-menu">
+            <li><a href="../index.html#home" class="nav-link">Početna</a></li>
+            <li><a href="../index.html#services" class="nav-link">Usluge</a></li>
+            <li><a href="../index.html#about" class="nav-link">O nama</a></li>
+            <li><a href="../index.html#projects" class="nav-link">Projekti</a></li>
+            <li><a href="../blog/index.html" class="nav-link">Blog</a></li>
+            <li><a href="../index.html#contact" class="nav-link">Kontakt</a></li>
+            <li class="lang-switcher"><span class="lang-active">HR</span></li>
+          </ul>
+          <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="sd-hero">
+      <div class="container">
+        <a href="../index.html#services" class="sd-back-link">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+          Sve usluge
+        </a>
+        <span class="sd-hero-label">Nekretnine</span>
+        <h1 class="sd-hero-title">
+          Vlastiti portal nekretnina —
+          <span>bez provizije vanjskim portalima</span>
+        </h1>
+        <p class="sd-hero-desc">
+          Web stranica za agenciju za nekretnine od <strong>500€</strong>. Vlastiti prikaz oglasa s filterima, galerijama i kontakt formama. Neovisnost od Njuškala i oglasnika — vi ste vlasnik svojih kupaca.
+        </p>
+        <a href="../index.html#free-draft" class="sd-hero-cta">
+          Zatražite besplatni nacrt
+        </a>
+        <span class="sd-hero-note">90% kupaca nekretnine istraživanje počinje online. Budite na pravom mjestu.</span>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="sd-stats">
+      <div class="container">
+        <div class="sd-stats-grid">
+          <div class="sd-stat-item">
+            <span class="sd-stat-number">90%</span>
+            <span class="sd-stat-label">kupaca istražuje nekretnine online</span>
+          </div>
+          <div class="sd-stat-item">
+            <span class="sd-stat-number">0%</span>
+            <span class="sd-stat-label">provizija na vaše vlastite oglase</span>
+          </div>
+          <div class="sd-stat-item">
+            <span class="sd-stat-number">3×</span>
+            <span class="sd-stat-label">više upita s galerijama visoke kvalitete</span>
+          </div>
+          <div class="sd-stat-item">
+            <span class="sd-stat-number">500€</span>
+            <span class="sd-stat-label">početna cijena</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="sd-problems">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Problemi koje rješava vlastita stranica</h2>
+          <p class="section-subtitle">Oslanjanje isključivo na Njuškalo i oglasnik znači plaćanje za tuđi brend, gubljenje direktnog kontakta s kupcima i nikad nula vidljivosti bez pretplate.</p>
+        </div>
+        <div class="sd-problems-grid">
+          <div class="sd-problem-card">
+            <span class="sd-problem-stat">Provizije</span>
+            <p class="sd-problem-text">Vanjski portali naplaćuju isticanje oglasa, premium pozicije i pretplate — troškovi koji rastu s brojem nekretnina</p>
+          </div>
+          <div class="sd-problem-card">
+            <span class="sd-problem-stat">Tuđi brend</span>
+            <p class="sd-problem-text">Kupac pamti Njuškalo, ne vas. Vlastita stranica gradi vaš brend i povjerenje — kupci se vraćaju direktno k vama</p>
+          </div>
+          <div class="sd-problem-card">
+            <span class="sd-problem-stat">Nema SEO-a</span>
+            <p class="sd-problem-text">Oglas na Njuškalu ne pomaže vašoj domeni u Googleu. Vlastite stranice nekretnina donose organski promet koji raste godinama</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="sd-features">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Što dobiva vaša agencija</h2>
+          <p class="section-subtitle">Profesionalan portal nekretnina koji radi za vas — prezentira vaš portfelj i privlači ozbiljne kupce i prodavatelje.</p>
+        </div>
+        <div class="sd-features-grid">
+          <div class="sd-feature-card">
+            <div class="sd-feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            </div>
+            <h3 class="sd-feature-title">Pregled nekretnina s filterima</h3>
+            <p class="sd-feature-text">Kupci filtriraju po vrsti (stan, kuća, poslovni prostor), lokaciji, cijeni, kvadraturi i broju soba. Brzo pronalaze točno što traže — bez listanja nesposobnih rezultata.</p>
+          </div>
+          <div class="sd-feature-card">
+            <div class="sd-feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </div>
+            <h3 class="sd-feature-title">Galerije visoke kvalitete</h3>
+            <p class="sd-feature-text">Fullscreen galerija fotografija za svaku nekretninu. Lightbox prikaz, zoom, slideshow. Opcija embed za virtualnu šetnju (Matterport i slični alati).</p>
+          </div>
+          <div class="sd-feature-card">
+            <div class="sd-feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+            </div>
+            <h3 class="sd-feature-title">Detaljni opisi nekretnina</h3>
+            <p class="sd-feature-text">Zasebna stranica za svaku nekretninu: opis, karakteristike, energetski razred, katastarski podaci, Google Maps lokacija, tlocrt, cijena. Sve na jednom mjestu.</p>
+          </div>
+          <div class="sd-feature-card">
+            <div class="sd-feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+            </div>
+            <h3 class="sd-feature-title">CMS — sami upravljate oglasima</h3>
+            <p class="sd-feature-text">Intuitivno sučelje za dodavanje, izmjenu i uklanjanje oglasa. Dodajete fotografije, mijenjate cijenu, označavate kao "prodano" — bez kontaktiranja developera.</p>
+          </div>
+          <div class="sd-feature-card">
+            <div class="sd-feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <h3 class="sd-feature-title">Kontakt forme po nekretnini</h3>
+            <p class="sd-feature-text">Svaka nekretnina ima vlastitu formu za upit. Kupac pita direktno za tu nekretninu — vi dobijete strukturiran upit s imenom, kontaktom i specifičnim interesima.</p>
+          </div>
+          <div class="sd-feature-card">
+            <div class="sd-feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div>
+            <h3 class="sd-feature-title">SEO za svaku nekretninu</h3>
+            <p class="sd-feature-text">Svaka nekretnina ima vlastitu SEO-optimiziranu URL-adresu, naslov i opis. Googleova pretraga "stan Split Meje 3 sobe" može dovesti direktno na vašu stranicu.</p>
+          </div>
+          <div class="sd-feature-card">
+            <div class="sd-feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+            <h3 class="sd-feature-title">Karta s lokacijama</h3>
+            <p class="sd-feature-text">Interaktivna karta svih nekretnina u portfelju. Kupac vizualno pregledava dostupne objekte po gradskim četvrtima — idealno za kupce koji traže specifičnu lokaciju.</p>
+          </div>
+          <div class="sd-feature-card">
+            <div class="sd-feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            </div>
+            <h3 class="sd-feature-title">Profili agenata</h3>
+            <p class="sd-feature-text">Profesionalni profili svakog agenta s fotografijom, kontaktima i portfoliom. Kupci vide s kim rade — osobni pristup gradi povjerenje i povećava konverziju.</p>
+          </div>
+          <div class="sd-feature-card">
+            <div class="sd-feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/></svg>
+            </div>
+            <h3 class="sd-feature-title">Višejezičnost</h3>
+            <p class="sd-feature-text">Posebno važno za primorske destinacije i veće gradove. Stranica na HR, EN, DE i IT dostiže strane kupce koji traže nekretninu u Hrvatskoj direktno iz inozemstva.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="sd-comparison">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Vlastita stranica vs. samo vanjski portali</h2>
+        </div>
+        <div class="sd-comparison-grid">
+          <div class="sd-compare-card sd-compare-card--old">
+            <h3 class="sd-compare-title">Samo Njuškalo / oglasnici</h3>
+            <ul class="sd-compare-list">
+              <li><span>✗</span> Plaćate za svaki oglas i isticanje</li>
+              <li><span>✗</span> Kupci pamte portal, ne vas</li>
+              <li><span>✗</span> Nula SEO prednosti za vašu domenu</li>
+              <li><span>✗</span> Ograničene fotografije i opisi</li>
+              <li><span>✗</span> Nema kontrole nad dizajnom</li>
+              <li><span>✗</span> Konkurenti oglašavaju uz vaše oglase</li>
+            </ul>
+          </div>
+          <div class="sd-compare-card sd-compare-card--new">
+            <h3 class="sd-compare-title">Vlastita ENKR stranica</h3>
+            <ul class="sd-compare-list">
+              <li><span>✓</span> Jednokratna uplata, oglasi bez troška</li>
+              <li><span>✓</span> Vaš brend, vaš kontakt, vaši kupci</li>
+              <li><span>✓</span> SEO raste s brojem nekretnina</li>
+              <li><span>✓</span> Neograničene fotografije i detalji</li>
+              <li><span>✓</span> Dizajn prilagođen vašem brendu</li>
+              <li><span>✓</span> Nema konkurencije na vašoj stranici</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- For Whom -->
+    <section class="sd-audience">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Za koga je ovo rješenje</h2>
+          <p class="section-subtitle">Za sve koji prodaju, iznajmljuju ili posreduju u prometu nekretnina i žele vlastiti profesionalni digitalni kanal.</p>
+        </div>
+        <div class="sd-audience-tags">
+          <span class="sd-audience-tag">Agencije za nekretnine</span>
+          <span class="sd-audience-tag">Nezavisni posrednici u prometu nekretnina</span>
+          <span class="sd-audience-tag">Developeri i investitori</span>
+          <span class="sd-audience-tag">Novoizgradnja i stambeni projekti</span>
+          <span class="sd-audience-tag">Upravljanje poslovnim prostorima</span>
+          <span class="sd-audience-tag">Luksuzne nekretnine</span>
+          <span class="sd-audience-tag">Iznajmljivanje dugoročnog smještaja</span>
+          <span class="sd-audience-tag">Nekretnine za strane kupce</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="sd-process">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Put do vašeg portala nekretnina</h2>
+          <p class="section-subtitle">4 koraka od upita do funkcionalne stranice s vašim portfeljem.</p>
+        </div>
+        <div class="sd-process-grid">
+          <div class="sd-step">
+            <div class="sd-step-number">1</div>
+            <h3 class="sd-step-title">Pošaljite upit</h3>
+            <p class="sd-step-text">Opišete agenciju, broj nekretnina u portfelju i specifične potrebe. Javimo se u 24h.</p>
+          </div>
+          <div class="sd-step">
+            <div class="sd-step-number">2</div>
+            <h3 class="sd-step-title">Ponuda i planiranje</h3>
+            <p class="sd-step-text">Fiksna cijena, jasan opseg. Planiramo strukturu portala, filtere i tok kontakta.</p>
+          </div>
+          <div class="sd-step">
+            <div class="sd-step-number">3</div>
+            <h3 class="sd-step-title">Dizajn i razvoj</h3>
+            <p class="sd-step-text">Gradimo portal s CMS-om. Pratite napredak i unosite prve nekretnine na preview linku.</p>
+          </div>
+          <div class="sd-step">
+            <div class="sd-step-number">4</div>
+            <h3 class="sd-step-title">Lansiranje + podrška</h3>
+            <p class="sd-step-text">Objavljujemo, testiramo forme i upute za CMS. 30 dana besplatne podrške.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="sd-pricing">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Transparentne cijene</h2>
+          <p class="section-subtitle">Jednokratna uplata. Bez pretplata, bez naknade po oglasu.</p>
+        </div>
+        <div class="sd-pricing-grid sd-pricing-3">
+          <div class="sd-price-card">
+            <div class="sd-price-tier">Starter</div>
+            <div class="sd-price-amount">500 €</div>
+            <p class="sd-price-period">Jednokratno · ⏱ 10–14 dana</p>
+            <p class="sd-price-desc">Za agente i manje agencije koje žele profesionalnu online prisutnost s prikazom nekretnina.</p>
+            <ul class="sd-price-features">
+              <li>Web stranica agencije</li>
+              <li>Do 20 nekretnina statički</li>
+              <li>Galerija fotografija po nekretnini</li>
+              <li>Kontakt forma po nekretnini</li>
+              <li>Google Maps lokacija</li>
+              <li>Lokalni SEO</li>
+              <li>Mobile-first dizajn</li>
+            </ul>
+            <a href="../index.html#free-draft" class="sd-price-cta sd-price-cta--secondary">Zatražite nacrt</a>
+          </div>
+          <div class="sd-price-card sd-price-card--popular">
+            <span class="sd-price-badge">Najpopularnije</span>
+            <div class="sd-price-tier">Professional</div>
+            <div class="sd-price-amount">1.000 €</div>
+            <p class="sd-price-period">Jednokratno · ⏱ 3–4 tjedna</p>
+            <p class="sd-price-desc">Kompletni portal s CMS-om za samostalno upravljanje svim nekretninama i oglasima.</p>
+            <ul class="sd-price-features">
+              <li><strong>Sve iz Starter paketa</strong></li>
+              <li>CMS — sami upravljate oglasima</li>
+              <li>Neograničen broj nekretnina</li>
+              <li>Filtriranje (vrsta, cijena, lokacija)</li>
+              <li>Karta svih nekretnina</li>
+              <li>Profili agenata</li>
+              <li>Google Analytics</li>
+              <li>30 dana podrške</li>
+            </ul>
+            <a href="../index.html#free-draft" class="sd-price-cta sd-price-cta--primary">Zatražite nacrt</a>
+          </div>
+          <div class="sd-price-card">
+            <div class="sd-price-tier">Premium</div>
+            <div class="sd-price-amount">od 1.500 €</div>
+            <p class="sd-price-period">Prilagođena ponuda · ⏱ 4–6 tjedana</p>
+            <p class="sd-price-desc">Za veće agencije i developere s naprednim potrebama i međunarodnim tržištem.</p>
+            <ul class="sd-price-features">
+              <li><strong>Sve iz Professional paketa</strong></li>
+              <li>Višejezičnost (HR / EN / DE / IT)</li>
+              <li>Napredni filteri i pretraživanje</li>
+              <li>Kalkulator kredita / isplativosti</li>
+              <li>Newsletter integracija</li>
+              <li>Napredna SEO optimizacija</li>
+              <li>Blog / tržišni izvještaji</li>
+            </ul>
+            <a href="../index.html#contact" class="sd-price-cta sd-price-cta--secondary">Pošaljite upit</a>
+          </div>
+        </div>
+        <p class="sd-pricing-note">Imate specifičan zahtjev ili integracij s internim sustavom? <a href="../index.html#contact">Kontaktirajte nas</a> za prilagođenu ponudu.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="sd-faq">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Česta pitanja</h2>
+        </div>
+        <div class="sd-faq-list">
+          <div class="sd-faq-item">
+            <button class="sd-faq-question">
+              Mogu li sam/a dodavati i uklanjati oglase?
+              <svg class="sd-faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            </button>
+            <div class="sd-faq-answer">
+              <p>Da. U Professional i Premium paketima dolazi CMS sučelje putem kojeg sami upravljate svim oglasima — dodajete fotografije, opise, cijene i statuse. Bez kontaktiranja developera, bez dodatnih troškova.</p>
+            </div>
+          </div>
+          <div class="sd-faq-item">
+            <button class="sd-faq-question">
+              Treba li mi i dalje Njuškalo ili oglasnik?
+              <svg class="sd-faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            </button>
+            <div class="sd-faq-answer">
+              <p>To ovisi o vašoj strategiji. Vanjski portali donose promet kupaca koji ih koriste, ali vlastita stranica gradi vaš brend i donosi direktne upite. Preporučamo kombinaciju — koristite portale za vidljivost, ali usmjeravajte kupce na svoju stranicu za detalje i kontakt.</p>
+            </div>
+          </div>
+          <div class="sd-faq-item">
+            <button class="sd-faq-question">
+              Može li stranica prikazivati virtualnu šetnju?
+              <svg class="sd-faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            </button>
+            <div class="sd-faq-answer">
+              <p>Da. Možemo ugraditi embed za Matterport ili sličnu platformu za 3D virtualnu šetnju nekretninom. Ako već imate 3D scane, integracija je jednostavna. Ako ne, možemo preporučiti partnere za snimanje.</p>
+            </div>
+          </div>
+          <div class="sd-faq-item">
+            <button class="sd-faq-question">
+              Podržava li stranica više agenata u agenciji?
+              <svg class="sd-faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            </button>
+            <div class="sd-faq-answer">
+              <p>Da. U Professional i Premium paketu svaki agent ima profil s fotografijom, kontaktima i prikazom nekretnina koje vode. Kupci vide odgovornu osobu za svaku nekretninu i direktno ih kontaktiraju.</p>
+            </div>
+          </div>
+          <div class="sd-faq-item">
+            <button class="sd-faq-question">
+              Koliko traje izrada?
+              <svg class="sd-faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            </button>
+            <div class="sd-faq-answer">
+              <p>Starter: 10–14 dana. Professional s CMS-om: 3–4 tjedna. Premium s višejezičnošću i naprednim filterima: 4–6 tjedana. Sve ovisi o opsegu sadržaja i brzini vaše povratne informacije.</p>
+            </div>
+          </div>
+          <div class="sd-faq-item">
+            <button class="sd-faq-question">
+              Mogu li uvesti nekretnine s postojeće stranice ili excela?
+              <svg class="sd-faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            </button>
+            <div class="sd-faq-answer">
+              <p>Da. Ako imate bazu podataka nekretnina (Excel, Google Sheets ili postojeća stranica), možemo migrirati podatke u novi CMS — bez ručnog unosa svakog oglasa. Dogovorimo se o formatu i mi se pobrinemo za uvoz.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust -->
+    <section class="sd-trust">
+      <div class="container">
+        <div class="sd-trust-grid">
+          <div class="sd-trust-item">
+            <h3 class="sd-trust-title">Vaši kupci, vaš brend</h3>
+            <p class="sd-trust-text">Direktni upiti dolaze k vama — bez posrednika i provizija.</p>
+          </div>
+          <div class="sd-trust-item">
+            <h3 class="sd-trust-title">Fiksne cijene</h3>
+            <p class="sd-trust-text">Bez naknada po oglasu. Plaćate jednom, koristite zauvijek.</p>
+          </div>
+          <div class="sd-trust-item">
+            <h3 class="sd-trust-title">30 dana podrške</h3>
+            <p class="sd-trust-text">Besplatne izmjene i obuka za CMS nakon lansiranja.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Services -->
+    <section class="sd-related">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Pogledajte i ostale usluge</h2>
+        </div>
+        <div class="services-grid services-grid-3">
+          <a href="web-stranice.html" class="service-card-compact">
+            <h3 class="service-title">Web Stranice</h3>
+            <p class="service-description">Moderna, brza i SEO-optimizirana web stranica za vaše poslovanje.</p>
+            <div class="service-price">od 200€</div>
+          </a>
+          <a href="aplikacije.html" class="service-card-compact">
+            <h3 class="service-title">Web Aplikacije</h3>
+            <p class="service-description">Prilagođeni CRM, interni alati i automatizacije za agencije.</p>
+            <div class="service-price">od 700€</div>
+          </a>
+          <a href="webshop.html" class="service-card-compact">
+            <h3 class="service-title">Web Shop</h3>
+            <p class="service-description">Online prodaja materijala, opremanja ili pratećih usluga bez provizija platforme.</p>
+            <div class="service-price">od 600€</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="sd-final-cta">
+      <div class="container">
+        <h2 class="section-title">Prestanite plaćati za tuđi brend</h2>
+        <p class="sd-final-cta-text">90% kupaca nekretnina istraživanje počinje online. Neka vašu agenciju pronađu direktno — s profesionalnim portalom koji radi za vas 24/7. Besplatni nacrt u roku od 24h.</p>
+        <a href="../index.html#free-draft" class="sd-final-cta-btn">Zatražite besplatni nacrt</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <a href="../index.html" class="logo logo-link">
+              <span class="logo-anchor">⚓</span>
+              ENKR
+            </a>
+            <p>obrt za informatičke usluge</p>
+          </div>
+          <div class="footer-links">
+            <h4>Brzi linkovi</h4>
+            <ul>
+              <li><a href="../index.html#home">Početna</a></li>
+              <li><a href="../index.html#services">Usluge</a></li>
+              <li><a href="../index.html#about">O nama</a></li>
+              <li><a href="../index.html#projects">Projekti</a></li>
+              <li><a href="../index.html#contact">Kontakt</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Usluge</h4>
+            <ul>
+              <li><a href="web-stranice.html">Web Stranice</a></li>
+              <li><a href="webshop.html">Web Shop</a></li>
+              <li><a href="booking.html">Booking Sustavi</a></li>
+              <li><a href="aplikacije.html">Web Aplikacije</a></li>
+            </ul>
+          </div>
+          <div class="footer-links footer-contact">
+            <h4>Kontakt</h4>
+            <p>ENKR</p>
+            <p><a href="mailto:info@enkr.hr">info@enkr.hr</a></p>
+            <p><a href="tel:+385919279931">+385 91 927 9931</a></p>
+            <div class="footer-social">
+              <a href="https://www.facebook.com/profile.php?id=61560579448113" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+              <a href="https://www.instagram.com/enkr.hr/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 ENKR. Sva prava pridržana. | <a href="../privacy-policy.html">Politika privatnosti</a> | <a href="../terms-of-service.html">Uvjeti korištenja</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.querySelectorAll('.sd-faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = btn.parentElement;
+          const isActive = item.classList.contains('active');
+          document.querySelectorAll('.sd-faq-item').forEach(i => i.classList.remove('active'));
+          if (!isActive) item.classList.add('active');
+        });
+      });
+    </script>
+    <script type="module" src="../script.js" defer></script>
+  </body>
+</html>
