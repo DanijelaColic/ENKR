@@ -341,17 +341,21 @@
 .sd-pricing-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  max-width: 750px;
-  margin: 0 auto;
-}
-.sd-pricing-grid.sd-pricing-3 {
-  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(6, auto);
   column-gap: 2rem;
   row-gap: 0.35rem;
-  max-width: 1000px;
+  max-width: 750px;
+  margin: 0 auto;
   align-items: start;
+}
+.sd-pricing-grid .sd-price-card {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 6;
+}
+.sd-pricing-grid.sd-pricing-3 {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 1000px;
 }
 .sd-pricing-grid.sd-pricing-3 .sd-price-card {
   display: grid;
@@ -433,7 +437,7 @@
   flex: 1;
   align-self: start;
 }
-.sd-pricing-grid.sd-pricing-3 .sd-price-features {
+.sd-pricing-grid .sd-price-features {
   flex: unset;
 }
 .sd-price-features li {
