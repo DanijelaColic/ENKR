@@ -134,24 +134,170 @@
     </nav>
 
     <!-- Hero -->
-    <section class="sd-hero">
+    <section class="sd-hero sd-hero--split">
       <div class="container">
-        <a href="../index.html#services" class="sd-back-link">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-          Sve usluge
-        </a>
-        <span class="sd-hero-label">Booking Sustavi</span>
-        <h1 class="sd-hero-title">
-          Klijenti rezerviraju
-          <span>dok vi spavate</span>
-        </h1>
-        <p class="sd-hero-desc">
-          Web stranica s booking sustavom od <strong>400€</strong>. Klijenti sami biraju termin, vi dobijete obavijest. Bez telefoniranja, bez nereda s kalendarom, bez provizija.
-        </p>
-        <a href="../index.html#free-draft" class="sd-hero-cta">
-          Zatražite besplatni nacrt
-        </a>
-        <span class="sd-hero-note">Svaki propušteni poziv je izgubljen klijent. Riješite to danas.</span>
+        <div class="sd-hero-split">
+          <div class="sd-hero-text">
+            <a href="../index.html#services" class="sd-back-link">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+              Sve usluge
+            </a>
+            <span class="sd-hero-label">Booking Sustavi</span>
+            <h1 class="sd-hero-title">
+              Klijenti rezerviraju
+              <span>dok vi spavate</span>
+            </h1>
+            <p class="sd-hero-desc">
+              Web stranica s booking sustavom od <strong>400€</strong>. Klijenti sami biraju termin, vi dobijete obavijest. Bez telefoniranja, bez nereda s kalendarom, bez provizija.
+            </p>
+            <a href="../index.html#free-draft" class="sd-hero-cta">
+              Zatražite besplatni nacrt
+            </a>
+            <span class="sd-hero-note">Svaki propušteni poziv je izgubljen klijent. Riješite to danas.</span>
+          </div>
+
+          <div class="sd-hero-visual" aria-hidden="true">
+            <div class="sd-mockup-browser">
+              <div class="sd-mockup-bar">
+                <span class="sd-mockup-dot"></span>
+                <span class="sd-mockup-dot"></span>
+                <span class="sd-mockup-dot"></span>
+                <span class="sd-mockup-url">salon-example.hr/rezervacije</span>
+              </div>
+              <div class="sd-mockup-screen">
+
+                <!-- Slide 1: Service + time slots -->
+                <div class="sd-slide sd-slide--active">
+                  <div class="sd-slide-header">
+                    <div class="sd-slide-logo">
+                      <span class="sd-slide-logo-icon">✂️</span>
+                      <strong>Studio Ella</strong>
+                    </div>
+                    <nav class="sd-slide-nav">
+                      <span>Usluge</span><span>Galerija</span><span class="sd-slide-nav-cta">Rezerviraj</span>
+                    </nav>
+                  </div>
+                  <div class="sd-slide-body">
+                    <p class="sd-slide-section-label">Odaberite uslugu</p>
+                    <div class="sd-slide-service-list">
+                      <div class="sd-slide-service sd-slide-service--selected">
+                        <span>💇</span> Žensko šišanje + fen frizura
+                        <span class="sd-slide-service-price">60 min</span>
+                      </div>
+                      <div class="sd-slide-service">
+                        <span>🎨</span> Bojanje kose
+                        <span class="sd-slide-service-price">120 min</span>
+                      </div>
+                      <div class="sd-slide-service">
+                        <span>💆</span> Tretman njege
+                        <span class="sd-slide-service-price">45 min</span>
+                      </div>
+                    </div>
+                    <p class="sd-slide-section-label" style="margin-top:10px;">Slobodni termini — Srijeda, 15. sij</p>
+                    <div class="sd-slide-slots">
+                      <span class="sd-slide-slot sd-slide-slot--taken">09:00</span>
+                      <span class="sd-slide-slot">10:00</span>
+                      <span class="sd-slide-slot sd-slide-slot--selected">11:30</span>
+                      <span class="sd-slide-slot">13:00</span>
+                      <span class="sd-slide-slot sd-slide-slot--taken">14:30</span>
+                      <span class="sd-slide-slot">16:00</span>
+                    </div>
+                    <button class="sd-slide-btn">Potvrdi rezervaciju →</button>
+                  </div>
+                </div>
+
+                <!-- Slide 2: Admin calendar view -->
+                <div class="sd-slide">
+                  <div class="sd-slide-header">
+                    <div class="sd-slide-logo">
+                      <span class="sd-slide-logo-icon">✂️</span>
+                      <strong>Studio Ella — Kalendar</strong>
+                    </div>
+                    <nav class="sd-slide-nav">
+                      <span>← Pon</span><span class="sd-slide-nav-active">Sri, 15. sij</span><span>Pet →</span>
+                    </nav>
+                  </div>
+                  <div class="sd-slide-body">
+                    <p class="sd-slide-section-label">Vaš raspored danas</p>
+                    <div class="sd-cal-list">
+                      <div class="sd-cal-item sd-cal-item--done">
+                        <span class="sd-cal-time">09:00</span>
+                        <div class="sd-cal-detail">
+                          <strong>Ana M.</strong>
+                          <span>Bojanje kose · 120 min</span>
+                        </div>
+                        <span class="sd-cal-status sd-cal-status--done">✓</span>
+                      </div>
+                      <div class="sd-cal-item sd-cal-item--now">
+                        <span class="sd-cal-time">11:30</span>
+                        <div class="sd-cal-detail">
+                          <strong>Petra K.</strong>
+                          <span>Šišanje + fen · 60 min</span>
+                        </div>
+                        <span class="sd-cal-status sd-cal-status--now">▶</span>
+                      </div>
+                      <div class="sd-cal-item">
+                        <span class="sd-cal-time">13:00</span>
+                        <div class="sd-cal-detail">
+                          <strong>Maja L.</strong>
+                          <span>Tretman njege · 45 min</span>
+                        </div>
+                        <span class="sd-cal-status">○</span>
+                      </div>
+                      <div class="sd-cal-item">
+                        <span class="sd-cal-time">16:00</span>
+                        <div class="sd-cal-detail">
+                          <strong>Ivana B.</strong>
+                          <span>Šišanje + fen · 60 min</span>
+                        </div>
+                        <span class="sd-cal-status">○</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Slide 3: Confirmation + reminder -->
+                <div class="sd-slide">
+                  <div class="sd-slide-header">
+                    <div class="sd-slide-logo">
+                      <span class="sd-slide-logo-icon">✂️</span>
+                      <strong>Studio Ella</strong>
+                    </div>
+                    <nav class="sd-slide-nav">
+                      <span>Usluge</span><span>Galerija</span><span class="sd-slide-nav-cta">Rezerviraj</span>
+                    </nav>
+                  </div>
+                  <div class="sd-slide-body sd-slide-body--confirm">
+                    <div class="sd-slide-confirm-icon" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">✓</div>
+                    <h3 class="sd-slide-confirm-title">Rezervacija potvrđena!</h3>
+                    <p class="sd-slide-confirm-sub">Potvrda je poslana na vaš email</p>
+                    <div class="sd-slide-confirm-card">
+                      <div class="sd-slide-confirm-row">
+                        <span>📅 Datum</span><strong>Srijeda, 15. siječnja</strong>
+                      </div>
+                      <div class="sd-slide-confirm-row">
+                        <span>⏰ Vrijeme</span><strong>11:30</strong>
+                      </div>
+                      <div class="sd-slide-confirm-row">
+                        <span>✂️ Usluga</span><strong>Šišanje + fen frizura</strong>
+                      </div>
+                      <div class="sd-slide-confirm-row">
+                        <span>💇 Frizer</span><strong>Ella Novak</strong>
+                      </div>
+                    </div>
+                    <p class="sd-slide-confirm-reminder">📱 Podsjetnik stiže 24h i 1h prije termina</p>
+                  </div>
+                </div>
+
+              </div>
+              <div class="sd-mockup-dots">
+                <span class="sd-mockup-dot-ind sd-mockup-dot-ind--active"></span>
+                <span class="sd-mockup-dot-ind"></span>
+                <span class="sd-mockup-dot-ind"></span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -561,6 +707,22 @@
       </div>
     </footer>
 
+    <script>
+      (function () {
+        const slides = document.querySelectorAll('.sd-slide');
+        const dots = document.querySelectorAll('.sd-mockup-dot-ind');
+        let current = 0;
+        if (!slides.length) return;
+        function goTo(idx) {
+          slides[current].classList.remove('sd-slide--active');
+          dots[current].classList.remove('sd-mockup-dot-ind--active');
+          current = idx % slides.length;
+          slides[current].classList.add('sd-slide--active');
+          dots[current].classList.add('sd-mockup-dot-ind--active');
+        }
+        setInterval(() => goTo(current + 1), 3500);
+      })();
+    </script>
     <script>
       document.querySelectorAll('.sd-faq-question').forEach(btn => {
         btn.addEventListener('click', () => {

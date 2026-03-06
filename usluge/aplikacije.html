@@ -134,24 +134,176 @@
     </nav>
 
     <!-- Hero -->
-    <section class="sd-hero">
+    <section class="sd-hero sd-hero--split">
       <div class="container">
-        <a href="../index.html#services" class="sd-back-link">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-          Sve usluge
-        </a>
-        <span class="sd-hero-label">Web Aplikacije</span>
-        <h1 class="sd-hero-title">
-          Aplikacija koja
-          <span>radi za vas</span>
-        </h1>
-        <p class="sd-hero-desc">
-          Jednostavna web aplikacija od <strong>700€</strong>. CRM, interni alat, dashboard ili MVP — zamijenite Excel tablice i ručni rad automatiziranim sustavom koji je 100% vaš.
-        </p>
-        <a href="../index.html#free-draft" class="sd-hero-cta">
-          Zatražite besplatni nacrt
-        </a>
-        <span class="sd-hero-note">Opišite proces koji želite automatizirati — javimo se u 24h.</span>
+        <div class="sd-hero-split">
+          <div class="sd-hero-text">
+            <a href="../index.html#services" class="sd-back-link">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+              Sve usluge
+            </a>
+            <span class="sd-hero-label">Web Aplikacije</span>
+            <h1 class="sd-hero-title">
+              Aplikacija koja
+              <span>radi za vas</span>
+            </h1>
+            <p class="sd-hero-desc">
+              Jednostavna web aplikacija od <strong>700€</strong>. CRM, interni alat, dashboard ili MVP — zamijenite Excel tablice i ručni rad automatiziranim sustavom koji je 100% vaš.
+            </p>
+            <a href="../index.html#free-draft" class="sd-hero-cta">
+              Zatražite besplatni nacrt
+            </a>
+            <span class="sd-hero-note">Opišite proces koji želite automatizirati — javimo se u 24h.</span>
+          </div>
+
+          <div class="sd-hero-visual" aria-hidden="true">
+            <div class="sd-mockup-browser">
+              <div class="sd-mockup-bar">
+                <span class="sd-mockup-dot"></span>
+                <span class="sd-mockup-dot"></span>
+                <span class="sd-mockup-dot"></span>
+                <span class="sd-mockup-url">app.tvrtka-example.hr</span>
+              </div>
+              <div class="sd-mockup-screen">
+
+                <!-- Slide 1: Dashboard with KPIs -->
+                <div class="sd-slide sd-slide--active">
+                  <div class="sd-slide-header">
+                    <div class="sd-slide-logo">
+                      <span class="sd-slide-logo-icon">📊</span>
+                      <strong>CRM Dashboard</strong>
+                    </div>
+                    <nav class="sd-slide-nav">
+                      <span class="sd-slide-nav-active">Pregled</span><span>Klijenti</span><span>Upiti</span>
+                    </nav>
+                  </div>
+                  <div class="sd-slide-body">
+                    <p class="sd-slide-section-label">Ovaj tjedan</p>
+                    <div class="sd-dash-kpi-row">
+                      <div class="sd-dash-kpi">
+                        <span class="sd-dash-kpi-val">47</span>
+                        <span class="sd-dash-kpi-label">Novih upita</span>
+                        <span class="sd-dash-kpi-trend sd-dash-trend-up">↑ 12%</span>
+                      </div>
+                      <div class="sd-dash-kpi">
+                        <span class="sd-dash-kpi-val">18</span>
+                        <span class="sd-dash-kpi-label">U obradi</span>
+                        <span class="sd-dash-kpi-trend">→ 0%</span>
+                      </div>
+                      <div class="sd-dash-kpi">
+                        <span class="sd-dash-kpi-val">29</span>
+                        <span class="sd-dash-kpi-label">Zatvoreno</span>
+                        <span class="sd-dash-kpi-trend sd-dash-trend-up">↑ 8%</span>
+                      </div>
+                    </div>
+                    <p class="sd-slide-section-label" style="margin-top:10px;">Prihod — zadnjih 7 dana</p>
+                    <div class="sd-dash-chart">
+                      <div class="sd-dash-bar" style="height:40%"></div>
+                      <div class="sd-dash-bar" style="height:60%"></div>
+                      <div class="sd-dash-bar" style="height:45%"></div>
+                      <div class="sd-dash-bar" style="height:80%"></div>
+                      <div class="sd-dash-bar" style="height:55%"></div>
+                      <div class="sd-dash-bar" style="height:90%"></div>
+                      <div class="sd-dash-bar sd-dash-bar--active" style="height:70%"></div>
+                    </div>
+                    <div class="sd-dash-chart-labels">
+                      <span>Pon</span><span>Uto</span><span>Sri</span><span>Čet</span><span>Pet</span><span>Sub</span><span>Ned</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Slide 2: CRM contacts list -->
+                <div class="sd-slide">
+                  <div class="sd-slide-header">
+                    <div class="sd-slide-logo">
+                      <span class="sd-slide-logo-icon">📊</span>
+                      <strong>CRM Dashboard</strong>
+                    </div>
+                    <nav class="sd-slide-nav">
+                      <span>Pregled</span><span class="sd-slide-nav-active">Klijenti</span><span>Upiti</span>
+                    </nav>
+                  </div>
+                  <div class="sd-slide-body">
+                    <p class="sd-slide-section-label">Svi klijenti (142)</p>
+                    <div class="sd-crm-table">
+                      <div class="sd-crm-row sd-crm-head">
+                        <span>Ime</span><span>Status</span><span>Vrijednost</span>
+                      </div>
+                      <div class="sd-crm-row">
+                        <div class="sd-crm-name"><div class="sd-crm-avatar" style="background:#6366f1">MH</div><span>Marko Horvat</span></div>
+                        <span class="sd-crm-badge sd-crm-badge--active">Aktivan</span>
+                        <span class="sd-crm-val">4.200 €</span>
+                      </div>
+                      <div class="sd-crm-row">
+                        <div class="sd-crm-name"><div class="sd-crm-avatar" style="background:#10b981">AP</div><span>Ana Petrić</span></div>
+                        <span class="sd-crm-badge sd-crm-badge--lead">Lead</span>
+                        <span class="sd-crm-val">—</span>
+                      </div>
+                      <div class="sd-crm-row">
+                        <div class="sd-crm-name"><div class="sd-crm-avatar" style="background:#f59e0b">IK</div><span>Ivan Kovač</span></div>
+                        <span class="sd-crm-badge sd-crm-badge--active">Aktivan</span>
+                        <span class="sd-crm-val">1.800 €</span>
+                      </div>
+                      <div class="sd-crm-row">
+                        <div class="sd-crm-name"><div class="sd-crm-avatar" style="background:#8b5cf6">LN</div><span>Lana Novak</span></div>
+                        <span class="sd-crm-badge sd-crm-badge--done">Završen</span>
+                        <span class="sd-crm-val">900 €</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Slide 3: Task / order management -->
+                <div class="sd-slide">
+                  <div class="sd-slide-header">
+                    <div class="sd-slide-logo">
+                      <span class="sd-slide-logo-icon">📊</span>
+                      <strong>CRM Dashboard</strong>
+                    </div>
+                    <nav class="sd-slide-nav">
+                      <span>Pregled</span><span>Klijenti</span><span class="sd-slide-nav-active">Upiti</span>
+                    </nav>
+                  </div>
+                  <div class="sd-slide-body">
+                    <p class="sd-slide-section-label">Otvoreni upiti</p>
+                    <div class="sd-tasks">
+                      <div class="sd-task sd-task--high">
+                        <span class="sd-task-priority">!</span>
+                        <div class="sd-task-info">
+                          <strong>Ponuda za redizajn — Petra K.</strong>
+                          <span>Rok: danas · Prodaja</span>
+                        </div>
+                        <span class="sd-task-tag sd-task-tag--open">Otvoreno</span>
+                      </div>
+                      <div class="sd-task">
+                        <span class="sd-task-priority sd-task-priority--med">~</span>
+                        <div class="sd-task-info">
+                          <strong>Follow-up — Marko H.</strong>
+                          <span>Rok: sutra · Podrška</span>
+                        </div>
+                        <span class="sd-task-tag sd-task-tag--progress">U tijeku</span>
+                      </div>
+                      <div class="sd-task">
+                        <span class="sd-task-priority sd-task-priority--low">·</span>
+                        <div class="sd-task-info">
+                          <strong>Ugovor — Ana P.</strong>
+                          <span>Rok: pet, 17. sij</span>
+                        </div>
+                        <span class="sd-task-tag">Na čekanju</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="sd-mockup-dots">
+                <span class="sd-mockup-dot-ind sd-mockup-dot-ind--active"></span>
+                <span class="sd-mockup-dot-ind"></span>
+                <span class="sd-mockup-dot-ind"></span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -559,6 +711,22 @@
       </div>
     </footer>
 
+    <script>
+      (function () {
+        const slides = document.querySelectorAll('.sd-slide');
+        const dots = document.querySelectorAll('.sd-mockup-dot-ind');
+        let current = 0;
+        if (!slides.length) return;
+        function goTo(idx) {
+          slides[current].classList.remove('sd-slide--active');
+          dots[current].classList.remove('sd-mockup-dot-ind--active');
+          current = idx % slides.length;
+          slides[current].classList.add('sd-slide--active');
+          dots[current].classList.add('sd-mockup-dot-ind--active');
+        }
+        setInterval(() => goTo(current + 1), 3500);
+      })();
+    </script>
     <script>
       document.querySelectorAll('.sd-faq-question').forEach(btn => {
         btn.addEventListener('click', () => {

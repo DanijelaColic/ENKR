@@ -133,24 +133,164 @@
     </nav>
 
     <!-- Hero -->
-    <section class="sd-hero">
+    <section class="sd-hero sd-hero--split">
       <div class="container">
-        <a href="../index.html#services" class="sd-back-link">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-          Sve usluge
-        </a>
-        <span class="sd-hero-label">Zdravstvo</span>
-        <h1 class="sd-hero-title">
-          Vaši pacijenti se naručuju
-          <span>dok ste vi na operaciji</span>
-        </h1>
-        <p class="sd-hero-desc">
-          Web stranica za ordinaciju, kliniku ili privatnu praksu od <strong>500€</strong>. Online naručivanje 24/7, automatski podsjetnici, GDPR usklađenost. Manje poziva — više termina.
-        </p>
-        <a href="../index.html#free-draft" class="sd-hero-cta">
-          Zatražite besplatni nacrt
-        </a>
-        <span class="sd-hero-note">Svaki propušteni poziv je pacijent koji odlazi konkurenciji.</span>
+        <div class="sd-hero-split">
+          <div class="sd-hero-text">
+            <a href="../index.html#services" class="sd-back-link">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+              Sve usluge
+            </a>
+            <span class="sd-hero-label">Zdravstvo</span>
+            <h1 class="sd-hero-title">
+              Vaši pacijenti se naručuju
+              <span>dok ste vi na operaciji</span>
+            </h1>
+            <p class="sd-hero-desc">
+              Web stranica za ordinaciju, kliniku ili privatnu praksu od <strong>500€</strong>. Online naručivanje 24/7, automatski podsjetnici, GDPR usklađenost. Manje poziva — više termina.
+            </p>
+            <a href="../index.html#free-draft" class="sd-hero-cta">
+              Zatražite besplatni nacrt
+            </a>
+            <span class="sd-hero-note">Svaki propušteni poziv je pacijent koji odlazi konkurenciji.</span>
+          </div>
+
+          <!-- Mockup Carousel -->
+          <div class="sd-hero-visual" aria-hidden="true">
+            <div class="sd-mockup-browser">
+              <div class="sd-mockup-bar">
+                <span class="sd-mockup-dot"></span>
+                <span class="sd-mockup-dot"></span>
+                <span class="sd-mockup-dot"></span>
+                <span class="sd-mockup-url">ordinacija-example.hr</span>
+              </div>
+              <div class="sd-mockup-screen">
+
+                <!-- Slide 1: Naruči se -->
+                <div class="sd-slide sd-slide--active">
+                  <div class="sd-slide-header">
+                    <div class="sd-slide-logo">
+                      <span class="sd-slide-logo-icon">🏥</span>
+                      <strong>Ordinacija Petrović</strong>
+                    </div>
+                    <nav class="sd-slide-nav">
+                      <span>Usluge</span><span>Tim</span><span class="sd-slide-nav-cta">Naruči se</span>
+                    </nav>
+                  </div>
+                  <div class="sd-slide-body">
+                    <p class="sd-slide-section-label">Odaberite uslugu</p>
+                    <div class="sd-slide-service-list">
+                      <div class="sd-slide-service sd-slide-service--selected">
+                        <span>🩺</span> Opći pregled
+                        <span class="sd-slide-service-price">30 min</span>
+                      </div>
+                      <div class="sd-slide-service">
+                        <span>🩻</span> Ultrazvuk
+                        <span class="sd-slide-service-price">45 min</span>
+                      </div>
+                      <div class="sd-slide-service">
+                        <span>💉</span> Vađenje krvi
+                        <span class="sd-slide-service-price">15 min</span>
+                      </div>
+                    </div>
+                    <p class="sd-slide-section-label" style="margin-top:10px;">Slobodni termini — Utorak, 10. sij</p>
+                    <div class="sd-slide-slots">
+                      <span class="sd-slide-slot">08:00</span>
+                      <span class="sd-slide-slot sd-slide-slot--taken">09:00</span>
+                      <span class="sd-slide-slot sd-slide-slot--selected">10:30</span>
+                      <span class="sd-slide-slot">11:00</span>
+                      <span class="sd-slide-slot sd-slide-slot--taken">12:00</span>
+                      <span class="sd-slide-slot">14:00</span>
+                    </div>
+                    <button class="sd-slide-btn">Potvrdi termin →</button>
+                  </div>
+                </div>
+
+                <!-- Slide 2: Tim liječnika -->
+                <div class="sd-slide">
+                  <div class="sd-slide-header">
+                    <div class="sd-slide-logo">
+                      <span class="sd-slide-logo-icon">🏥</span>
+                      <strong>Ordinacija Petrović</strong>
+                    </div>
+                    <nav class="sd-slide-nav">
+                      <span>Usluge</span><span class="sd-slide-nav-active">Tim</span><span class="sd-slide-nav-cta">Naruči se</span>
+                    </nav>
+                  </div>
+                  <div class="sd-slide-body">
+                    <p class="sd-slide-section-label">Naš tim</p>
+                    <div class="sd-slide-team">
+                      <div class="sd-slide-doctor">
+                        <div class="sd-slide-avatar sd-slide-avatar--1">MP</div>
+                        <div>
+                          <strong>Dr. Marko Petrović</strong>
+                          <p>Opća medicina · 15 god. iskustva</p>
+                          <div class="sd-slide-stars">★★★★★ <span>4.9</span></div>
+                        </div>
+                      </div>
+                      <div class="sd-slide-doctor">
+                        <div class="sd-slide-avatar sd-slide-avatar--2">AH</div>
+                        <div>
+                          <strong>Dr. Ana Horvat</strong>
+                          <p>Interna medicina · 10 god. iskustva</p>
+                          <div class="sd-slide-stars">★★★★★ <span>4.8</span></div>
+                        </div>
+                      </div>
+                      <div class="sd-slide-doctor">
+                        <div class="sd-slide-avatar sd-slide-avatar--3">IK</div>
+                        <div>
+                          <strong>Dr. Ivan Kovač</strong>
+                          <p>Kardiologija · 12 god. iskustva</p>
+                          <div class="sd-slide-stars">★★★★★ <span>4.9</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Slide 3: Potvrda termina -->
+                <div class="sd-slide">
+                  <div class="sd-slide-header">
+                    <div class="sd-slide-logo">
+                      <span class="sd-slide-logo-icon">🏥</span>
+                      <strong>Ordinacija Petrović</strong>
+                    </div>
+                    <nav class="sd-slide-nav">
+                      <span>Usluge</span><span>Tim</span><span class="sd-slide-nav-cta">Naruči se</span>
+                    </nav>
+                  </div>
+                  <div class="sd-slide-body sd-slide-body--confirm">
+                    <div class="sd-slide-confirm-icon">✓</div>
+                    <h3 class="sd-slide-confirm-title">Termin potvrđen!</h3>
+                    <p class="sd-slide-confirm-sub">Potvrda je poslana na vaš email</p>
+                    <div class="sd-slide-confirm-card">
+                      <div class="sd-slide-confirm-row">
+                        <span>📅 Datum</span><strong>Utorak, 10. siječnja</strong>
+                      </div>
+                      <div class="sd-slide-confirm-row">
+                        <span>⏰ Vrijeme</span><strong>10:30</strong>
+                      </div>
+                      <div class="sd-slide-confirm-row">
+                        <span>🩺 Usluga</span><strong>Opći pregled</strong>
+                      </div>
+                      <div class="sd-slide-confirm-row">
+                        <span>👨‍⚕️ Liječnik</span><strong>Dr. Petrović</strong>
+                      </div>
+                    </div>
+                    <p class="sd-slide-confirm-reminder">📱 Podsjetnik stižite 24h i 2h prije termina</p>
+                  </div>
+                </div>
+
+              </div>
+              <!-- Slide indicators -->
+              <div class="sd-mockup-dots">
+                <span class="sd-mockup-dot-ind sd-mockup-dot-ind--active"></span>
+                <span class="sd-mockup-dot-ind"></span>
+                <span class="sd-mockup-dot-ind"></span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -594,6 +734,24 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      // Mockup carousel auto-rotation
+      (function () {
+        const slides = document.querySelectorAll('.sd-slide');
+        const dots = document.querySelectorAll('.sd-mockup-dot-ind');
+        let current = 0;
+        if (!slides.length) return;
+        function goTo(idx) {
+          slides[current].classList.remove('sd-slide--active');
+          dots[current].classList.remove('sd-mockup-dot-ind--active');
+          current = idx % slides.length;
+          slides[current].classList.add('sd-slide--active');
+          dots[current].classList.add('sd-mockup-dot-ind--active');
+        }
+        setInterval(() => goTo(current + 1), 3500);
+      })();
+    </script>
 
     <script>
       document.querySelectorAll('.sd-faq-question').forEach(btn => {
