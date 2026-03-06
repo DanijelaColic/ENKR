@@ -1839,29 +1839,59 @@ section {
   grid-template-columns: repeat(4, 1fr);
 }
 
+.services-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Services section eyebrow label */
+.services-eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  background: rgba(99, 102, 241, 0.08);
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: 0.9rem;
+}
+
+.services--industry {
+  background-color: var(--bg-light);
+}
+
 .service-card-compact {
+  --card-accent: var(--primary-color);
   background: white;
-  padding: 1.75rem;
-  border-radius: 16px;
+  padding: 2rem;
+  border-radius: 20px;
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
   border: 1px solid var(--border-color);
+  border-top: 3px solid var(--card-accent);
   display: flex;
   flex-direction: column;
   cursor: pointer;
   text-decoration: none;
   color: inherit;
+  position: relative;
 }
 
 .service-card-compact:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-xl);
-  border-color: var(--primary-color);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -8px color-mix(in srgb, var(--card-accent) 22%, transparent);
+  border-color: color-mix(in srgb, var(--card-accent) 35%, transparent);
+  border-top-color: var(--card-accent);
 }
 
 .service-card-compact .service-title {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
 }
 
 .service-card-compact .service-description {
@@ -1876,6 +1906,80 @@ section {
   margin-bottom: 0.5rem;
 }
 
+/* Icon component */
+.scc-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 13px;
+  background: color-mix(in srgb, var(--card-accent) 10%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  flex-shrink: 0;
+  transition: background 0.3s ease;
+}
+
+.scc-icon svg {
+  stroke: var(--card-accent);
+}
+
+.service-card-compact:hover .scc-icon {
+  background: color-mix(in srgb, var(--card-accent) 18%, transparent);
+}
+
+/* Bullet benefits list */
+.service-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.service-bullets li {
+  font-size: 0.83rem;
+  color: var(--text-light);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  line-height: 1.45;
+}
+
+.service-bullets li::before {
+  content: '✓';
+  color: var(--card-accent);
+  font-weight: 700;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  margin-top: 0.05em;
+}
+
+/* Price row */
+.scc-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  margin-bottom: 1rem;
+}
+
+.scc-price-label {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.scc-price-row .service-price {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--card-accent);
+  margin-bottom: 0;
+  line-height: 1;
+}
+
+/* CTA link */
 .service-cta-inline {
   display: inline-flex;
   align-items: center;
@@ -3013,6 +3117,11 @@ button[type="submit"]:disabled {
   .services-grid-4 {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .services-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -3115,7 +3224,8 @@ button[type="submit"]:disabled {
   }
 
   .services-grid,
-  .services-grid-4 {
+  .services-grid-4,
+  .services-grid-2 {
     grid-template-columns: 1fr;
   }
 
