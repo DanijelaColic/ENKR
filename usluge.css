@@ -1742,3 +1742,222 @@
   border-radius: 10px;
   margin-bottom: 6px;
 }
+
+/* ── Turizam mockup ─────────────────────────────── */
+.sd-tour-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+.sd-tour-img-main {
+  width: 100%;
+  height: 72px;
+  background: linear-gradient(135deg, #fed7aa, #fdba74);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.62rem;
+  color: #7c2d12;
+  font-weight: 600;
+}
+.sd-tour-img-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4px;
+}
+.sd-tour-img-sm {
+  height: 32px;
+  background: linear-gradient(135deg, #bfdbfe, #93c5fd);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+}
+.sd-tour-img-sm:nth-child(2) {
+  background: linear-gradient(135deg, #bbf7d0, #86efac);
+}
+.sd-tour-img-more {
+  background: rgba(0, 0, 0, 0.12) !important;
+  color: #333;
+  font-size: 0.6rem;
+  font-weight: 700;
+}
+.sd-tour-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.sd-tour-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.sd-tour-meta-row span {
+  font-size: 0.58rem;
+  background: #f0f2ff;
+  color: #555;
+  padding: 2px 6px;
+  border-radius: 5px;
+}
+.sd-tour-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sd-tour-price {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #f97316;
+}
+.sd-tour-price span {
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: #888;
+}
+
+/* Calendar */
+.sd-tour-calendar {
+  background: #f8f9ff;
+  border-radius: 8px;
+  padding: 6px 8px;
+}
+.sd-tour-cal-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: 4px;
+}
+.sd-tour-cal-header span {
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: #888;
+  text-align: center;
+}
+.sd-tour-cal-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+.sd-tour-cal-day {
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.55rem;
+  border-radius: 4px;
+  color: #333;
+  cursor: default;
+}
+.sd-tour-cal-day--taken {
+  background: #fee2e2;
+  color: #9f1239;
+}
+.sd-tour-cal-day--selected {
+  background: #f97316;
+  color: #fff;
+  font-weight: 700;
+}
+.sd-tour-cal-legend {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+  justify-content: center;
+}
+.sd-tour-cal-legend span {
+  font-size: 0.55rem;
+  color: #888;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.sd-leg-free,
+.sd-leg-sel,
+.sd-leg-taken {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+.sd-leg-free { background: #f0f2ff; border: 1px solid #d1d5db; }
+.sd-leg-sel { background: #f97316; }
+.sd-leg-taken { background: #fee2e2; }
+
+/* ── Dodatne usluge (add-ons block) ─────────────── */
+.sd-addons {
+  margin-top: 32px;
+  background: #fffbf5;
+  border: 1.5px solid #fed7aa;
+  border-radius: 16px;
+  padding: 24px 28px;
+}
+.sd-addons-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.sd-addons-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #f97316;
+  background: #ffedd5;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.sd-addons-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0;
+}
+.sd-addons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+@media (max-width: 768px) {
+  .sd-addons-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .sd-addons-grid { grid-template-columns: 1fr; }
+}
+.sd-addon-card {
+  background: #fff;
+  border: 1.5px solid #fed7aa;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.sd-addon-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sd-addon-emoji {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+.sd-addon-price {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #f97316;
+}
+.sd-addon-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+.sd-addon-desc {
+  font-size: 0.8rem;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+}
