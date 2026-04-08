@@ -2462,6 +2462,22 @@ section {
   background-color: var(--bg-gray-light);
 }
 
+.project-image-villa-jurina {
+  background-image: url('/villa-jurina-hero.jpg');
+  background-size: cover;
+  background-position: center 42%;
+  background-repeat: no-repeat;
+  background-color: var(--bg-gray-light);
+}
+
+.project-image-villa-velebita {
+  background-image: url('/villa-velebita-hero.jpg');
+  background-size: cover;
+  background-position: center 38%;
+  background-repeat: no-repeat;
+  background-color: var(--bg-gray-light);
+}
+
 /* Zelena prekrivka (kao na EKO Leventic hero stranici) */
 .project-image-eko-green {
   position: absolute;
