@@ -2445,8 +2445,10 @@ section {
   transition: var(--transition);
 }
 
-/* Fallback gradient za projekte bez slike */
-.project-image:not(.project-image-eko) {
+/* Fallback gradient samo za projekte bez definirane slike */
+.project-image:not(.project-image-eko):not(.project-image-villa-jurina):not(
+    .project-image-villa-velebita
+  ) {
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
 }
 
